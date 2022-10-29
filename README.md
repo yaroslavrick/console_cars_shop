@@ -1,4 +1,4 @@
-# How to setup application:
+# How to setup application
 
 1. Clone repository:
    `git clone git@github.com:yaroslavrick/cars_management.git`
