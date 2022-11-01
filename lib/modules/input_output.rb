@@ -1,6 +1,6 @@
 module InputOutput
   def int?(value)
-    regex = /^[0-9]*[0-9]+/
+    regex = /\A\d*\z/
     value.match(regex) ? true : false
   end
 
@@ -9,7 +9,7 @@ module InputOutput
   end
 
   def check_input(type, input)
-    return '' if input.size.zero?
+    return '' if input.empty?
 
     case type
     when 'string'
@@ -49,7 +49,7 @@ module InputOutput
     puts 'Please choose sort direction(desc|asc): '
     user_input[:sort_direction] = check_input('string', read_input)
 
-    user_input.reject { |_key, value| value.size.zero? }
+    user_input.reject { |_key, value| value.empty? }
   end
 
   def print_result(result)
@@ -61,7 +61,7 @@ module InputOutput
         car.each do |key, value|
           puts "#{key.capitalize}: #{value}"
         end
-        print "\n"
+        puts
       end
     end
   end

@@ -35,12 +35,12 @@ module Search
     query
   end
 
-  def equivalent?(pair1, pair2)
-    case pair2
+  def equivalent?(car_value, query_value)
+    case query_value
     when Range
-      pair2 === pair1
+      query_value === car_value
     when String
-      pair2 == pair1.downcase
+      query_value == car_value.downcase
     else
       false
     end
@@ -56,7 +56,6 @@ module Search
   end
 
   def search(cars_in_db, query)
-    # all returns true or false of all values
     unsorted = cars_in_db.select do |car|
       query[:pairs].all? do |car_attr, query_value|
         equivalent?(car[car_attr], query_value)
