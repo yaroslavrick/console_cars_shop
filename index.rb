@@ -1,5 +1,5 @@
-require './autoload'
+require_relative 'lib/autoload'
 
-cars_management = CarsManagement.new('lib/database/db.yml')
-
-cars_management.run
+# cars = CarsManagement.new('./lib/db/db.yml')
+cars = CarsManagement.new
+cars.run
