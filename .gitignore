@@ -2,6 +2,3 @@
 .vscode
 node_modules
 .bundle
-
-# search.yml log file
-/lib/db/searches.yml
