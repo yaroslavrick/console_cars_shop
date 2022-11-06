@@ -26,9 +26,7 @@ module SearchEngine
   def sort_by_option(database, sort_option)
     return database.sort_by { |car| car['price'] } if sort_option.downcase == 'price'
 
-    return database.sort_by { |car| car['date_added'] }
-
-    database
+    database.sort_by { |car| Date.strptime(car['date_added'], '%d/%m/%Y') }
   end
 
   def sort_by_direction(database, sort_direction)
