@@ -3,6 +3,6 @@ module DataBase
   DATABASE = 'db.yml'.freeze
 
   def load_database(db = DATABASE)
-    YAML.safe_load(File.read("#{CURRENT_PATH}/../db/#{db}"))
+    YAML.safe_load(File.read("#{CURRENT_PATH}/db/#{db}"))
   end
 end

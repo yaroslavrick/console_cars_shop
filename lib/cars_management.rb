@@ -1,4 +1,5 @@
 class CarsManagement
+  include Lib
   include InputOutput
   include DataBase
   include SearchEngine
