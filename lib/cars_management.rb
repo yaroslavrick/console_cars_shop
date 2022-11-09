@@ -1,7 +1,6 @@
 class CarsManagement
   include Lib
   include InputOutput
-  include DataBase
   include SearchEngine
 
   def initialize
@@ -11,7 +10,7 @@ class CarsManagement
   def run
     while @running == true
       search_rules_hash = ask_user_input
-      database = load_database
+      database = DataBase.new.load_database
       database = keep('make', search_rules_hash[:make], database)
       database = keep('model', search_rules_hash[:model], database)
       database = keep_range('year', search_rules_hash[:year_from], search_rules_hash[:year_to], database)
