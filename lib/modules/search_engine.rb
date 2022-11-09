@@ -20,8 +20,8 @@ module Lib
       database
     end
 
-    def filter_rules(search_rules_hash)
-      search_rules_hash.delete_if { |_k, v| ['', 0].include?(v) }
+    def filter_rules(search_rules)
+      search_rules.delete_if { |_k, v| ['', 0].include?(v) }
     end
 
     def sort_by_option(database, sort_option)

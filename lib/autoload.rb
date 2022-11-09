@@ -1,5 +1,6 @@
 require 'yaml'
 require 'date'
+require 'pry'
 
 require_relative './database'
 require_relative './modules/input_output'
