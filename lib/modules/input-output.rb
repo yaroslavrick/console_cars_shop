@@ -50,6 +50,16 @@ module InputOutput
     puts '-' * 15
   end
 
+  def show_prettified_result(database)
+    binding.pry
+    rows = database.map(&:to_a).flatten(1)
+    # rows = [['Total Quantity:'.light_blue, total_quantity(db).to_s.magenta],
+    #         ['Requests quantity:'.light_blue, requested_quantity.to_s.magenta]]
+    table = Terminal::Table.new title: 'Results:'.light_yellow, headings: ['params:'.cyan, 'data:'.cyan], rows: rows
+    table.style = { all_separators: true, padding_left: 2, padding_right: 2, border: :unicode_thick_edge }
+    puts table
+  end
+
   def exit?
     puts 'Exit? (N/y)'
     %w[y yes].none?(gets.chomp.downcase)

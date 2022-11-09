@@ -46,3 +46,99 @@
   :stats:
     :requests_quantity: 1
     :total_quantity: 1
+- :rules:
+    :make: Ford
+    :model: ''
+    :year_from: 0
+    :year_to: 0
+    :price_from: 0
+    :price_to: 0
+    :sort_option: ''
+    :sort_direction: ''
+  :stats:
+    :requests_quantity: 3
+    :total_quantity: 2
+- :rules:
+    :make: Ford
+    :model: ''
+    :year_from: 0
+    :year_to: 0
+    :price_from: 0
+    :price_to: 0
+    :sort_option: ''
+    :sort_direction: ''
+  :stats:
+    :requests_quantity: 4
+    :total_quantity: 2
+- :rules:
+    :make: Renault
+    :model: ''
+    :year_from: 0
+    :year_to: 0
+    :price_from: 0
+    :price_to: 0
+    :sort_option: ''
+    :sort_direction: ''
+  :stats:
+    :requests_quantity: 1
+    :total_quantity: 1
+- :rules:
+    :make: Renault
+    :model: ''
+    :year_from: 0
+    :year_to: 0
+    :price_from: 0
+    :price_to: 0
+    :sort_option: ''
+    :sort_direction: ''
+  :stats:
+    :requests_quantity: 2
+    :total_quantity: 1
+- :rules:
+    :make: Volkswagen
+    :model: ''
+    :year_from: 0
+    :year_to: 0
+    :price_from: 0
+    :price_to: 0
+    :sort_option: ''
+    :sort_direction: ''
+  :stats:
+    :requests_quantity: 1
+    :total_quantity: 2
+- :rules:
+    :make: Volkswagen
+    :model: ''
+    :year_from: 0
+    :year_to: 0
+    :price_from: 0
+    :price_to: 0
+    :sort_option: ''
+    :sort_direction: ''
+  :stats:
+    :requests_quantity: 2
+    :total_quantity: 2
+- :rules:
+    :make: Volkswagen
+    :model: Passat
+    :year_from: 0
+    :year_to: 0
+    :price_from: 0
+    :price_to: 0
+    :sort_option: ''
+    :sort_direction: ''
+  :stats:
+    :requests_quantity: 1
+    :total_quantity: 1
+- :rules:
+    :make: Volkswagen
+    :model: ''
+    :year_from: 0
+    :year_to: 0
+    :price_from: 0
+    :price_to: 0
+    :sort_option: ''
+    :sort_direction: ''
+  :stats:
+    :requests_quantity: 3
+    :total_quantity: 2

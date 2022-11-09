@@ -10,6 +10,14 @@ module Statistics
     puts "Requests quantity: #{requested_quantity}"
   end
 
+  def show_prettified_statistic(db, requested_quantity)
+    rows = [['Total Quantity:'.light_blue, total_quantity(db).to_s.magenta],
+            ['Requests quantity:'.light_blue, requested_quantity.to_s.magenta]]
+    table = Terminal::Table.new title: 'Statistic'.light_yellow, headings: ['title'.cyan, 'number'.cyan], rows: rows
+    table.style = { all_separators: true, padding_left: 2, padding_right: 2, border: :unicode_thick_edge }
+    puts table
+  end
+
   def compare_requests(current_log_hash, searches_history_arr, _requests_quantity)
     identical = searches_history_arr.count { |request| request[:rules] == current_log_hash[:rules] }
     identical += 1

@@ -1,3 +1,4 @@
+require 'terminal-table'
 class CarsManagement
   include InputOutput
   include DataBase
@@ -25,8 +26,8 @@ class CarsManagement
       searches_history_arr = load_log
       current_log_hash = add_statistics(search_rules_hash, database, @requests_quantity)
       @requests_quantity = compare_requests(current_log_hash, searches_history_arr, @requests_quantity)
-      show_statistic(database, @requests_quantity)
-      show_result(database)
+      show_prettified_statistic(database, @requests_quantity)
+      show_prettified_result(database)
       total_quantity = total_quantity(database)
       save_log(search_rules_hash, @requests_quantity, total_quantity)
       @running = exit?
