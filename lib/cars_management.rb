@@ -51,9 +51,9 @@ class CarsManagement
   def run
     while @running == true
       search_rules = ask_user_input
-      database = filter_data(@database, search_rules)
-      database = sort(database, search_rules[:sort_option], search_rules[:sort_direction])
-      show_result(database)
+      filtered_database = filter_data(@database, search_rules)
+      sorted_database = sort(filtered_database, search_rules[:sort_option], search_rules[:sort_direction])
+      show_result(sorted_database)
       @running = exit?
     end
   end
