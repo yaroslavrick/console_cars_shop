@@ -2,9 +2,11 @@ class CarsManagement
   include Lib
   include InputOutput
   include SearchEngine
+  include Validation
 
   def initialize
     @running = true
+    @database = DataBase.new.load_database
   end
 
   def print_message(message)
@@ -48,14 +50,9 @@ class CarsManagement
 
   def run
     while @running == true
-      database = DataBase.new.load_database
       search_rules = ask_user_input
-      database = keep('make', search_rules[:make], database)
-      database = keep('model', search_rules[:model], database)
-      database = keep_range('year', search_rules[:year_from].to_i, search_rules[:year_to].to_i, database)
-      database = keep_range('price', search_rules[:price_from].to_i, search_rules[:price_to].to_i, database)
-      database = sort_by_option(database, search_rules[:sort_option])
-      database = sort_by_direction(database, search_rules[:sort_direction])
+      database = filter_data(@database, search_rules)
+      database = sort(database, search_rules[:sort_option], search_rules[:sort_direction])
       show_result(database)
       @running = exit?
     end
