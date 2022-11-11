@@ -1,6 +1,6 @@
 module InputOutput
   def ask_user_input
-    puts 'Please select search rules.'
+    puts 'Please select search rules.'.cyan
     search_hash = {
       rules: {},
       stats: {}
@@ -25,7 +25,7 @@ module InputOutput
   end
 
   def print_message(message)
-    puts message
+    puts message.light_blue
   end
 
   def get_user_input
@@ -62,7 +62,7 @@ module InputOutput
   end
 
   def exit?
-    puts 'Exit? (N/y)'
+    puts 'Exit? (N/y)'.cyan
     %w[y yes].none?(gets.chomp.downcase)
   end
 end
