@@ -1,6 +1,3 @@
-require 'terminal-table'
-require 'i18n'
-
 I18n.load_path << Dir[File.expand_path('config/locales') + '/*.yml']
 I18n.default_locale = :en # (note that `en` is already the default!)
 class CarsManagement
@@ -26,7 +23,6 @@ class CarsManagement
 
   def run
     ask_locale
-    puts I18n.t(:test)
     while @running == true
       @requests_quantity = 1
       search_rules_hash = ask_user_input
