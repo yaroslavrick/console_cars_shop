@@ -1,4 +1,8 @@
 require 'terminal-table'
+require 'i18n'
+
+I18n.load_path << Dir[File.expand_path('config/locales') + '/*.yml']
+I18n.default_locale = :en # (note that `en` is already the default!)
 class CarsManagement
   include InputOutput
   include DataBase
@@ -10,7 +14,19 @@ class CarsManagement
     @requests_quantity = 1
   end
 
+  def ask_locale
+    puts 'Choose language: EN/ua: '.colorize(:blue)
+    locale = gets.chomp.downcase.to_sym
+    I18n.locale = if locale == :ua
+                    locale
+                  else
+                    :en
+                  end
+  end
+
   def run
+    ask_locale
+    puts I18n.t(:test)
     while @running == true
       @requests_quantity = 1
       search_rules_hash = ask_user_input

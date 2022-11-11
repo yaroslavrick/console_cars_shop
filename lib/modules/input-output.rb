@@ -1,6 +1,8 @@
+require 'i18n'
 module InputOutput
   def ask_user_input
-    puts 'Please select search rules.'.cyan
+    # puts 'Please select search rules.'.cyan
+    puts I18n.t(:select_search_rules).cyan
     search_hash = {
       rules: {},
       stats: {}
