@@ -1,14 +1,12 @@
 module Lib
   module SearchEngine
     def search_by_model_and_make(option, rules, database)
-      # return database if rules.strip.empty?
       return database if validation_for_emptiness?(rules)
 
       database.keep_if { |car| car[option].downcase == rules.strip.downcase }
     end
 
     def search_by_range(option, rule_from, rule_to, database)
-      # return database if rule_from.zero? && rule_to.zero?
       return database if validation_for_both_zero_values?(rule_from, rule_to)
 
       if rule_from.zero?
@@ -22,7 +20,7 @@ module Lib
       database
     end
 
-    def filter_data(database, search_rules)
+    def search_data(database, search_rules)
       database = search_by_model_and_make('make', search_rules[:make], database)
       database = search_by_model_and_make('model', search_rules[:model], database)
       database = search_by_range('year', search_rules[:year_from].to_i, search_rules[:year_to].to_i, database)
