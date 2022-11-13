@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 module DataBase
   CURRENT_PATH = File.dirname(__FILE__)
-  DATABASE = 'db.yml'.freeze
+  DATABASE = 'db.yml'
   LOG_FILE = File.join(CURRENT_PATH, '/../db/searches.yml').freeze
 
   def load_database(db = DATABASE)
@@ -27,8 +29,8 @@ module DataBase
         sort_direction: search_rules_hash[:rules][:sort_direction]
       },
       stats: {
-        requests_quantity:,
-        total_quantity:
+        requests_quantity: requests_quantity,
+        total_quantity: total_quantity
       }
     }
     entry = [data].to_yaml.gsub("---\n", '')

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module InputOutput
   def ask_user_input
     puts I18n.t(:select_search_rules).cyan
@@ -34,15 +36,19 @@ module InputOutput
   end
 
   def show_prettified_result(database)
-    rows = database.map do |car|
-      car.map do |key, value|
-        [key.to_s.light_blue, value.to_s.magenta]
-      end
-    end.flatten(1)
+    rows = add_colors_to_rows(database)
     table = Terminal::Table.new title: I18n.t('results.title').light_yellow,
                                 headings: [I18n.t('results.params').cyan, I18n.t('results.data').cyan], rows: rows
     table.style = { all_separators: true, padding_left: 2, padding_right: 2, border: :unicode_thick_edge }
     puts table
+  end
+
+  def add_colors_to_rows(database)
+    database.flat_map do |car|
+      car.map do |key, value|
+        [key.to_s.light_blue, value.to_s.magenta]
+      end
+    end
   end
 
   def exit?

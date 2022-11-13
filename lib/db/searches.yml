@@ -286,3 +286,51 @@
   :stats:
     :requests_quantity: 7
     :total_quantity: 2
+- :rules:
+    :make: Ford
+    :model: ''
+    :year_from: 0
+    :year_to: 0
+    :price_from: 0
+    :price_to: 0
+    :sort_option: ''
+    :sort_direction: ''
+  :stats:
+    :requests_quantity: 8
+    :total_quantity: 2
+- :rules:
+    :make: Ford
+    :model: ''
+    :year_from: 0
+    :year_to: 0
+    :price_from: 0
+    :price_to: 0
+    :sort_option: ''
+    :sort_direction: ''
+  :stats:
+    :requests_quantity: 9
+    :total_quantity: 2
+- :rules:
+    :make: Ford
+    :model: Focus
+    :year_from: 0
+    :year_to: 0
+    :price_from: 0
+    :price_to: 0
+    :sort_option: ''
+    :sort_direction: ''
+  :stats:
+    :requests_quantity: 4
+    :total_quantity: 1
+- :rules:
+    :make: 'ford '
+    :model: " focus"
+    :year_from: 0
+    :year_to: 0
+    :price_from: 0
+    :price_to: 0
+    :sort_option: ''
+    :sort_direction: ''
+  :stats:
+    :requests_quantity: 1
+    :total_quantity: 1

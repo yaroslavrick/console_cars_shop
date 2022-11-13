@@ -47,3 +47,9 @@ Layout/ClassStructure:
     - public_methods
     - protected_methods
     - private_methods
+# rubocop-md
+Markdown:
+  # Whether to run RuboCop against non-valid snippets
+  WarnInvalid: true
+  # Whether to lint codeblocks without code attributes
+  Autodetect: true
