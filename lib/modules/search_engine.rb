@@ -3,7 +3,7 @@ module Lib
     def search_by_model_and_make(option, rules, database)
       return database if validation_for_emptiness?(rules)
 
-      database.keep_if { |car| car[option].downcase == rules.strip.downcase }
+      database.keep_if { |car| car[option].casecmp(rules.strip).zero? }
     end
 
     def search_by_range(option, rule_from, rule_to, database)
