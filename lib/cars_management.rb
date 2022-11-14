@@ -13,7 +13,7 @@ class CarsManagement
     puts message
   end
 
-  def get_user_input
+  def user_input
     gets.chomp
   end
 
@@ -37,7 +37,7 @@ class CarsManagement
       question = 'sort direction(desc|asc)'
     end
     puts "Please choose #{question}:"
-    get_user_input.downcase
+    user_input.downcase
   end
 
   def ask_user_input

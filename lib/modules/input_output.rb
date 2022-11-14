@@ -1,11 +1,8 @@
 module Lib
   module InputOutput
-
     def show_result(database)
       puts '-' * 15
-      puts
-      puts 'Results:'
-      puts
+      puts "\nResults:\n"
       if database.empty?
         puts 'None'
       else
