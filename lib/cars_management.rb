@@ -18,13 +18,15 @@ class CarsManagement
   end
 
   def ask_field(rule)
-    question = if rule == :sort_option
+    question = case rule
+               when :sort_option
                  'sort option (date_added|price)'
-               elsif rule == :sort_direction
+               when :sort_direction
                  'sort direction(desc|asc)'
                else
                  rule.to_s
                end
+
     puts "Please choose #{question}:"
     user_input.downcase
   end
