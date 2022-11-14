@@ -28,13 +28,13 @@ module Lib
     end
 
     def sort_by_option(database, sort_option)
-      return database.sort_by { |car| car['price'] } if sort_option.downcase == 'price'
+      return database.sort_by { |car| car['price'] } if sort_option.casecmp('price').zero?
 
       database.sort_by { |car| Date.strptime(car['date_added'], '%d/%m/%Y') }
     end
 
     def sort_by_direction(database, sort_direction)
-      return database if sort_direction.downcase == 'asc'
+      return database if sort_direction.casecmp('asc').zero?
 
       database.reverse
     end
