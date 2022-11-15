@@ -7,7 +7,6 @@ module Statistics
     puts 'Statistic:'
     puts "Total Quantity: #{total_quantity(db)}"
     puts "Requests quantity: #{requested_quantity}"
-    # puts '-' * 15
     puts "#{'-' * 15}\n\n"
   end
 
