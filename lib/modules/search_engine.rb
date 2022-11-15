@@ -1,37 +1,47 @@
-module SearchEngine
-  def keep(option, rules, database)
-    return database if rules.strip.empty?
+module Lib
+  module SearchEngine
+    def search_by_model_and_make(option, rules, database)
+      return database if validation_for_emptiness?(rules)
 
-    database.keep_if { |car| car[option].downcase == rules.strip.downcase }
-  end
-
-  def keep_range(option, rule_from, rule_to, database)
-    return database if rule_from.zero? && rule_to.zero?
-
-    if rule_from.zero?
-      database.keep_if { |car| car[option] <= rule_to }
-    elsif rule_to.zero?
-      database.keep_if { |car| car[option] >= rule_from }
-    else
-      database.keep_if { |car| car[option] >= rule_from && car[option] <= rule_to }
+      database.keep_if { |car| car[option].casecmp(rules).zero? }
     end
 
-    database
-  end
+    def search_by_range(option, rule_from, rule_to, database)
+      return database if validation_for_both_zero_values?(rule_from, rule_to)
 
-  def filter_rules(search_rules_hash)
-    search_rules_hash.delete_if { |_k, v| ['', 0].include?(v) }
-  end
+      if rule_from.zero?
+        database.keep_if { |car| car[option] <= rule_to }
+      elsif rule_to.zero?
+        database.keep_if { |car| car[option] >= rule_from }
+      else
+        database.keep_if { |car| car[option] >= rule_from && car[option] <= rule_to }
+      end
 
-  def sort_by_option(database, sort_option)
-    return database.sort_by { |car| car['price'] } if sort_option.downcase == 'price'
+      database
+    end
 
-    database.sort_by { |car| Date.strptime(car['date_added'], '%d/%m/%Y') }
-  end
+    def search_data(database, search_rules)
+      database = search_by_model_and_make('make', search_rules[:make], database)
+      database = search_by_model_and_make('model', search_rules[:model], database)
+      database = search_by_range('year', search_rules[:year_from].to_i, search_rules[:year_to].to_i, database)
+      search_by_range('price', search_rules[:price_from].to_i, search_rules[:price_to].to_i, database)
+    end
 
-  def sort_by_direction(database, sort_direction)
-    return database if sort_direction.downcase == 'asc'
+    def sort_by_option(database, sort_option)
+      return database.sort_by { |car| car['price'] } if sort_option.casecmp('price').zero?
 
-    database.reverse
+      database.sort_by { |car| Date.strptime(car['date_added'], '%d/%m/%Y') }
+    end
+
+    def sort_by_direction(database, sort_direction)
+      return database if sort_direction.casecmp('asc').zero?
+
+      database.reverse
+    end
+
+    def sort(database, sort_option, sort_direction)
+      database = sort_by_option(database, sort_option)
+      sort_by_direction(database, sort_direction)
+    end
   end
 end

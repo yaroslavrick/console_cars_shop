@@ -1,10 +1,14 @@
-module DataBase
+class DataBase
   CURRENT_PATH = File.dirname(__FILE__)
   DATABASE = 'db.yml'.freeze
-  LOG_FILE = File.join(CURRENT_PATH, '/../db/searches.yml').freeze
+  LOG_FILE = File.join(CURRENT_PATH, '/db/searches.yml').freeze
 
-  def load_database(db = DATABASE)
-    YAML.safe_load(File.read("#{CURRENT_PATH}/../db/#{db}"))
+  def initialize(db = DATABASE)
+    @db_name = db
+  end
+
+  def load_database
+    YAML.safe_load(File.read("#{CURRENT_PATH}/db/#{@db_name}"))
   end
 
   def load_log(log = LOG_FILE)
