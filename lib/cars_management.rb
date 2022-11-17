@@ -5,7 +5,6 @@ module Lib
     include Lib::Modules::Validation
 
     def initialize
-      @running = true
       @database = DataBase.new.load_database
     end
 
@@ -32,13 +31,13 @@ module Lib
     end
 
     def run
-      while @running
+      loop do
         search_rules = ask_cars_fields
         db = @database
         filtered_db = search_data(db, search_rules)
         sorted_db = sort(filtered_db, search_rules[:sort_option], search_rules[:sort_direction])
         show_result(sorted_db)
-        @running = exit?
+        break if exit?
       end
     end
   end

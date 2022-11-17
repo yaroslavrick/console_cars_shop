@@ -31,7 +31,7 @@ module Lib
 
       def exit?
         puts 'Exit? (N/y)'
-        %w[y yes].none?(gets.chomp.downcase)
+        %w[y yes].include?(gets.chomp.downcase)
       end
     end
   end
