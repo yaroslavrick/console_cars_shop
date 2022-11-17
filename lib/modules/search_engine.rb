@@ -2,13 +2,13 @@ module Lib
   module Modules
     module SearchEngine
       def search_by_model_and_make(option, rules, database)
-        return database if validation_for_emptiness?(rules)
+        return database if rules.empty?
 
         database.keep_if { |car| car[option].casecmp(rules.strip).zero? }
       end
 
       def search_by_range(option, rule_from, rule_to, database)
-        return database if validation_for_both_zero_values?(rule_from, rule_to)
+        return database if rule_from.zero? && rule_to.zero?
 
         if rule_from.zero?
           database.keep_if { |car| car[option] <= rule_to }
