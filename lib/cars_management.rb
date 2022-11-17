@@ -9,14 +9,6 @@ module Lib
       @database = DataBase.new.load_database
     end
 
-    def print_message(message)
-      puts message
-    end
-
-    def user_input
-      gets.chomp
-    end
-
     def ask_field(rule)
       question = case rule
                  when :sort_option

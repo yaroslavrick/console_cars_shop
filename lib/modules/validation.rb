@@ -2,7 +2,7 @@ module Lib
   module Modules
     module Validation
       def validation_for_emptiness?(rules)
-        rules.strip.empty?
+        rules.empty?
       end
 
       def validation_for_both_zero_values?(rule_from, rule_to)

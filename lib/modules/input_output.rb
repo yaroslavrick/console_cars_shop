@@ -1,6 +1,14 @@
 module Lib
   module Modules
     module InputOutput
+      def print_message(message)
+        puts message
+      end
+
+      def user_input
+        gets.chomp.strip
+      end
+
       def show_cars(database)
         database.each do |car|
           car.each do |key, value|
