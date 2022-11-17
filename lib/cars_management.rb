@@ -8,26 +8,13 @@ module Lib
       @database = DataBase.new.load_database
     end
 
-    def ask_field(rule)
-      question = case rule
-                 when :sort_option
-                   'sort option (date_added|price)'
-                 when :sort_direction
-                   'sort direction(desc|asc)'
-                 else
-                   rule.to_s
-                 end
-
-      puts "Please choose #{question}:"
-      user_input.downcase
-    end
-
     def ask_cars_fields
-      @data = %i[make model year_from year_to price_from price_to sort_option
-                 sort_direction].each_with_object({}) do |item, hash|
+      fields = %i[make model year_from year_to price_from price_to].each_with_object({}) do |item, hash|
         hash[item] = ask_field(item)
       end
-      @data
+      fields[:sort_option] = ask_field('sort option (date_added|price)')
+      fields[:sort_direction] = ask_field('sort direction (desc|asc)')
+      fields
     end
 
     def run

@@ -18,6 +18,11 @@ module Lib
         end
       end
 
+    def ask_field(rule)
+      puts "Please choose #{rule}:"
+      user_input.downcase
+    end
+
       def show_result(database)
         puts '-' * 15
         puts "\nResults:\n\n"
