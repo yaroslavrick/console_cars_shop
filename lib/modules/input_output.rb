@@ -18,14 +18,13 @@ module Lib
         end
       end
 
-    def ask_field(rule)
-      puts "Please choose #{rule}:"
-      user_input.downcase
-    end
+      def ask_field(rule)
+        puts "Please choose #{rule}:"
+        user_input.downcase
+      end
 
       def show_result(database)
-        puts '-' * 15
-        puts "\nResults:\n\n"
+        puts "#{'-' * 15}\n\nResults:\n\n"
         if database.empty?
           puts 'None'
         else
@@ -35,7 +34,7 @@ module Lib
       end
 
       def exit?
-        puts 'Exit? (N/y)'
+        puts "\nExit? (N/y)"
         %w[y yes].include?(gets.chomp.downcase)
       end
     end
