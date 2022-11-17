@@ -25,11 +25,7 @@ module Lib
 
       def show_result(database)
         puts "#{'-' * 15}\n\nResults:\n\n"
-        if database.empty?
-          puts 'None'
-        else
-          show_cars(database)
-        end
+        database.empty? ? puts('None') : show_cars(database)
         puts '-' * 15
       end
 
