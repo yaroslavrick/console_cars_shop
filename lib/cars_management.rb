@@ -20,7 +20,7 @@ module Lib
     def run
       loop do
         search_rules = ask_cars_fields
-        db = @database
+        db = @database.clone
         filtered_db = search_data(db, search_rules)
         sorted_db = sort(filtered_db, search_rules[:sort_option], search_rules[:sort_direction])
         show_result(sorted_db)
