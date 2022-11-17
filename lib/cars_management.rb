@@ -1,7 +1,6 @@
 module Lib
   class ::CarsManagement
     include Lib::Modules::InputOutput
-    include Lib::Modules::SearchEngineQuery
     include Lib::Modules::Validation
 
     def initialize
@@ -20,10 +19,11 @@ module Lib
     def run
       loop do
         search_rules = ask_cars_fields
-        db = @database.clone
-        filtered_db = search_data(db, search_rules)
-        sorted_db = sort(filtered_db, search_rules[:sort_option], search_rules[:sort_direction])
-        show_result(sorted_db)
+        if validate_user_input?(search_rules)
+          result_data = Lib::SearchEngineQuery.new(data: @database.clone,
+                                                   params: search_rules).call
+        end
+        show_result(result_data)
         break if exit?
       end
     end
