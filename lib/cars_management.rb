@@ -23,7 +23,7 @@ module Lib
       user_input.downcase
     end
 
-    def ask_user_input
+    def ask_cars_fields
       @data = %i[make model year_from year_to price_from price_to sort_option
                  sort_direction].each_with_object({}) do |item, hash|
         hash[item] = ask_field(item)
@@ -33,7 +33,7 @@ module Lib
 
     def run
       while @running == true
-        search_rules = ask_user_input
+        search_rules = ask_cars_fields
         db = @database
         filtered_db = search_data(db, search_rules)
         sorted_db = sort(filtered_db, search_rules[:sort_option], search_rules[:sort_direction])
