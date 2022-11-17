@@ -9,12 +9,12 @@ module Lib
     end
 
     def ask_cars_fields
-      fields = %i[make model year_from year_to price_from price_to].each_with_object({}) do |item, hash|
+      input_data = %i[make model year_from year_to price_from price_to].each_with_object({}) do |item, hash|
         hash[item] = ask_field(item)
       end
-      fields[:sort_option] = ask_field('sort option (date_added|price)')
-      fields[:sort_direction] = ask_field('sort direction (desc|asc)')
-      fields
+      input_data[:sort_option] = ask_field('sort option (date_added|price)')
+      input_data[:sort_direction] = ask_field('sort direction (desc|asc)')
+      input_data
     end
 
     def run
