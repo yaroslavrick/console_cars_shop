@@ -9,7 +9,7 @@ module Lib
       @db_name = db
     end
 
-    def load_database
+    def load
       YAML.safe_load(File.read("#{CURRENT_PATH}/db/#{db_name}"))
     end
   end

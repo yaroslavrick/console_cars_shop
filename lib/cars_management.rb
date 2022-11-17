@@ -5,7 +5,7 @@ module Lib
     include Lib::Modules::Validation
 
     def initialize
-      @database = DataBase.new.load_database
+      @database = DataBase.new.load
     end
 
     def ask_cars_fields
