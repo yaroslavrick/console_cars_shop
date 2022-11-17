@@ -1,7 +1,7 @@
 module Lib
   class ::CarsManagement
     include Lib::Modules::InputOutput
-    include Lib::Modules::SearchEngine
+    include Lib::Modules::SearchEngineQuery
     include Lib::Modules::Validation
 
     def initialize

@@ -1,6 +1,6 @@
 module Lib
   module Modules
-    module SearchEngine
+    module SearchEngineQuery
       def search_by_model_and_make(option, rules, database)
         return database if rules.empty?
 
