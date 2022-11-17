@@ -32,7 +32,7 @@ module Lib
     end
 
     def run
-      while @running == true
+      while @running
         search_rules = ask_cars_fields
         db = @database
         filtered_db = search_data(db, search_rules)
