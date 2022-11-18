@@ -20,15 +20,19 @@ module Lib
       end
 
       def show_prettified_result(database)
-        rows = database.map do |car|
-          car.map do |key, value|
-            [key.to_s.light_blue, value.to_s.magenta]
-          end
-        end.flatten(1)
+        rows = flat_data(database)
         table = Terminal::Table.new title: I18n.t('results.title').light_yellow,
                                     headings: [I18n.t('results.params').cyan, I18n.t('results.data').cyan], rows: rows
         table.style = { all_separators: true, padding_left: 2, padding_right: 2, border: :unicode_thick_edge }
         puts table
+      end
+
+      def flat_data(database)
+        database.map do |car|
+          car.map do |key, value|
+            [key.to_s.light_blue, value.to_s.magenta]
+          end
+        end.flatten(1)
       end
 
       def show_prettified_statistic(db, requested_quantity)
