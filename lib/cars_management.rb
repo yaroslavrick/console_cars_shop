@@ -20,7 +20,7 @@ module Lib
       fields_valid = field_less_then(params[:year_from],
                                      params[:year_to]) && field_less_then(params[:price_from],
                                                                           params[:price_to])
-      puts 'You entered wrong field' unless fields_valid
+      raise "You entered wrong field: year_from/price_from can't be bigger than year_to/price_to" unless fields_valid
 
       fields_valid
     end
@@ -28,10 +28,9 @@ module Lib
     def run
       loop do
         search_rules = ask_cars_fields
-        if validate_user_input?(search_rules)
-          result_data = Lib::SearchEngineQuery.new(data: @database.clone,
-                                                   params: search_rules).call
-        end
+        validate_user_input?(search_rules)
+        result_data = Lib::SearchEngineQuery.new(data: @database.clone,
+                                                 params: search_rules).call
         show_result(result_data)
         break if exit?
       end
