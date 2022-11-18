@@ -1,11 +1,11 @@
 module Lib
-  module Validation
-    def validation_for_emptiness?(rules)
-      rules.strip.empty?
-    end
+  module Modules
+    module Validation
+      def field_less_then(from, to)
+        return true if from.empty? || to.empty?
 
-    def validation_for_both_zero_values?(rule_from, rule_to)
-      rule_from.zero? && rule_to.zero?
+        from < to
+      end
     end
   end
 end

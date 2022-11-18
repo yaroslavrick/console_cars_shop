@@ -1,26 +1,46 @@
-module InputOutput
-  def show_cars(database)
-    database.each do |car|
-      car.each do |key, value|
-        puts "#{key.capitalize}: #{value}"
+module Lib
+  module Modules
+    module InputOutput
+      def print_message(message)
+        puts message
       end
-      puts
-    end
-  end
 
-  def show_result(database)
-    puts '-' * 15
-    puts "\nResults:\n\n"
-    if database.empty?
-      puts 'None'
-    else
-      show_cars(database)
-    end
-    puts '-' * 15
-  end
+      def user_input
+        gets.chomp.strip
+      end
 
-  def exit?
-    puts 'Exit? (N/y)'
-    %w[y yes].none?(gets.chomp.downcase)
+      def show_cars(database)
+        database.each do |car|
+          car.each do |key, value|
+            puts "#{key.capitalize}: #{value}"
+          end
+          puts
+        end
+      end
+
+      def ask_field(rule)
+        puts "Please choose #{rule}:"
+        user_input.downcase
+      end
+
+      def show_result(database)
+        puts "#{'-' * 15}\n\nResults:\n\n"
+        database.empty? ? puts('None') : show_cars(database)
+        puts '-' * 15
+      end
+
+      def show_statistic(total_quantity, requested_quantity)
+        puts 'Statistic:'
+        puts "Total Quantity: #{total_quantity}"
+        puts "Requests quantity: #{requested_quantity}"
+        puts "#{'-' * 15}\n\n"
+      end
+
+      def exit?
+        puts "\nExit? (N/y)"
+        %w[y yes].include?(gets.chomp.downcase)
+      end
+    end
   end
 end
+
