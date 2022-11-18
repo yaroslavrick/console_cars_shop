@@ -2,11 +2,9 @@ module Lib
   class ::CarsManagement
     include Lib::Modules::InputOutput
     include Lib::Modules::Validation
-    include Lib::Modules::Statistics
 
     def initialize
       @database = DataBase.new.load
-      @requests_quantity = 1
     end
 
     def ask_cars_fields
@@ -15,7 +13,6 @@ module Lib
       end
       input_data[:sort_option] = ask_field('sort option (date_added|price)')
       input_data[:sort_direction] = ask_field('sort direction (desc|asc)')
-      # input_data
       create_query(input_data)
     end
 
@@ -51,15 +48,11 @@ module Lib
         result_data = Lib::SearchEngineQuery.new(data: @database.clone,
                                                  params: search_rules[:rules]).call
         show_result(result_data)
-
         searches_history = DataBase.new.load_log
-        current_log = add_statistics(search_rules, result_data, @requests_quantity)
-        @requests_quantity = compare_requests(current_log, searches_history)
-        DataBase.new.save_log(search_rules, @requests_quantity, total_quantity(result_data))
-        show_statistic(total_quantity(result_data), @requests_quantity)
+        requests = Statistics.new(data: result_data, rules: search_rules, searches_history:).call
+        show_statistic(result_data.count, requests)
+        DataBase.new.save_log(search_rules, requests, result_data.count)
         break if exit?
-
-        @requests_quantity = 1
       end
     end
   end
