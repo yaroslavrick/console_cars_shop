@@ -1,288 +1,84 @@
 - :rules:
-    :make: Ford
+    :make: ford
     :model: ''
-    :year_from: 0
-    :year_to: 0
-    :price_from: 0
-    :price_to: 0
+    :year_from: ''
+    :year_to: ''
+    :price_from: ''
+    :price_to: ''
     :sort_option: ''
     :sort_direction: ''
   :stats:
     :requests_quantity: 1
     :total_quantity: 2
 - :rules:
-    :make: Ford
+    :make: ford
     :model: ''
-    :year_from: 0
-    :year_to: 0
-    :price_from: 0
-    :price_to: 0
+    :year_from: ''
+    :year_to: ''
+    :price_from: ''
+    :price_to: ''
     :sort_option: ''
     :sort_direction: ''
   :stats:
     :requests_quantity: 2
     :total_quantity: 2
 - :rules:
-    :make: Infiniti
+    :make: ford
     :model: ''
-    :year_from: 0
-    :year_to: 0
-    :price_from: 0
-    :price_to: 0
-    :sort_option: ''
-    :sort_direction: ''
-  :stats:
-    :requests_quantity: 1
-    :total_quantity: 1
-- :rules:
-    :make: Ford
-    :model: Focus
-    :year_from: 0
-    :year_to: 0
-    :price_from: 0
-    :price_to: 0
-    :sort_option: ''
-    :sort_direction: ''
-  :stats:
-    :requests_quantity: 1
-    :total_quantity: 1
-- :rules:
-    :make: Ford
-    :model: ''
-    :year_from: 0
-    :year_to: 0
-    :price_from: 0
-    :price_to: 0
+    :year_from: ''
+    :year_to: ''
+    :price_from: ''
+    :price_to: ''
     :sort_option: ''
     :sort_direction: ''
   :stats:
     :requests_quantity: 3
     :total_quantity: 2
 - :rules:
-    :make: Ford
+    :make: ford
     :model: ''
-    :year_from: 0
-    :year_to: 0
-    :price_from: 0
-    :price_to: 0
+    :year_from: ''
+    :year_to: ''
+    :price_from: ''
+    :price_to: ''
     :sort_option: ''
     :sort_direction: ''
   :stats:
     :requests_quantity: 4
     :total_quantity: 2
 - :rules:
-    :make: Renault
+    :make: volkswagen
     :model: ''
-    :year_from: 0
-    :year_to: 0
-    :price_from: 0
-    :price_to: 0
+    :year_from: ''
+    :year_to: ''
+    :price_from: ''
+    :price_to: ''
+    :sort_option: ''
+    :sort_direction: ''
+  :stats:
+    :requests_quantity: 1
+    :total_quantity: 2
+- :rules:
+    :make: ford
+    :model: fusion
+    :year_from: ''
+    :year_to: ''
+    :price_from: ''
+    :price_to: ''
     :sort_option: ''
     :sort_direction: ''
   :stats:
     :requests_quantity: 1
     :total_quantity: 1
 - :rules:
-    :make: Renault
+    :make: volkswagen
     :model: ''
-    :year_from: 0
-    :year_to: 0
-    :price_from: 0
-    :price_to: 0
+    :year_from: ''
+    :year_to: ''
+    :price_from: ''
+    :price_to: ''
     :sort_option: ''
     :sort_direction: ''
   :stats:
     :requests_quantity: 2
-    :total_quantity: 1
-- :rules:
-    :make: Volkswagen
-    :model: ''
-    :year_from: 0
-    :year_to: 0
-    :price_from: 0
-    :price_to: 0
-    :sort_option: ''
-    :sort_direction: ''
-  :stats:
-    :requests_quantity: 1
-    :total_quantity: 2
-- :rules:
-    :make: Volkswagen
-    :model: ''
-    :year_from: 0
-    :year_to: 0
-    :price_from: 0
-    :price_to: 0
-    :sort_option: ''
-    :sort_direction: ''
-  :stats:
-    :requests_quantity: 2
-    :total_quantity: 2
-- :rules:
-    :make: Volkswagen
-    :model: Passat
-    :year_from: 0
-    :year_to: 0
-    :price_from: 0
-    :price_to: 0
-    :sort_option: ''
-    :sort_direction: ''
-  :stats:
-    :requests_quantity: 1
-    :total_quantity: 1
-- :rules:
-    :make: Volkswagen
-    :model: ''
-    :year_from: 0
-    :year_to: 0
-    :price_from: 0
-    :price_to: 0
-    :sort_option: ''
-    :sort_direction: ''
-  :stats:
-    :requests_quantity: 3
-    :total_quantity: 2
-- :rules:
-    :make: Ford
-    :model: Focus
-    :year_from: 0
-    :year_to: 2019
-    :price_from: 0
-    :price_to: 0
-    :sort_option: ''
-    :sort_direction: ''
-  :stats:
-    :requests_quantity: 1
-    :total_quantity: 1
-- :rules:
-    :make: Volkswagen
-    :model: ''
-    :year_from: 2001
-    :year_to: 0
-    :price_from: 0
-    :price_to: 0
-    :sort_option: price
-    :sort_direction: ''
-  :stats:
-    :requests_quantity: 1
-    :total_quantity: 2
-- :rules:
-    :make: Ford
-    :model: ''
-    :year_from: 0
-    :year_to: 0
-    :price_from: 0
-    :price_to: 0
-    :sort_option: ''
-    :sort_direction: ''
-  :stats:
-    :requests_quantity: 5
-    :total_quantity: 2
-- :rules:
-    :make: Volkswagen
-    :model: ''
-    :year_from: 0
-    :year_to: 0
-    :price_from: 0
-    :price_to: 0
-    :sort_option: ''
-    :sort_direction: ''
-  :stats:
-    :requests_quantity: 4
-    :total_quantity: 2
-- :rules:
-    :make: Ford
-    :model: Focus
-    :year_from: 0
-    :year_to: 0
-    :price_from: 0
-    :price_to: 0
-    :sort_option: ''
-    :sort_direction: ''
-  :stats:
-    :requests_quantity: 2
-    :total_quantity: 1
-- :rules:
-    :make: Volkswagen
-    :model: ''
-    :year_from: 0
-    :year_to: 0
-    :price_from: 0
-    :price_to: 0
-    :sort_option: ''
-    :sort_direction: ''
-  :stats:
-    :requests_quantity: 5
-    :total_quantity: 2
-- :rules:
-    :make: Volkswagen
-    :model: ''
-    :year_from: 0
-    :year_to: 0
-    :price_from: 0
-    :price_to: 0
-    :sort_option: ''
-    :sort_direction: ''
-  :stats:
-    :requests_quantity: 6
-    :total_quantity: 2
-- :rules:
-    :make: Ford
-    :model: Focus
-    :year_from: 0
-    :year_to: 0
-    :price_from: 0
-    :price_to: 0
-    :sort_option: ''
-    :sort_direction: ''
-  :stats:
-    :requests_quantity: 3
-    :total_quantity: 1
-- :rules:
-    :make: Ford
-    :model: Fusion
-    :year_from: 0
-    :year_to: 0
-    :price_from: 0
-    :price_to: 0
-    :sort_option: ''
-    :sort_direction: ''
-  :stats:
-    :requests_quantity: 1
-    :total_quantity: 1
-- :rules:
-    :make: Volkswagen
-    :model: ''
-    :year_from: 0
-    :year_to: 0
-    :price_from: 0
-    :price_to: 0
-    :sort_option: ''
-    :sort_direction: ''
-  :stats:
-    :requests_quantity: 7
-    :total_quantity: 2
-- :rules:
-    :make: Ford
-    :model: ''
-    :year_from: 0
-    :year_to: 0
-    :price_from: 0
-    :price_to: 0
-    :sort_option: ''
-    :sort_direction: ''
-  :stats:
-    :requests_quantity: 6
-    :total_quantity: 2
-- :rules:
-    :make: Ford
-    :model: ''
-    :year_from: 0
-    :year_to: 0
-    :price_from: 0
-    :price_to: 0
-    :sort_option: ''
-    :sort_direction: ''
-  :stats:
-    :requests_quantity: 7
     :total_quantity: 2
