@@ -49,7 +49,7 @@ module Lib
                                                  params: search_rules[:rules]).call
         show_result(result_data)
         searches_history = DataBase.new.load_log
-        requests = Statistics.new(data: result_data, rules: search_rules, searches_history:).call
+        requests = Statistics.new(rules: search_rules, searches_history:).identical_requests
         show_statistic(result_data.count, requests)
         DataBase.new.save_log(search_rules, requests, result_data.count)
         break if exit?
