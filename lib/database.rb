@@ -22,7 +22,17 @@ module Lib
     end
 
     def save_log(search_rules, requests_quantity, total_quantity, log = LOG_FILE)
-      data = {
+      data = create_data(search_rules, requests_quantity, total_quantity)
+      entry = [data].to_yaml.gsub("---\n", '')
+      file = File.open(File.expand_path(log), 'a')
+      file.puts(entry)
+      file.close
+    end
+
+    private
+
+    def create_data(search_rules, requests_quantity, total_quantity)
+      {
         rules: {
           make: search_rules[:rules][:make],
           model: search_rules[:rules][:model],
@@ -38,10 +48,6 @@ module Lib
           total_quantity:
         }
       }
-      entry = [data].to_yaml.gsub("---\n", '')
-      file = File.open(File.expand_path(log), 'a')
-      file.puts(entry)
-      file.close
     end
   end
 end
