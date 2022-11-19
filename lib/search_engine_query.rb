@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Lib
   class SearchEngineQuery
     def initialize(data:, params:)

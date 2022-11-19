@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Lib
   class Statistics
     attr_reader :rules, :searches_history

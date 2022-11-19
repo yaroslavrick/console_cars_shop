@@ -7,8 +7,8 @@ gem 'bundler-audit'
 gem 'bundler-leak'
 gem 'colorize'
 gem 'fasterer'
-gem 'lefthook'
 gem 'i18n'
+gem 'lefthook'
 gem 'rubocop', require: false
 gem 'rubocop-md'
 gem 'rubocop-performance', require: false
