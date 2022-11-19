@@ -1,14 +1,15 @@
 en:
   select_search_rules: 'Please select search rules.'
   choose:
-    make: 'Please choose make:'
-    model: 'Please choose model:'
-    year_from: 'Please choose year_from:'
-    year_to: 'Please choose year_to:'
-    price_from: 'Please choose price_from:'
-    price_to: 'Please choose price_to:'
-    sort_option: 'Please choose sort option (date_added|price):'
-    sort_direction: 'Please choose sort direction (desc|asc):'
+    please_choose: 'Please choose '
+    make: 'make:'
+    model: 'model:'
+    year_from: 'year_from:'
+    year_to: 'year_to:'
+    price_from: 'price_from:'
+    price_to: 'price_to:'
+    sort option (date_added|price): 'sort option (date_added|price):'
+    sort direction (desc|asc): 'sort direction (desc|asc):'
   exit: 'Exit? (N/y)'
   statistics:
     statistic: 'Statistic'
@@ -20,3 +21,5 @@ en:
     title: 'Results'
     params: 'params:'
     data: 'data:'
+  errors:
+    wrong_field: "You entered wrong field: 'year_from/price_from' can't be bigger than 'year_to/price_to'!"
