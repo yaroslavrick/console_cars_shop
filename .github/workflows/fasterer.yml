@@ -1,10 +1,6 @@
-name: Ruby
+name: Speed checks by fasterer
 
-on:
-  push:
-    branches: ['main']
-  pull_request:
-    branches: ['main']
+on: [push]
 
 permissions:
   contents: read
@@ -14,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ruby-version: ['2.6', '2.7', '3.1.2']
+        ruby-version: ['3.1.2']
 
     steps:
       - uses: actions/checkout@v3
@@ -26,10 +22,5 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby-version }}
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
-      - name: Run tests
-        # run: bundle exec rake
-        run: bundle exec rubocop
-        run: bundle exec bundle-audit
-        run: bundle exec bundle leak
+      - name: Fasterer
         run: bundle exec fasterer
-
