@@ -1,6 +1,5 @@
 module Lib
   class SearchEngineQuery
-
     def initialize(data:, params:)
       @data = data
       @params = params
@@ -27,8 +26,9 @@ module Lib
     end
 
     def search_by_range(from, to, rule)
-      max_rule = @data.sort { |car| car[rule] <=> car[rule] }.last[rule]
-      to = to.is_a?(Integer) ? to : max_rule
+      max_rule = @data.max { |car| car[rule] }
+      max_value = max_rule[rule]
+      to = to.is_a?(Integer) ? to : max_value
       @data.keep_if { |car| car[rule].between?(from.to_i, to.to_i) }
     end
 
