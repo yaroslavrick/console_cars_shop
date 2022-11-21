@@ -298,3 +298,15 @@
   :stats:
     :requests_quantity: 12
     :total_quantity: 2
+- :rules:
+    :make: lexus
+    :model: ''
+    :year_from: ''
+    :year_to: ''
+    :price_from: ''
+    :price_to: ''
+    :sort_option: ''
+    :sort_direction: ''
+  :stats:
+    :requests_quantity: 1
+    :total_quantity: 1
