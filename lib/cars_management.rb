@@ -7,22 +7,38 @@ module Lib
       @database = DataBase.new.load
     end
 
-    def run
+    def call
       loop do
-        search_rules = ask_cars_fields
-        validate_user_input?(search_rules)
-        result_data = Lib::SearchEngineQuery.new(data: @database.clone,
-                                                 params: search_rules).call
-        show_result(result_data)
-        searches_history = DataBase.new.load_log
-        requests = Statistics.new(rules: search_rules, searches_history:).identical_requests
-        show_statistic(result_data.count, requests)
-        DataBase.new.save_log(search_rules, requests, result_data.count)
+        search
+        statistics
+        print_result
+        save_to_log
         break if exit?
       end
     end
 
     private
+
+    def search
+      @search_rules = ask_cars_fields
+      validate_user_input?(@search_rules)
+      @result_data = Lib::SearchEngineQuery.new(data: @database.clone,
+                                                params: @search_rules).call
+    end
+
+    def statistics
+      searches_history = DataBase.new.load_log
+      @requests = Statistics.new(rules: @search_rules, searches_history:).identical_requests
+    end
+
+    def print_result
+      show_result(@result_data)
+      show_statistic(@result_data.count, @requests)
+    end
+
+    def save_to_log
+      DataBase.new.save_log(@search_rules, @requests, @result_data.count)
+    end
 
     def ask_cars_fields
       input_data = %i[make model year_from year_to price_from price_to].each_with_object({}) do |item, hash|
