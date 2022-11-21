@@ -9,22 +9,6 @@ module Lib
       @database = DataBase.new.load
     end
 
-    # def run
-    #   ask_locale
-    #   loop do
-    #     search_rules = ask_cars_fields
-    #     validate_user_input?(search_rules[:rules])
-    #     result_data = Lib::SearchEngineQuery.new(data: @database.clone,
-    #                                              params: search_rules[:rules]).call
-    #     show_prettified_result(result_data)
-    #     searches_history = DataBase.new.load_log
-    #     requests = Statistics.new(rules: search_rules, searches_history:).identical_requests
-    #     show_prettified_statistic(result_data.count, requests)
-    #     DataBase.new.save_log(search_rules, requests, result_data.count)
-    #     break if exit?
-    #   end
-    # end
-
     def call
       ask_locale
       loop do

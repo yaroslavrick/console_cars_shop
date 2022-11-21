@@ -20,6 +20,8 @@ module Lib
       end
 
       def show_prettified_result(database)
+        return puts 'There is no cars with this parameters' if database.empty?
+
         rows = flat_data(database)
         table = Terminal::Table.new title: localize('results.title').light_yellow,
                                     headings: [localize('results.params').cyan, localize('results.data').cyan], rows: rows
