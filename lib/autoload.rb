@@ -4,7 +4,6 @@ require 'bundler/setup'
 require 'terminal-table'
 require 'colorize'
 require 'i18n'
-require 'pry'
 
 require_relative './database'
 require_relative './modules/input_output'
