@@ -43,19 +43,10 @@ module Lib
     end
 
     def create_query(data)
-      {
-        rules: {
-          make: data[:make],
-          model: data[:model],
-          year_from: data[:year_from],
-          year_to: data[:year_to],
-          price_from: data[:price_from],
-          price_to: data[:price_to],
-          sort_option: data[:sort_option],
-          sort_direction: data[:sort_direction]
-        },
-        stats: {}
-      }
+      query = {}
+      query[:rules] = data
+      query[:stats] = {}
+      query
     end
   end
 end
