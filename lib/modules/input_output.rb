@@ -1,6 +1,8 @@
 module Lib
   module Modules
     module InputOutput
+      TABLE_STYLE = { all_separators: true, padding_left: 2, padding_right: 2, border: :unicode_thick_edge }.freeze
+
       def user_input
         gets.chomp.strip
       end
@@ -15,7 +17,7 @@ module Lib
       end
 
       def ask_field(rule)
-        puts "#{localize('choose.please_choose').light_blue} #{localize("choose.#{rule}").light_green}:"
+        puts "#{colorize_main(localize('choose.please_choose'))} #{colorize_option(localize("choose.#{rule}"))}:"
         user_input.downcase
       end
 
@@ -23,26 +25,26 @@ module Lib
         return puts colorize_title(localize('results.empty')) if database.empty?
 
         rows = flat_data(database)
-        table = Terminal::Table.new title: localize('results.title').light_yellow,
-                                    headings: [localize('results.params').cyan, localize('results.data').cyan], rows: rows
-        table.style = { all_separators: true, padding_left: 2, padding_right: 2, border: :unicode_thick_edge }
+        table = Terminal::Table.new title: colorize_title(localize('results.title')),
+                                    headings: [colorize_header(localize('results.params')), colorize_header(localize('results.data'))], rows: rows
+        table.style = TABLE_STYLE
         puts table
       end
 
       def flat_data(database)
         database.map do |car|
           car.map do |key, value|
-            [key.to_s.light_blue, value.to_s.magenta]
+            [colorize_main(key.to_s), colorize_result(value.to_s)]
           end
         end.flatten(1)
       end
 
       def show_prettified_statistic(db, requested_quantity)
-        rows = [[localize('statistics.total_quantity').light_blue, db.to_s.magenta],
-                [localize('statistics.requests_quantity').light_blue, requested_quantity.to_s.magenta]]
-        table = Terminal::Table.new title: localize('statistics.statistic').light_yellow,
-                                    headings: [localize('statistics.title').cyan, localize('statistics.number').cyan], rows: rows
-        table.style = { all_separators: true, padding_left: 2, padding_right: 2, border: :unicode_thick_edge }
+        rows = [[colorize_main(localize('statistics.total_quantity')), colorize_result(db.to_s)],
+                [colorize_main(localize('statistics.requests_quantity')), colorize_result(requested_quantity.to_s)]]
+        table = Terminal::Table.new title: colorize_title(localize('statistics.statistic')),
+                                    headings: [colorize_header(localize('statistics.title')), colorize_header(localize('statistics.number'))], rows: rows
+        table.style = TABLE_STYLE
         puts table
       end
 
