@@ -310,3 +310,27 @@
   :stats:
     :requests_quantity: 17
     :total_quantity: 2
+- :rules:
+    :make: ''
+    :model: ''
+    :year_from: ''
+    :year_to: ''
+    :price_from: ''
+    :price_to: ''
+    :sort_option: ''
+    :sort_direction: ''
+  :stats:
+    :requests_quantity: 1
+    :total_quantity: 14
+- :rules:
+    :make: ''
+    :model: ''
+    :year_from: ''
+    :year_to: ''
+    :price_from: ''
+    :price_to: ''
+    :sort_option: ''
+    :sort_direction: ''
+  :stats:
+    :requests_quantity: 2
+    :total_quantity: 14
