@@ -4,6 +4,8 @@ module Lib
   class ::CarsManagement
     include Lib::Modules::InputOutput
     include Lib::Modules::Validation
+    include Lib::Modules::Localization
+    include Lib::Modules::Colorify
 
     def initialize
       @database = DataBase.new.load
