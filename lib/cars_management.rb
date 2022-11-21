@@ -10,9 +10,9 @@ module Lib
     def run
       loop do
         search_rules = ask_cars_fields
-        validate_user_input?(search_rules[:rules])
+        validate_user_input?(search_rules)
         result_data = Lib::SearchEngineQuery.new(data: @database.clone,
-                                                 params: search_rules[:rules]).call
+                                                 params: search_rules).call
         show_result(result_data)
         searches_history = DataBase.new.load_log
         requests = Statistics.new(rules: search_rules, searches_history:).identical_requests
@@ -30,7 +30,7 @@ module Lib
       end
       input_data[:sort_option] = ask_field('sort option (date_added|price)')
       input_data[:sort_direction] = ask_field('sort direction (desc|asc)')
-      create_query(input_data)
+      input_data
     end
 
     def validate_user_input?(params)
@@ -40,13 +40,6 @@ module Lib
       raise "You entered wrong field: year_from/price_from can't be bigger than year_to/price_to" unless fields_valid
 
       fields_valid
-    end
-
-    def create_query(data)
-      query = {}
-      query[:rules] = data
-      query[:stats] = {}
-      query
     end
   end
 end

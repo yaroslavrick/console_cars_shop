@@ -22,7 +22,7 @@ module Lib
     end
 
     def save_log(search_rules, requests_quantity, total_quantity, log = LOG_FILE)
-      data = create_data(search_rules[:rules], requests_quantity, total_quantity)
+      data = create_data(search_rules, requests_quantity, total_quantity)
       entry = [data].to_yaml.gsub("---\n", '')
       file = File.open(File.expand_path(log), 'a')
       file.puts(entry)
