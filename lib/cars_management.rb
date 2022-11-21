@@ -5,7 +5,7 @@ module Lib
     include Lib::Modules::InputOutput
     include Lib::Modules::Validation
     include Lib::Modules::Localization
-    include Lib::Modules::Colorify
+    include Lib::Modules::Colorize
 
     def initialize
       @database = DataBase.new.load
@@ -52,7 +52,7 @@ module Lib
       fields_valid = field_less_then(params[:year_from],
                                      params[:year_to]) && field_less_then(params[:price_from],
                                                                           params[:price_to])
-      raise I18n.t('errors.wrong_field') unless fields_valid
+      raise localize('errors.wrong_field') unless fields_valid
 
       fields_valid
     end
