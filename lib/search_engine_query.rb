@@ -26,9 +26,8 @@ module Lib
     end
 
     def search_by_range(from, to, rule)
-      max_rule = @data.max { |car| car[rule] }
-      max_value = max_rule[rule]
-      to = to.is_a?(Integer) ? to : max_value
+      max_value = @data.max_by { |car| car[rule] }
+      to = to.is_a?(Integer) ? to : max_value[rule]
       @data.keep_if { |car| car[rule].between?(from.to_i, to.to_i) }
     end
 
