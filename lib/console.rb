@@ -1,5 +1,5 @@
 module Lib
-  class ::CarsManagement
+  class Console
     include Lib::Modules::InputOutput
     include Lib::Modules::Validation
 
