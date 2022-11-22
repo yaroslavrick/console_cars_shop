@@ -1,5 +1,6 @@
 module Lib
   class SearchEngineQuery
+    DATE_FORMAT = '%d/%m/%Y'.freeze
     attr_reader :data, :params
 
     def initialize(data:, params:)
@@ -38,7 +39,7 @@ module Lib
     def sort_by_option(sort_option)
       return data.sort_by { |car| car['price'] } if sort_option.casecmp('price').zero?
 
-      data.sort_by { |car| Date.strptime(car['date_added'], '%d/%m/%Y') }
+      data.sort_by { |car| Date.strptime(car['date_added'], DATE_FORMAT) }
     end
 
     def sort_by_direction(sort_direction)
