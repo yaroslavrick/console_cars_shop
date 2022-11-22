@@ -31,7 +31,7 @@ module Lib
       return if data.empty?
 
       max_value = data.max_by { |car| car[rule] }
-      to = to.is_a?(Integer) ? to : max_value[rule]
+      to = max_value[rule] unless to.is_a?(Integer)
       data.keep_if { |car| car[rule].between?(from.to_i, to.to_i) }
     end
 
