@@ -1,3 +1,3 @@
 require_relative 'lib/autoload'
 
-CarsManagement.new.run
+Lib::CarsManagement.new.run

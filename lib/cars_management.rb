@@ -1,10 +1,10 @@
 module Lib
-  class ::CarsManagement
+  class CarsManagement
     include Lib::Modules::InputOutput
     include Lib::Modules::Validation
 
     def initialize
-      @database = DataBase.new.load
+      @database = Lib::DataBase.new.load
     end
 
     def ask_cars_fields
@@ -16,7 +16,7 @@ module Lib
       input_data
     end
 
-    def validate_user_input?(params)
+    def validate_user_input(params)
       fields_valid = field_less_then(params[:year_from],
                                      params[:year_to]) && field_less_then(params[:price_from],
                                                                           params[:price_to])
@@ -28,7 +28,7 @@ module Lib
     def run
       loop do
         search_rules = ask_cars_fields
-        validate_user_input?(search_rules)
+        validate_user_input(search_rules)
         result_data = Lib::SearchEngineQuery.new(data: @database.clone,
                                                  params: search_rules).call
         show_result(result_data)
