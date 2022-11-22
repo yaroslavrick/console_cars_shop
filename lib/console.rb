@@ -12,7 +12,6 @@ module Lib
     def call
       loop do
         search
-        statistics
         print_result
         save_to_log
         break if exit?
@@ -28,17 +27,18 @@ module Lib
                                                 params: @search_rules).call
     end
 
-    def statistics
-      @requests = Statistics.new(rules: @search_rules, searches_history: database.load_log).identical_requests
+    def find_total_requests
+      @total_requests = Statistics.new(rules: @search_rules, searches_history: database.load_log).identical_requests
     end
 
     def print_result
+      find_total_requests
       show_result(@result_data)
-      show_statistic(@result_data.count, @requests)
+      show_statistic(@result_data.count, @total_requests)
     end
 
     def save_to_log
-      database.save_log(@search_rules, @requests, @result_data.count)
+      database.save_log(@search_rules, @total_requests, @result_data.count)
     end
 
     def ask_cars_fields
