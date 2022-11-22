@@ -38,7 +38,7 @@ module Lib
     end
 
     def save_to_log
-      DataBase.new.save_log(@search_rules, @requests, @result_data.count)
+      database.save_log(@search_rules, @requests, @result_data.count)
     end
 
     def ask_cars_fields
