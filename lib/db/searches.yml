@@ -574,3 +574,67 @@
   :stats:
     :requests_quantity: 24
     :total_quantity: 2
+- :rules:
+    :make: ford
+    :model: ''
+    :year_from: ''
+    :year_to: ''
+    :price_from: ''
+    :price_to: ''
+    :sort_option: ''
+    :sort_direction: ''
+  :stats:
+    :requests_quantity: 25
+    :total_quantity: 2
+- :rules:
+    :make: ford
+    :model: ''
+    :year_from: ''
+    :year_to: ''
+    :price_from: ''
+    :price_to: ''
+    :sort_option: ''
+    :sort_direction: ''
+  :stats:
+    :requests_quantity: 26
+    :total_quantity: 2
+- :rules:
+    :make: ford
+    :model: ''
+    :year_from: ''
+    :year_to: ''
+    :price_from: ''
+    :price_to: ''
+    :sort_option: ''
+    :sort_direction: ''
+  :stats:
+    :requests_quantity: 27
+    :total_quantity: 2
+- :rules:
+    :make: tesla
+    :model: ''
+    :year_from: ''
+    :year_to: ''
+    :price_from: ''
+    :price_to: ''
+    :sort_option: ''
+    :sort_direction: ''
+  :stats:
+    :requests_quantity: 1
+    :total_quantity: 0
+- :rules:
+  :stats:
+    :requests_quantity: 1
+    :total_quantity: 2
+- :rules:
+    :make: ford
+    :model: ''
+    :year_from: ''
+    :year_to: ''
+    :price_from: ''
+    :price_to: ''
+    :sort_option: ''
+    :sort_direction: ''
+  :stats:
+    :requests_quantity: 28
+    :total_quantity: 2
