@@ -502,3 +502,27 @@
   :stats:
     :requests_quantity: 4
     :total_quantity: 1
+- :rules:
+    :make: ford
+    :model: focus
+    :year_from: '2002'
+    :year_to: ''
+    :price_from: ''
+    :price_to: ''
+    :sort_option: ''
+    :sort_direction: ''
+  :stats:
+    :requests_quantity: 1
+    :total_quantity: 1
+- :rules:
+    :make: ford
+    :model: ''
+    :year_from: ''
+    :year_to: ''
+    :price_from: ''
+    :price_to: ''
+    :sort_option: ''
+    :sort_direction: ''
+  :stats:
+    :requests_quantity: 22
+    :total_quantity: 2

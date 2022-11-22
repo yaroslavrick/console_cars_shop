@@ -3,8 +3,10 @@ module Lib
     include Lib::Modules::InputOutput
     include Lib::Modules::Validation
 
+    attr_reader :database
+
     def initialize
-      @database = DataBase.new.load
+      @database = DataBase.new
     end
 
     def call
@@ -22,13 +24,12 @@ module Lib
     def search
       @search_rules = ask_cars_fields
       validate_user_input?(@search_rules)
-      @result_data = Lib::SearchEngineQuery.new(data: @database.clone,
+      @result_data = Lib::SearchEngineQuery.new(data: database.load.clone,
                                                 params: @search_rules).call
     end
 
     def statistics
-      searches_history = DataBase.new.load_log
-      @requests = Statistics.new(rules: @search_rules, searches_history:).identical_requests
+      @requests = Statistics.new(rules: @search_rules, searches_history: database.load_log).identical_requests
     end
 
     def print_result
