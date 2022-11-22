@@ -3,6 +3,7 @@ module Lib
     CURRENT_PATH = File.dirname(__FILE__)
     DATABASE = 'db.yml'.freeze
     LOG_FILE = File.join(CURRENT_PATH, '/db/searches.yml').freeze
+    APPEND_PLUS = 'a+'.freeze
 
     attr_reader :db_name
 
@@ -15,7 +16,7 @@ module Lib
     end
 
     def load_log(log = LOG_FILE)
-      file = File.open(File.expand_path(log), 'a+')
+      file = File.open(File.expand_path(log), APPEND_PLUS)
       log_arr = YAML.load_file(file) || []
       file.close
       log_arr
