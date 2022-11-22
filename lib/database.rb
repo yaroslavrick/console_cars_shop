@@ -1,5 +1,5 @@
 module Lib
-  class ::DataBase
+  class DataBase
     CURRENT_PATH = File.dirname(__FILE__)
     DATABASE = 'db.yml'.freeze
     LOG_FILE = File.join(CURRENT_PATH, '/db/searches.yml').freeze

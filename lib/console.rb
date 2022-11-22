@@ -6,7 +6,7 @@ module Lib
     attr_reader :database, :total_requests, :result_data, :search_rules
 
     def initialize
-      @database = DataBase.new
+      @database = Lib::DataBase.new
     end
 
     def call
@@ -28,7 +28,7 @@ module Lib
     end
 
     def find_total_requests
-      @total_requests = Statistics.new(rules: search_rules,
+      @total_requests = Lib::Statistics.new(rules: search_rules,
                                        searches_history: database.load_log).find_identical_requests
     end
 
