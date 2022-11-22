@@ -28,7 +28,8 @@ module Lib
     end
 
     def find_total_requests
-      @total_requests = Statistics.new(rules: @search_rules, searches_history: database.load_log).identical_requests
+      @total_requests = Statistics.new(rules: @search_rules,
+                                       searches_history: database.load_log).find_identical_requests
     end
 
     def print_result
