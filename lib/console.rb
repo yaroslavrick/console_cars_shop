@@ -58,5 +58,12 @@ module Lib
 
       fields_valid
     end
+
+    def show_statistic(total_quantity, requested_quantity)
+      puts 'Statistic:'
+      puts "Total Quantity: #{total_quantity}"
+      puts "Requests quantity: #{requested_quantity}"
+      puts "#{'-' * 15}\n\n"
+    end
   end
 end

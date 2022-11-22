@@ -29,13 +29,6 @@ module Lib
         puts '-' * 15
       end
 
-      def show_statistic(total_quantity, requested_quantity)
-        puts 'Statistic:'
-        puts "Total Quantity: #{total_quantity}"
-        puts "Requests quantity: #{requested_quantity}"
-        puts "#{'-' * 15}\n\n"
-      end
-
       def exit?
         puts "\nExit? (N/y)"
         %w[y yes].include?(gets.chomp.downcase)
