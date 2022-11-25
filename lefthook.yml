@@ -5,9 +5,6 @@
 #
 pre-push:
   commands:
-    # packages-audit:
-    #   tags: frontend security
-    #   run: yarn audit
     gems-audit:
       tags: backend security
       run: bundle audit
@@ -21,9 +18,6 @@ pre-push:
 pre-commit:
   parallel: true
   commands:
-    # eslint:
-    #   glob: "*.{js,ts,jsx,tsx}"
-    #   run: yarn eslint {staged_files}
     rubocop:
       tags: backend style
       glob: '*.rb'
@@ -36,16 +30,6 @@ pre-commit:
       run: bundle exec fasterer
     bundler-leak:
       run: bundle exec bundler-leak
-    # govet:
-    #   tags: backend style
-    #   files: git ls-files -m
-    #   glob: "*.go"
-    #   run: go vet {files}
-  # scripts:
-  #   "hello.js":
-  #     runner: node
-  #   "any.go":
-  #     runner: go run
 # pre-commit:
 #   parallel: true
 #   commands:
