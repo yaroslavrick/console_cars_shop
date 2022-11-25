@@ -37,8 +37,8 @@ module Lib
 
     def print_result
       find_total_requests
-      show_prettified_result(result_data)
-      show_prettified_statistic(result_data.count, total_requests)
+      show_prettified_result
+      show_prettified_statistic
     end
 
     def save_to_log
@@ -73,13 +73,36 @@ module Lib
       fields_valid
     end
 
-    def show_prettified_statistic(db, requested_quantity)
-      rows = [[colorize_main(localize('statistics.total_quantity')), colorize_result(db.to_s)],
-              [colorize_main(localize('statistics.requests_quantity')), colorize_result(requested_quantity.to_s)]]
-      table = Terminal::Table.new title: colorize_title(localize('statistics.statistic')),
-                                  headings: [colorize_header(localize('statistics.title')), colorize_header(localize('statistics.number'))], rows: rows
+    def show_prettified_statistic
+      rows = [[colorize_main(localize('statistics.total_quantity')), colorize_result(result_data.count.to_s)],
+              [colorize_main(localize('statistics.requests_quantity')), colorize_result(total_requests.to_s)]]
+      create_table('statistics.statistic', 'statistics.title', 'statistics.number', rows)
+    end
+
+    def show_prettified_result
+      return puts colorize_title(localize('results.empty')) if result_data.empty?
+
+      rows = flat_data
+      create_table('results.title', 'results.params', 'results.data', rows)
+    end
+
+    def create_table(title_name, first_header, second_header, rows)
+      table = Terminal::Table.new(
+        title: colorize_title(localize(title_name)),
+        headings: [colorize_header(localize(first_header)),
+                   colorize_header(localize(second_header))],
+        rows:
+      )
       table.style = TABLE_STYLE
       puts table
+    end
+
+    def flat_data
+      result_data.map do |car|
+        car.map do |key, value|
+          [colorize_main(key.to_s), colorize_result(value.to_s)]
+        end
+      end.flatten(1)
     end
   end
 end
