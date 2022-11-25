@@ -7,15 +7,6 @@ module Lib
         gets.chomp.strip
       end
 
-      def show_cars(database)
-        database.each do |car|
-          car.each do |key, value|
-            puts "#{key.capitalize}: #{value}"
-          end
-          puts
-        end
-      end
-
       def ask_field(rule)
         puts "#{colorize_main(localize('choose.please_choose'))} #{colorize_option(localize("choose.#{rule}"))}:"
         user_input.downcase
@@ -37,15 +28,6 @@ module Lib
             [colorize_main(key.to_s), colorize_result(value.to_s)]
           end
         end.flatten(1)
-      end
-
-      def show_prettified_statistic(db, requested_quantity)
-        rows = [[colorize_main(localize('statistics.total_quantity')), colorize_result(db.to_s)],
-                [colorize_main(localize('statistics.requests_quantity')), colorize_result(requested_quantity.to_s)]]
-        table = Terminal::Table.new title: colorize_title(localize('statistics.statistic')),
-                                    headings: [colorize_header(localize('statistics.title')), colorize_header(localize('statistics.number'))], rows: rows
-        table.style = TABLE_STYLE
-        puts table
       end
 
       def exit?

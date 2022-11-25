@@ -418,3 +418,39 @@
   :stats:
     :requests_quantity: 1
     :total_quantity: 1
+- :rules:
+    :make: ford
+    :model: focus
+    :year_from: ''
+    :year_to: '2020'
+    :price_from: ''
+    :price_to: ''
+    :sort_option: ''
+    :sort_direction: ''
+  :stats:
+    :requests_quantity: 1
+    :total_quantity: 1
+- :rules:
+    :make: ford
+    :model: fusion
+    :year_from: ''
+    :year_to: ''
+    :price_from: ''
+    :price_to: ''
+    :sort_option: ''
+    :sort_direction: ''
+  :stats:
+    :requests_quantity: 2
+    :total_quantity: 1
+- :rules:
+    :make: ford
+    :model: ''
+    :year_from: ''
+    :year_to: ''
+    :price_from: '1680'
+    :price_to: ''
+    :sort_option: ''
+    :sort_direction: ''
+  :stats:
+    :requests_quantity: 1
+    :total_quantity: 2

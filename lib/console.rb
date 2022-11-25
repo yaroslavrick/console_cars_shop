@@ -1,19 +1,20 @@
 module Lib
-  class ::CarsManagement
+  class Console
     include Lib::Modules::InputOutput
     include Lib::Modules::Validation
     include Lib::Modules::Localization
     include Lib::Modules::Colorize
 
+    attr_reader :database, :total_requests, :result_data, :search_rules
+
     def initialize
-      @database = DataBase.new.load
+      @database = Lib::DataBase.new
     end
 
     def call
       ask_locale
       loop do
         search
-        statistics
         print_result
         save_to_log
         break if exit?
@@ -24,23 +25,24 @@ module Lib
 
     def search
       @search_rules = ask_cars_fields
-      validate_user_input?(@search_rules)
-      @result_data = Lib::SearchEngineQuery.new(data: @database.clone,
-                                                params: @search_rules).call
+      validate_user_input(search_rules)
+      @result_data = Lib::SearchEngineQuery.new(data: database.load.clone,
+                                                params: search_rules).call
     end
 
-    def statistics
-      searches_history = DataBase.new.load_log
-      @requests = Statistics.new(rules: @search_rules, searches_history:).identical_requests
+    def find_total_requests
+      @total_requests = Lib::Statistics.new(rules: search_rules,
+                                            searches_history: database.load_log).find_identical_requests
     end
 
     def print_result
-      show_prettified_result(@result_data)
-      show_prettified_statistic(@result_data.count, @requests)
+      find_total_requests
+      show_prettified_result(result_data)
+      show_prettified_statistic(result_data.count, total_requests)
     end
 
     def save_to_log
-      DataBase.new.save_log(@search_rules, @requests, @result_data.count)
+      database.save_log(search_rules, total_requests, result_data.count)
     end
 
     def ask_locale
@@ -62,7 +64,7 @@ module Lib
       input_data
     end
 
-    def validate_user_input?(params)
+    def validate_user_input(params)
       fields_valid = field_less_then(params[:year_from],
                                      params[:year_to]) && field_less_then(params[:price_from],
                                                                           params[:price_to])
@@ -71,11 +73,13 @@ module Lib
       fields_valid
     end
 
-    def create_query(data)
-      query = {}
-      query[:rules] = data
-      query[:stats] = {}
-      query
+    def show_prettified_statistic(db, requested_quantity)
+      rows = [[colorize_main(localize('statistics.total_quantity')), colorize_result(db.to_s)],
+              [colorize_main(localize('statistics.requests_quantity')), colorize_result(requested_quantity.to_s)]]
+      table = Terminal::Table.new title: colorize_title(localize('statistics.statistic')),
+                                  headings: [colorize_header(localize('statistics.title')), colorize_header(localize('statistics.number'))], rows: rows
+      table.style = TABLE_STYLE
+      puts table
     end
   end
 end
