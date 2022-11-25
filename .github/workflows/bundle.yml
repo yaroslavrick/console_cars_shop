@@ -25,7 +25,6 @@ jobs:
       - name: backend security
         run: bundle exec bundle audit
       - name: Run leak update
-        run: bundle exec leak update
+        run: bundle exec bundler-leak update
       - name: Make sure memory leaks are not in your gem dependencies
-        run: bundle leak
-    # - run: bundle exec bundle leak
+        run: bundle exec bundler-leak
