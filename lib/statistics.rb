@@ -9,8 +9,8 @@ module Lib
       @searches_history = searches_history
     end
 
-    def identical_requests
-      searches_history.count { |request| request[:rules] == rules[:rules] } + 1
+    def find_identical_requests
+      searches_history.count { |request| request[:rules] == rules } + 1
     end
   end
 end

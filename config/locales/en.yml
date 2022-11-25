@@ -21,5 +21,6 @@ en:
     title: 'Results'
     params: 'params:'
     data: 'data:'
+    empty: 'There is no cars with this parameters'
   errors:
     wrong_field: "You entered wrong field: 'year_from/price_from' can't be bigger than 'year_to/price_to'!"
