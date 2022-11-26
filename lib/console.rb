@@ -72,7 +72,7 @@ module Lib
       fields_valid = field_less_then(params[:year_from],
                                      params[:year_to]) && field_less_then(params[:price_from],
                                                                           params[:price_to])
-      raise localize('errors.wrong_field') unless fields_valid
+      raise(localize('errors.wrong_field')) unless fields_valid
 
       fields_valid
     end

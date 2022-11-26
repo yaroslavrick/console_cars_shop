@@ -7,13 +7,10 @@ pre-push:
   commands:
     gems-audit:
       tags: backend security
-      run: bundle audit
+      run: bundle exec bundler-audit check --update
     bundle-leaks:
-      tags: backend leaks
-      run: bundle exec bundle leak
-    bundle-audit:
-      tags: backend audition
-      run: bundle exec bundle-audit
+      tags: memory leak verification for Bundled apps
+      run: bundle exec bundler-leak
 
 pre-commit:
   parallel: true
@@ -29,16 +26,5 @@ pre-commit:
       exclude: 'application.rb|routes.rb'
       run: bundle exec fasterer
     bundler-leak:
+      tags: memory leak verification for Bundled apps
       run: bundle exec bundler-leak
-# pre-commit:
-#   parallel: true
-#   commands:
-#     rubocop:
-#       run: bundle exec rubocop
-#     brakeman:
-#       run: bundle exec brakeman -A -k --no-
-#     skip-vendor
-#     bundler-leak:
-#       run: bundle exec bundler-leak
-#     database_consistency:
-#       run: bundle exec database_consistency

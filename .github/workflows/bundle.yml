@@ -24,7 +24,5 @@ jobs:
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
       - name: backend security
         run: bundle exec bundle audit
-      - name: Run leak update
-        run: bundle exec bundler-leak update
-      - name: Make sure memory leaks are not in your gem dependencies
-        run: bundle exec bundler-leak
+      - name: Run leak update and Make sure memory leaks are not in your gem dependencies
+        run: bundle exec bundler-leak check --update
