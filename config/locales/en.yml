@@ -1,4 +1,17 @@
 en:
+  main_menu:
+    greet: 'Welcome to Search Engine!'
+    options:
+      search_car: '1. Search a car'
+      show_all_cars: '2. Show all cars'
+      help: '3. Help'
+      exit: '4. Exit'
+    wrong_input: 'Wrong input. Choose 1-4 option'
+    help_menu:
+      search_car: 'If you want to find car by some options - press 1'
+      show_all_cars: 'If you want to see all cars in database - press 2'
+      help: "If you want help (you're, actually, here) - press 3 "
+      exit: 'To exit the app - press 4'
   select_search_rules: 'Please select search rules.'
   choose:
     please_choose: 'Please choose '
@@ -10,7 +23,7 @@ en:
     price_to: 'price_to:'
     sort option (date_added|price): 'sort option (date_added|price):'
     sort direction (desc|asc): 'sort direction (desc|asc):'
-  exit: 'Exit? (N/y)'
+  exit: 'Exit to main menu? (N/y)'
   statistics:
     statistic: 'Statistic'
     title: 'title'
@@ -24,3 +37,12 @@ en:
     empty: 'There is no cars with this parameters'
   errors:
     wrong_field: "You entered wrong field: 'year_from/price_from' can't be bigger than 'year_to/price_to'!"
+  table:
+    id: 'id:'
+    make: 'Make:'
+    model: 'Model:'
+    year: 'Year:'
+    odometer: 'Odometer:'
+    price: 'Price:'
+    description: 'Description:'
+    date_added: 'Date added:'

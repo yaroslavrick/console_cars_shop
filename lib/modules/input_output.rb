@@ -9,6 +9,10 @@ module Lib
         gets.chomp.strip
       end
 
+      def ask_option
+        gets.chomp.to_i
+      end
+
       def ask_field(rule)
         puts "#{colorize_main(localize('choose.please_choose'))} #{colorize_option(localize("choose.#{rule}"))}:"
         user_input.downcase

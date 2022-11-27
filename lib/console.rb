@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-I18n.load_path << Dir["#{File.expand_path('config/locales')}/*.yml"]
-I18n.default_locale = :en
 module Lib
   class Console
     include Lib::Modules::InputOutput
@@ -16,12 +14,23 @@ module Lib
     end
 
     def call
-      ask_locale
       loop do
         search
         print_result
         save_to_log
         break if exit?
+      end
+    end
+
+    def show_prettified_result(result_data)
+      return puts colorize_title(localize('results.empty')) if result_data.empty?
+
+      result_data.each do |car|
+        localize_rows(car)
+        rows = car.map do |key, value|
+          [colorize_main(key.to_s), colorize_result(value.to_s)]
+        end
+        create_table('results.title', 'results.params', 'results.data', rows)
       end
     end
 
@@ -41,22 +50,12 @@ module Lib
 
     def print_result
       find_total_requests
-      show_prettified_result
+      show_prettified_result(result_data)
       show_prettified_statistic
     end
 
     def save_to_log
       database.save_log(search_rules, total_requests, result_data.count)
-    end
-
-    def ask_locale
-      puts 'Choose language: EN/ua: '.colorize(:blue)
-      locale = gets.chomp.downcase.to_sym
-      I18n.locale = if locale == :ua
-                      locale
-                    else
-                      :en
-                    end
     end
 
     def ask_cars_fields
@@ -83,13 +82,6 @@ module Lib
       create_table('statistics.statistic', 'statistics.title', 'statistics.number', rows)
     end
 
-    def show_prettified_result
-      return puts colorize_title(localize('results.empty')) if result_data.empty?
-
-      rows = flat_data
-      create_table('results.title', 'results.params', 'results.data', rows)
-    end
-
     def create_table(title_name, first_header, second_header, rows)
       table = Terminal::Table.new(
         title: colorize_title(localize(title_name)),
@@ -101,11 +93,9 @@ module Lib
       puts table
     end
 
-    def flat_data
-      result_data.flat_map do |car|
-        car.map do |key, value|
-          [colorize_main(key.to_s), colorize_result(value.to_s)]
-        end
+    def localize_rows(car)
+      car.transform_keys! do |key|
+        localize("table.#{key}")
       end
     end
   end

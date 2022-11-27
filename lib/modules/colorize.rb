@@ -8,6 +8,7 @@ module Lib
       TITLE_COLOR = :light_yellow
       HEADER_COLOR = :cyan
       RESULT_COLOR = :magenta
+      ERROR_COLOR = :red
 
       def colorize_main(string)
         string.colorize(MAIN_COLOR)
@@ -27,6 +28,10 @@ module Lib
 
       def colorize_result(string)
         string.colorize(RESULT_COLOR)
+      end
+
+      def colorize_error(string)
+        string.colorize(ERROR_COLOR)
       end
     end
   end
