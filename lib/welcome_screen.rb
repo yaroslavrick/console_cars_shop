@@ -7,6 +7,7 @@ module Lib
     include Lib::Modules::InputOutput
 
     MENU = %w[search_car show_all_cars help exit].freeze
+    MENU_OPTIONS = [1, 2, 3, 4].freeze
 
     attr_reader :all_cars, :console
 
@@ -47,7 +48,7 @@ module Lib
     end
 
     def validate_option(menu_option)
-      return if [1, 2, 3, 4].include?(menu_option)
+      return if MENU_OPTIONS.include?(menu_option)
 
       puts colorize_error(localize('main_menu.wrong_input'))
       call
