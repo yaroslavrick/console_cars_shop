@@ -14,18 +14,14 @@ module Lib
       @all_cars = Lib::DataBase.new
       @console = Lib::Console.new
       ask_locale
-      @exit = false
     end
 
     def call
-      loop do
-        greet
-        show_options
-        option = ask_option
-        validate_option(option)
-        run_option(option)
-        break if @exit
-      end
+      greet
+      show_options
+      option = ask_option
+      validate_option(option)
+      run_option(option)
     end
 
     private
@@ -42,15 +38,12 @@ module Lib
 
     def run_option(option)
       case option
-      when 1
-        console.call
-      when 2
-        console.show_prettified_result(all_cars.load)
-      when 3
-        show_help_menu
-      when 4
-        @exit = true
+      when 1 then console.call
+      when 2 then console.show_prettified_result(all_cars.load)
+      when 3 then show_help_menu
+      when 4 then exit
       end
+      call
     end
 
     def validate_option(option)
