@@ -46,8 +46,8 @@ module Lib
       call
     end
 
-    def validate_option(option)
-      return if [1, 2, 3, 4].include?(option)
+    def validate_option(menu_option)
+      return if [1, 2, 3, 4].include?(menu_option)
 
       puts colorize_error(localize('main_menu.wrong_input'))
       call
