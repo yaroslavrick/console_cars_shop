@@ -29,6 +29,7 @@ module Lib
         localize_rows(car)
         rows = car.map do |key, value|
           [colorize_main(key.to_s), colorize_result(value.to_s)]
+          # [key.to_s.colorize(MAIN_COLOR), value.to_s.colorize(RESULT_COLOR)]
         end
         create_table('results.title', 'results.params', 'results.data', rows)
       end
