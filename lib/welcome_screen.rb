@@ -6,6 +6,8 @@ module Lib
     include Lib::Modules::Colorize
     include Lib::Modules::InputOutput
 
+    MENU = %w[search_car show_all_cars help exit].freeze
+
     attr_reader :all_cars, :console
 
     def initialize
@@ -33,10 +35,9 @@ module Lib
     end
 
     def show_options
-      puts colorize_main(localize('main_menu.options.search_car'))
-      puts colorize_main(localize('main_menu.options.show_all_cars'))
-      puts colorize_main(localize('main_menu.options.help'))
-      puts colorize_main(localize('main_menu.options.exit'))
+      MENU.each do |option|
+        puts colorize_main(localize("main_menu.options.#{option}"))
+      end
     end
 
     def run_option(option)
