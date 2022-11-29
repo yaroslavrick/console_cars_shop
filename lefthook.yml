@@ -17,22 +17,22 @@ pre-commit:
 
 pre-push:
   commands:
-    gem-audit:
-      run: bundle audit
-    gem-leaks:
-      run: bundle leak
-    code-linting:
-      run: bundle exec rubocop
-    optimization-hints:
-      run: bundle exec fasterer
+    gems-audit:
+      tags: backend security
+      run: bundle exec bundler-audit check --update
+    bundle-leaks:
+      tags: memory leak verification for Bundled apps
+      run: bundle exec bundler-leak
 # pre-push:
 #   commands:
-#     gems-audit:
-#       tags: backend security
-#       run: bundle exec bundler-audit check --update
-#     bundle-leaks:
-#       tags: memory leak verification for Bundled apps
-#       run: bundle exec bundler-leak
+#     gem-audit:
+#       run: bundle audit
+#     gem-leaks:
+#       run: bundle leak
+#     code-linting:
+#       run: bundle exec rubocop
+#     optimization-hints:
+#       run: bundle exec fasterer
 
 # pre-commit:
 #   parallel: true
