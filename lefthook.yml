@@ -1,3 +1,20 @@
+pre-commit:
+  parallel: true
+  commands:
+    rubocop:
+      tags: backend style
+      glob: '*.rb'
+      exclude: 'application.rb|routes.rb'
+      run: bundle exec rubocop --force-exclusion {all_files}
+    fasterer:
+      tags: backend speed improvements
+      glob: '*.rb'
+      exclude: 'application.rb|routes.rb'
+      run: bundle exec fasterer
+    bundler-leak:
+      tags: memory leak verification for Bundled apps
+      run: bundle exec bundler-leak
+
 pre-push:
   commands:
     gem-audit:
