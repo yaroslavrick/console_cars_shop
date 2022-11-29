@@ -41,6 +41,41 @@ module Lib
       show_prettified_statistic
     end
 
+    def show_prettified_result
+      return puts colorize_title(localize('results.empty')) if result_data.empty?
+
+      result_data.each do |car|
+        localize_rows(car)
+        rows = car.map do |key, value|
+          [colorize_main(key.to_s), colorize_result(value.to_s)]
+        end
+        create_table('results.title', 'results.params', 'results.data', rows)
+      end
+    end
+
+    def show_prettified_statistic
+      rows = [[colorize_main(localize('statistics.total_quantity')), colorize_result(result_data.count.to_s)],
+              [colorize_main(localize('statistics.requests_quantity')), colorize_result(total_requests.to_s)]]
+      create_table('statistics.statistic', 'statistics.title', 'statistics.number', rows)
+    end
+
+    def create_table(title_name, first_header, second_header, rows)
+      table = Terminal::Table.new(
+        title: colorize_title(localize(title_name)),
+        headings: [colorize_header(localize(first_header)),
+                   colorize_header(localize(second_header))],
+        rows:
+      )
+      table.style = TABLE_STYLE
+      puts table
+    end
+
+    def localize_rows(car)
+      car.transform_keys! do |key|
+        localize("table.#{key}")
+      end
+    end
+
     def save_to_log
       database.save_log(search_rules, total_requests, result_data.count)
     end
@@ -73,36 +108,30 @@ module Lib
       fields_valid
     end
 
-    def show_prettified_statistic
-      rows = [[colorize_main(localize('statistics.total_quantity')), colorize_result(result_data.count.to_s)],
-              [colorize_main(localize('statistics.requests_quantity')), colorize_result(total_requests.to_s)]]
-      create_table('statistics.statistic', 'statistics.title', 'statistics.number', rows)
-    end
+    # def show_prettified_result
+    #   return puts colorize_title(localize('results.empty')) if result_data.empty?
 
-    def show_prettified_result
-      return puts colorize_title(localize('results.empty')) if result_data.empty?
+    #   rows = flat_data
+    #   create_table('results.title', 'results.params', 'results.data', rows)
+    # end
 
-      rows = flat_data
-      create_table('results.title', 'results.params', 'results.data', rows)
-    end
+    # def create_table(title_name, first_header, second_header, rows)
+    #   table = Terminal::Table.new(
+    #     title: colorize_title(localize(title_name)),
+    #     headings: [colorize_header(localize(first_header)),
+    #                colorize_header(localize(second_header))],
+    #     rows:
+    #   )
+    #   table.style = TABLE_STYLE
+    #   puts table
+    # end
 
-    def create_table(title_name, first_header, second_header, rows)
-      table = Terminal::Table.new(
-        title: colorize_title(localize(title_name)),
-        headings: [colorize_header(localize(first_header)),
-                   colorize_header(localize(second_header))],
-        rows:
-      )
-      table.style = TABLE_STYLE
-      puts table
-    end
-
-    def flat_data
-      result_data.map do |car|
-        car.map do |key, value|
-          [colorize_main(key.to_s), colorize_result(value.to_s)]
-        end
-      end.flatten(1)
-    end
+    # def flat_data
+    #   result_data.map do |car|
+    #     car.map do |key, value|
+    #       [colorize_main(key.to_s), colorize_result(value.to_s)]
+    #     end
+    #   end.flatten(1)
+    # end
   end
 end

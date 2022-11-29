@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 
 gem 'colorize'
 gem 'i18n'
+gem 'rubocop'
 gem 'terminal-table'
 
 group :development, :test do
