@@ -862,3 +862,51 @@
   :stats:
     :requests_quantity: 37
     :total_quantity: 2
+- :rules:
+    :make: ford
+    :model: ''
+    :year_from: ''
+    :year_to: ''
+    :price_from: ''
+    :price_to: ''
+    :sort_option: ''
+    :sort_direction: ''
+  :stats:
+    :requests_quantity: 38
+    :total_quantity: 2
+- :rules:
+    :make: infinity
+    :model: ''
+    :year_from: ''
+    :year_to: ''
+    :price_from: ''
+    :price_to: ''
+    :sort_option: ''
+    :sort_direction: ''
+  :stats:
+    :requests_quantity: 1
+    :total_quantity: 0
+- :rules:
+    :make: ford
+    :model: ''
+    :year_from: ''
+    :year_to: ''
+    :price_from: ''
+    :price_to: ''
+    :sort_option: ''
+    :sort_direction: ''
+  :stats:
+    :requests_quantity: 39
+    :total_quantity: 2
+- :rules:
+    :make: infinity
+    :model: ''
+    :year_from: ''
+    :year_to: ''
+    :price_from: ''
+    :price_to: ''
+    :sort_option: ''
+    :sort_direction: ''
+  :stats:
+    :requests_quantity: 2
+    :total_quantity: 0

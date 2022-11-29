@@ -1,20 +1,20 @@
 en:
   main_menu:
-    greet: 'Welcome to Search Engine!'
+    greet: Welcome to Search Engine!
     options:
-      search_car: '1. Search a car'
-      show_all_cars: '2. Show all cars'
-      help: '3. Help'
-      exit: '4. Exit'
-    wrong_input: 'Wrong input. Choose 1-4 option'
+      search_car: 1. Search a car
+      show_all_cars: 2. Show all cars
+      help: 3. Help
+      exit: 4. Exit
+    wrong_input: Wrong input. Choose 1-4 option
     help_menu:
-      search_car: 'If you want to find car by some options - press 1'
-      show_all_cars: 'If you want to see all cars in database - press 2'
+      search_car: If you want to find car by some options - press 1
+      show_all_cars: If you want to see all cars in database - press 2
       help: "If you want help (you're, actually, here) - press 3 "
-      exit: 'To exit the app - press 4'
-  select_search_rules: 'Please select search rules.'
+      exit: To exit the app - press 4
+  select_search_rules: Please select search rules.
   choose:
-    please_choose: 'Please choose '
+    please_choose: Please choose
     make: 'make:'
     model: 'model:'
     year_from: 'year_from:'
@@ -23,20 +23,20 @@ en:
     price_to: 'price_to:'
     sort option (date_added|price): 'sort option (date_added|price):'
     sort direction (desc|asc): 'sort direction (desc|asc):'
-  exit: 'Exit to main menu? (N/y)'
+  exit: Exit to main menu? (N/y)
   statistics:
-    statistic: 'Statistic'
-    title: 'title'
-    number: 'number'
+    statistic: Statistic
+    title: title
+    number: number
     total_quantity: 'Total Quantity:'
     requests_quantity: 'Requests quantity:'
   results:
-    title: 'Results'
+    title: Results
     params: 'params:'
     data: 'data:'
-    empty: 'There is no cars with this parameters'
+    empty: There is no cars with this parameters
   errors:
-    wrong_field: "You entered wrong field: 'year_from/price_from' can't be bigger than 'year_to/price_to'!"
+    wrong_field: 'You entered wrong field: year_from/price_from cant be bigger than year_to/price_to!'
   table:
     id: 'id:'
     make: 'Make:'
