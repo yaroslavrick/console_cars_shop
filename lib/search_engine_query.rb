@@ -1,7 +1,6 @@
 module Lib
   class SearchEngineQuery
     DATE_FORMAT = '%d/%m/%Y'.freeze
-
     attr_reader :data, :params
 
     def initialize(data:, params:)
