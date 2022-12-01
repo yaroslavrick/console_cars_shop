@@ -30,7 +30,9 @@ module Lib
     def ask_user_log_data
       @email = ask_user_email
       @password = ask_user_password
-      { email: email, password: BCrypt::Password.create(password) }
+      encrypted_password = BCrypt::Password.create(@password)
+      binding.pry
+      { email: email, password: encrypted_password }
     end
 
     def ask_user_email
@@ -45,6 +47,7 @@ module Lib
     end
 
     def validate_log_in_data
+      binding.pry
       if logins_and_passwords_db.any? { |car| car[:email] == email && car[:password] == password }
         hello_message
       else
@@ -89,7 +92,7 @@ module Lib
       # o Should be no more than 20 symbols (.{8,20})
 
       valid_password_regexp = /^(?=.*[A-Z])(?=(.*[@$!%*#?&]){2}).{8,20}$/
-
+      binding.pry
       return true if password.match?(valid_password_regexp)
 
       # puts "\nPassword is not valid"

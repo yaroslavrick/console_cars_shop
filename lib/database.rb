@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 gem 'bcrypt'
 module Lib
   class DataBase
@@ -36,19 +37,19 @@ module Lib
       file.close
     end
 
-    # def load_logins_and_passwords(auth_data_file = USERS_LOGINS_AND_PASSWORDS_FILE)
-    #   file = File.open(File.expand_path(auth_data_file), APPEND_PLUS)
-    #   auth_arr = YAML.load_file(file) || []
-    #   file.close
-    #   auth_arr
-    # end
-
-    def load_logins_and_passwords(_auth_data_file = USERS_LOGINS_AND_PASSWORDS_FILE)
-      file = File.join(CURRENT_PATH, './db/users.yml')
+    def load_logins_and_passwords(auth_data_file = USERS_LOGINS_AND_PASSWORDS_FILE)
+      file = File.open(File.expand_path(auth_data_file), APPEND_PLUS)
       auth_arr = YAML.load_file(file) || []
       file.close
       auth_arr
     end
+
+    # def load_logins_and_passwords(_auth_data_file = USERS_LOGINS_AND_PASSWORDS_FILE)
+    #   file = File.join(CURRENT_PATH, './db/users.yml')
+    #   auth_arr = YAML.load_file(file) || []
+    #   file.close
+    #   auth_arr
+    # end
 
     def add_new_user(login_data, login_file = LOG_IN_DATA_FILE)
       file = File.open(File.expand_path(login_file), APPEND)

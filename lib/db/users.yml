@@ -10,8 +10,8 @@
   :password: AZ%?azassaddwfwve14M
 - :email: papa1960@gmail.com
   :password: !ruby/string:BCrypt::Password
-    str: "$2a$12$nEdqFN2r0DUVjRpbyRGvo.rblOKnxum9/fY3oZD/T8Dzy5UF.LX.a"
+    str: "$2a$12$wCmIyu65Kpjv0hUwt4YR8uYd3fXwCX2O9/0eCPFY/N.KxUYciWoZi"
     version: 2a
     cost: 12
-    salt: "$2a$12$nEdqFN2r0DUVjRpbyRGvo."
-    checksum: rblOKnxum9/fY3oZD/T8Dzy5UF.LX.a
+    salt: "$2a$12$wCmIyu65Kpjv0hUwt4YR8u"
+    checksum: Yd3fXwCX2O9/0eCPFY/N.KxUYciWoZi
