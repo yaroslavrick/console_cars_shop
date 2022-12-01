@@ -2,16 +2,21 @@ ua:
   main_menu:
     greet: Вітаю у головному меню!
     options:
-      search_car: 1. Шукати машину
-      show_all_cars: 2. Показати усі машини
-      help: 3. Допомога
-      exit: 4. Вийти
-    wrong_input: Невірний набір. Наберіть 1-4 для користування застосунком
+      log_in: Ввійти
+      sign_up: Зареєструватись
+      log_out: Вийти
+      search_car: Шукати машину
+      show_all_cars: Показати усі машини
+      help: Допомога
+      exit: Вийти з застосунку
+    wrong_input: Невірний набір. Наберіть 1-6 для користування застосунком
     help_menu:
       search_car: Якщо Ви хочете знайти авто по опціям пошуку - натисніть 1
       show_all_cars: Якщо Ви хочете to see all cars in database - натисніть 2
       help: Якщо Ви потребуєте допомоги (Ви, власне, тут) - натисніть 3
       exit: Для виходу з застосунку - натисніть 4
+    log_out:
+      good_bye: Побачимось незабаром!
   select_search_rules: Будь ласка, оберіть критерії пошуку.
   choose:
     please_choose: Будь ласка, оберіть
@@ -46,3 +51,11 @@ ua:
     price: 'Ціна:'
     description: 'Опис:'
     date_added: 'Дата додавання в базу:'
+  authentication:
+    enter_email: 'Введіть email:'
+    enter_password: 'Введіть пароль:'
+    hello_message: 'Вітаю, '
+    email_not_exists: 'Помилка! Email та пароль не існують!'
+    email_already_exists: Користувач з таким email вже зареєстрований!
+    email_not_valid: 'Email не валідний!'
+    password_not_valid: 'Пароль не валідний!'

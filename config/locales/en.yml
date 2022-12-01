@@ -2,16 +2,21 @@ en:
   main_menu:
     greet: Welcome to Search Engine!
     options:
-      search_car: 1. Search a car
-      show_all_cars: 2. Show all cars
-      help: 3. Help
-      exit: 4. Exit
+      log_in: Log in
+      sign_up: Sign up
+      log_out: Log Out
+      search_car: Search a car
+      show_all_cars: Show all cars
+      help: Help
+      exit: Exit
     wrong_input: Wrong input. Choose 1-4 option
     help_menu:
       search_car: If you want to find car by some options - press 1
       show_all_cars: If you want to see all cars in database - press 2
       help: "If you want help (you're, actually, here) - press 3 "
       exit: To exit the app - press 4
+    log_out:
+      good_bye: See you later!
   select_search_rules: Please select search rules.
   choose:
     please_choose: Please choose
@@ -46,3 +51,11 @@ en:
     price: 'Price:'
     description: 'Description:'
     date_added: 'Date added:'
+  authentication:
+    enter_email: 'Enter email:'
+    enter_password: 'Enter password:'
+    hello_message: 'Hello, '
+    email_not_exists: "Error! Email and password does't exists"
+    email_already_exists: Email already exists!
+    email_not_valid: 'Email is not valid!'
+    password_not_valid: 'Password is not valid!'

@@ -946,3 +946,15 @@
   :stats:
     :requests_quantity: 41
     :total_quantity: 2
+- :rules:
+    :make: ford
+    :model: ''
+    :year_from: ''
+    :year_to: ''
+    :price_from: ''
+    :price_to: ''
+    :sort_option: ''
+    :sort_direction: ''
+  :stats:
+    :requests_quantity: 42
+    :total_quantity: 2
