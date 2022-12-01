@@ -1,8 +1,9 @@
 # frozen_string_literal: true
-
+gem 'bcrypt'
 module Lib
   class DataBase
     CURRENT_PATH = File.dirname(__FILE__)
+    # CURRENT_DIR = File.dirname(__FILE__)
     DATABASE = 'db.yml'
     LOG_FILE = File.join(CURRENT_PATH, '/db/searches.yml').freeze
     APPEND_PLUS = 'a+'
@@ -35,8 +36,15 @@ module Lib
       file.close
     end
 
-    def load_logins_and_passwords(auth_data_file = USERS_LOGINS_AND_PASSWORDS_FILE)
-      file = File.open(File.expand_path(auth_data_file), APPEND_PLUS)
+    # def load_logins_and_passwords(auth_data_file = USERS_LOGINS_AND_PASSWORDS_FILE)
+    #   file = File.open(File.expand_path(auth_data_file), APPEND_PLUS)
+    #   auth_arr = YAML.load_file(file) || []
+    #   file.close
+    #   auth_arr
+    # end
+
+    def load_logins_and_passwords(_auth_data_file = USERS_LOGINS_AND_PASSWORDS_FILE)
+      file = File.join(CURRENT_PATH, './db/users.yml')
       auth_arr = YAML.load_file(file) || []
       file.close
       auth_arr

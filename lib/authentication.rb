@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'bcrypt'
 module Lib
   class Authentication
     include Lib::Modules::InputOutput
