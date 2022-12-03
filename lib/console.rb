@@ -3,17 +3,19 @@ module Lib
     include Lib::Modules::InputOutput
     include Lib::Modules::Validation
 
-    attr_reader :database, :total_requests, :result_data, :search_rules
+    attr_reader :total_requests, :result_data, :search_rules, :statistics_db, :cars_db
 
     def initialize
-      @database = Lib::DataBase.new
+      # @database = Lib::Models::DataBase.new
+      @statistics_db = Lib::Models::Statistics.new
+      @cars_db = Lib::Models::Cars.new
     end
 
     def call
       loop do
         search
+        update_statistics
         print_result
-        save_to_log
         break if exit?
       end
     end
@@ -23,23 +25,26 @@ module Lib
     def search
       @search_rules = ask_cars_fields
       validate_user_input(search_rules)
-      @result_data = Lib::SearchEngineQuery.new(data: database.load.clone,
+      @result_data = Lib::SearchEngineQuery.new(data: cars_db.load.clone,
                                                 params: search_rules).call
     end
 
-    def find_total_requests
-      @total_requests = Lib::Statistics.new(rules: search_rules,
-                                            searches_history: database.load_log).find_identical_requests
-    end
+    # def find_total_requests
+    #   @total_requests = Lib::Statistics.new(rules: search_rules,
+    #                                         searches_history: database.load_log).find_identical_requests
+    # end
 
-    def print_result
-      find_total_requests
-      show_result(result_data)
-      show_statistic(result_data.count, total_requests)
-    end
+    # def find_total_requests
+    #   # @total_requests = Lib::Statistics.new(rules: search_rules,
+    #   #                                       searches_history: database.load_log).find_identical_requests
+    #   @statistics_db.find(search_rules)[:requests_quantity]
+    # end
 
-    def save_to_log
-      database.save_log(search_rules, total_requests, result_data.count)
+    def update_statistics
+      # rewrite it
+      # @statistics_db.update(rules) ...
+      # database.save_log(search_rules, total_requests, result_data.count)
+      statistics_db.update(search_rules)
     end
 
     def ask_cars_fields
@@ -58,6 +63,12 @@ module Lib
       raise "You entered wrong field: year_from/price_from can't be bigger than year_to/price_to" unless fields_valid
 
       fields_valid
+    end
+
+    def print_result
+      find_total_requests
+      show_result(result_data)
+      show_statistic(result_data.count, total_requests)
     end
 
     def show_statistic(total_quantity, requested_quantity)
