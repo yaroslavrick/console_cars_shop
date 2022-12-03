@@ -8,11 +8,13 @@ searches_data = [{:rules=>{:make=>"ford", :model=>"", :year_from=>"", :year_to=>
 
 search_rules = {:make=>"ford", :model=>"focus", :year_from=>"", :year_to=>"", :price_from=>"", :price_to=>"", :sort_option=>"", :sort_direction=>""}
 
-new = searches_data.map do |hash|
+fond = false
+searches_data.map! do |hash|
   if hash[:rules] == search_rules
-    hash[:stats][:requests_quantity] += 1
-  else
-    hash
+    hash[:stats][:requests_quantity] += 1 
+    fond = true
   end
+  hash
 end
-p new
+p searches_data
+p fond

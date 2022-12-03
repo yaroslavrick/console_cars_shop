@@ -16,10 +16,10 @@ module Lib
     private
 
     def search
-      search_by(params[:make], 'make')
-      search_by(params[:model], 'model')
-      search_by_range(params[:price_from], params[:price_to], 'price')
-      search_by_range(params[:year_from], params[:year_to], 'year')
+      search_by(params[:search_rules][:make], 'make')
+      search_by(params[:search_rules][:model], 'model')
+      search_by_range(params[:sort_rules][:price_from], params[:sort_rules][:price_to], 'price')
+      search_by_range(params[:sort_rules][:year_from], params[:sort_rules][:year_to], 'year')
     end
 
     def search_by(rule, option)
@@ -49,8 +49,8 @@ module Lib
     end
 
     def sort
-      sort_by_option(params[:sort_option])
-      sort_by_direction(params[:sort_direction])
+      sort_by_option(params[:sort_rules][:sort_option])
+      sort_by_direction(params[:sort_rules][:sort_direction])
     end
   end
 end
