@@ -3,6 +3,8 @@ module Lib
     include Lib::Modules::InputOutput
     include Lib::Modules::Validation
 
+    SEARCH_RULES_OPTIONS = %i[make model year_from year_to price_from price_to].freeze
+
     attr_reader :total_requests, :result_data, :search_rules, :statistics_db, :cars_db
 
     def initialize
@@ -36,7 +38,7 @@ module Lib
     def ask_cars_fields
       input_data = {}
       input_data[:search_rules] = {}
-      input_data[:search_rules] = %i[make model year_from year_to price_from price_to].each_with_object({}) do |item, hash|
+      input_data[:search_rules] = SEARCH_RULES_OPTIONS.each_with_object({}) do |item, hash|
         hash[item] = ask_field(item)
       end
       input_data[:sort_rules] = {}
