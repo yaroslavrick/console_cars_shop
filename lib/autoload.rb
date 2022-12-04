@@ -5,10 +5,8 @@ require 'terminal-table'
 require 'colorize'
 require 'i18n'
 
-
 require_relative './modules/input_output'
 require_relative './search_engine_query'
-require_relative './statistics'
 require_relative './modules/validation'
 require_relative './modules/localization'
 require_relative './modules/colorize'

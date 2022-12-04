@@ -6,7 +6,7 @@
     :price_from: ''
     :price_to: ''
   :stats:
-    :requests_quantity: 2
+    :requests_quantity: 3
 - :rules:
     :make: chevrolet
     :model: volt
