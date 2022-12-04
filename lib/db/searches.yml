@@ -1,36 +1,45 @@
 - :rules:
-    :make: ford
+    :make: ''
+    :model: ''
+    :year_from: '2015'
+    :year_to: ''
+    :price_from: ''
+    :price_to: ''
+  :stats:
+    :requests_quantity: 5
+- :rules:
+    :make: ''
+    :model: ''
+    :year_from: '2016'
+    :year_to: ''
+    :price_from: ''
+    :price_to: ''
+  :stats:
+    :requests_quantity: 2
+- :rules:
+    :make: ''
+    :model: ''
+    :year_from: '2017'
+    :year_to: ''
+    :price_from: ''
+    :price_to: ''
+  :stats:
+    :requests_quantity: 1
+- :rules:
+    :make: ''
     :model: ''
     :year_from: ''
     :year_to: ''
-    :price_from: ''
+    :price_from: '1600'
     :price_to: ''
   :stats:
     :requests_quantity: 1
 - :rules:
-    :make: chevrolet
-    :model: volt
-    :year_from: ''
-    :year_to: ''
-    :price_from: ''
-    :price_to: ''
-  :stats:
-    :requests_quantity: 1
-- :rules:
-    :make: chevrolet
+    :make: ''
     :model: ''
-    :year_from: ''
-    :year_to: ''
-    :price_from: ''
-    :price_to: ''
-  :stats:
-    :requests_quantity: 1
-- :rules:
-    :make: chevrolet
-    :model: volt
     :year_from: '2014'
-    :year_to: '2015'
-    :price_from: '13700'
-    :price_to: '14100'
+    :year_to: ''
+    :price_from: ''
+    :price_to: ''
   :stats:
     :requests_quantity: 1
