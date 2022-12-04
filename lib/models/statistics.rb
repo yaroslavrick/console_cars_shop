@@ -44,7 +44,7 @@ module Lib
         searches_data.push(create_data(search_rules)) unless @total_requests
       end
 
-      def total_requests
+      def total_requests_quantity
         @total_requests || 1
       end
 

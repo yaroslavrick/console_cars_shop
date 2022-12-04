@@ -58,7 +58,7 @@ module Lib
     end
 
     def print_result
-      total_requests = statistics_db.total_requests
+      total_requests = statistics_db.total_requests_quantity
       show_result(result_data)
       show_statistic(result_data.count, total_requests)
     end
