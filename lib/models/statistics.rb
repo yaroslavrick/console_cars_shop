@@ -15,7 +15,7 @@ module Lib
         @searches_data = load_log
         current_search = nil
         searches_data.each { |hash| current_search = hash if hash[:rules] == search_rules }
-        
+
         if current_search
           current_search[:stats][:requests_quantity] += 1
         else
@@ -27,10 +27,9 @@ module Lib
         @searches_data = load_log
 
         data = create_data(search_rules)
-        return searches_data = @searches_data.push(data) if @searches_data.empty?
-        add_to_searches(search_rules)
+        return @searches_data.push(data) if @searches_data.empty?
 
-        
+        add_to_searches(search_rules)
       end
 
       def add_to_searches(search_rules)
