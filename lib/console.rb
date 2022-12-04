@@ -32,7 +32,7 @@ module Lib
 
     def update_statistics
       statistics_db.update(search_rules[:search_rules])
-      statistics_db.create(search_rules[:search_rules])
+      statistics_db.create
     end
 
     def ask_cars_fields
