@@ -12,7 +12,7 @@ module Lib
     attr_reader :all_cars, :console
 
     def initialize
-      @all_cars = Lib::DataBase.new
+      @all_cars = Lib::Models::Cars.new
       @console = Lib::Console.new
       ask_locale
     end
