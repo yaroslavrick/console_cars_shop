@@ -25,3 +25,12 @@
     :price_to: ''
   :stats:
     :requests_quantity: 1
+- :rules:
+    :make: ford
+    :model: fusion
+    :year_from: '1999'
+    :year_to: '2018'
+    :price_from: '1500'
+    :price_to: '85000'
+  :stats:
+    :requests_quantity: 1

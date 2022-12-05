@@ -12,7 +12,7 @@ module Lib
     MENU_NOT_LOGGED = %w[log_in sign_up search_car show_all_cars help exit].freeze
     MENU_OPTIONS_NOT_LOGGED = [1, 2, 3, 4, 5, 6].freeze
 
-    HELP_MENU = %w[search_car show_all_cars help exit].freeze
+    # HELP_MENU = %w[search_car show_all_cars help exit].freeze
 
     attr_reader :all_cars, :console, :user, :logged
 
@@ -38,11 +38,9 @@ module Lib
     end
 
     def show_options
-      if user.auth_status
-        transform_option(MENU_LOGGED)
-      else
-        transform_option(MENU_NOT_LOGGED)
-      end
+      return transform_option(MENU_LOGGED) if user.auth_status
+
+      transform_option(MENU_NOT_LOGGED)
     end
 
     def transform_option(menu)
@@ -96,11 +94,19 @@ module Lib
 
     def show_help_menu
       puts
-      HELP_MENU.each do |option|
-        puts colorize_result(localize("main_menu.help_menu.#{option}"))
+      if user.auth_status
+        help_menu_printer(MENU_LOGGED)
+      else
+        help_menu_printer(MENU_NOT_LOGGED)
       end
       puts
       call
+    end
+
+    def help_menu_printer(param)
+      param.each do |option|
+        puts colorize_result(localize("main_menu.help_menu.#{option}"))
+      end
     end
 
     def log_in

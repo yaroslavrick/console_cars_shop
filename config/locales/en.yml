@@ -11,10 +11,13 @@ en:
       exit: Exit
     wrong_input: Wrong input. Choose 1-4 option
     help_menu:
-      search_car: If you want to find car by some options - press 1
-      show_all_cars: If you want to see all cars in database - press 2
-      help: "If you want help (you're, actually, here) - press 3 "
-      exit: To exit the app - press 4
+      log_out: To log out current user - choose 'Log out'
+      log_in: To log in to the system - choose 'Log In'
+      sign_up: To register new user - choose 'Sign up'
+      search_car: If you want to find car by some options - choose 'Search Car'
+      show_all_cars: If you want to see all cars in database - choose 'Show all cars'
+      help: "If you want help (you're, actually, here) - choose 'Help'"
+      exit: To exit the app - choose 'Exit'
     log_out:
       good_bye: See you later!
   select_search_rules: Please select search rules.

@@ -6,7 +6,8 @@ module Lib
       attr_reader :searches_data, :total_requests
 
       def load_log(log = LOG_FILE)
-        file = File.open(File.expand_path(log), APPEND_PLUS)
+        # file = File.open(File.expand_path(log), APPEND_PLUS)
+        file = open_file(log, APPEND_PLUS)
         log_arr = YAML.load_file(file) || []
         file.close
         log_arr

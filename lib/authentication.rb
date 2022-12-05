@@ -13,17 +13,15 @@ module Lib
     def initialize
       @user = Lib::Models::UsersDb.new
       @logins_and_passwords_db = @user.load_logins_and_passwords
-      @auth_status = false
     end
 
     def log_in
-      ask_user_log_data
+      ask_user_log_in_data
       validate_log_in_data
     end
 
     def sign_up
-      data = ask_user_log_data
-
+      data = ask_user_sign_up_data
       return unless validate_sign_up_data
 
       @auth_status = true
@@ -32,17 +30,23 @@ module Lib
 
     private
 
-    def ask_user_log_data
+    def ask_user_log_in_data
       @email = ask_user_email
       @password = ask_user_password
-      # encrypted_password = BCrypt::Password.create(@password)
-      # binding.pry
       { email: email, password: @password }
+    end
+
+    def ask_user_sign_up_data
+      show_tip_for_email
+      @email = ask_user_email
+      show_tips_for_password
+      @password = ask_user_password
+      encrypted_password = BCrypt::Password.create(@password)
+      { email: email, password: encrypted_password }
     end
 
     def ask_user_email
       show_message_for_email
-      show_tip_for_email
       user_input
     end
 
@@ -59,8 +63,6 @@ module Lib
 
     def ask_user_password
       show_message_for_password
-      show_tips_for_password
-      # AZ%?azassaddwfwvevs2
       user_input
     end
 
@@ -77,7 +79,7 @@ module Lib
     end
 
     def validate_log_in_data
-      if logins_and_passwords_db.any? { |car| car[:email] == email && car[:password] == password }
+      if @user.load_logins_and_passwords.any? { |user| user[:email] == email && user[:password] == password }
         @auth_status = true
         hello_message
       else
@@ -104,7 +106,7 @@ module Lib
     end
 
     def validate_email_unique
-      logins_and_passwords_db.none? { |car| car[:email] == email }
+      @user.load_logins_and_passwords.none? { |car| car[:email] == email }
     end
 
     def validate_password
@@ -115,10 +117,6 @@ module Lib
     end
 
     def compare_sign_in_and_db
-      #       If user with such email already exists – - he should see the error message
-      # and see the main menu right after that (see Validations)
-      # return unless logins_and_passwords_db[:user_email].include?(email)
-
       return true if validate_email_unique
 
       puts "\n#{colorize_error(localize('authentication.already_exists'))}"
