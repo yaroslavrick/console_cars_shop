@@ -8,7 +8,6 @@ require 'colorize'
 require 'i18n'
 require 'uri'
 require 'bcrypt'
-require 'pry'
 
 require_relative '../config/localization/i18n'
 require_relative './modules/input_output'
