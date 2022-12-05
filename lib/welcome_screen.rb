@@ -12,8 +12,6 @@ module Lib
     MENU_NOT_LOGGED = %w[log_in sign_up search_car show_all_cars help exit].freeze
     MENU_OPTIONS_NOT_LOGGED = [1, 2, 3, 4, 5, 6].freeze
 
-    # HELP_MENU = %w[search_car show_all_cars help exit].freeze
-
     attr_reader :all_cars, :console, :user, :logged
 
     def initialize
