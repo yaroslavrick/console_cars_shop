@@ -6,8 +6,8 @@ module Lib
     include Lib::Modules::Colorize
     include Lib::Modules::InputOutput
 
-    MENU_LOGGED = %w[log_out search_car show_all_cars help exit].freeze
-    MENU_OPTIONS_LOGGED = [1, 2, 3, 4, 5].freeze
+    MENU_LOGGED = %w[my_searches log_out search_car show_all_cars help exit].freeze
+    MENU_OPTIONS_LOGGED = [1, 2, 3, 4, 5, 6].freeze
 
     MENU_NOT_LOGGED = %w[log_in sign_up search_car show_all_cars help exit].freeze
     MENU_OPTIONS_NOT_LOGGED = [1, 2, 3, 4, 5, 6].freeze
@@ -60,18 +60,21 @@ module Lib
 
     def run_logged_option(option)
       case option
-      when 1 then log_out
-      when 2 then console.call
-      when 3 then console.show_prettified_result(all_cars.load)
-      when 4 then show_help_menu
-      when 5 then exit
+      when 1 then my_searches
+      when 2 then log_out
+      when 3 then console.call
+      when 4 then console.show_prettified_result(all_cars.load)
+      when 5 then show_help_menu
+      when 6 then exit
       end
     end
 
     def run_not_logged_option(option)
       case option
-      when 1 then log_in
-      when 2 then sign_up
+      # when 1 then log_in
+      when 1 then user.log_in
+      # when 2 then sign_up
+      when 2 then user.sign_up
       when 3 then console.call
       when 4 then console.show_prettified_result(all_cars.load)
       when 5 then show_help_menu
@@ -107,20 +110,14 @@ module Lib
       end
     end
 
-    def log_in
-      user.log_in
-      call
-    end
-
-    def sign_up
-      user.sign_up
-      call
-    end
+    # def sign_up
+    #   user.sign_up
+    #   call
+    # end
 
     def log_out
       user.auth_status = false
-      puts
-      puts colorize_result(localize('main_menu.log_out.good_bye'))
+      puts "\ncolorize_result(localize('main_menu.log_out.good_bye'))"
     end
   end
 end
