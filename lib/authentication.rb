@@ -8,10 +8,12 @@ module Lib
     include Lib::Modules::Colorize
 
     attr_reader :email, :password, :logins_and_passwords_db, :user
+    attr_accessor :auth_status
 
     def initialize
-      @user = DataBase.new
+      @user = Lib::Models::UsersDb.new
       @logins_and_passwords_db = @user.load_logins_and_passwords
+      @auth_status = false
     end
 
     def log_in
@@ -22,7 +24,10 @@ module Lib
     def sign_up
       data = ask_user_log_data
 
-      add_user_to_dp(data) if validate_sign_up_data
+      return unless validate_sign_up_data
+
+      @auth_status = true
+      add_user_to_dp(data)
     end
 
     private
@@ -30,25 +35,50 @@ module Lib
     def ask_user_log_data
       @email = ask_user_email
       @password = ask_user_password
-      encrypted_password = BCrypt::Password.create(@password)
-      binding.pry
-      { email: email, password: encrypted_password }
+      # encrypted_password = BCrypt::Password.create(@password)
+      # binding.pry
+      { email: email, password: @password }
     end
 
     def ask_user_email
-      puts colorize_option(localize('authentication.enter_email'))
+      show_message_for_email
+      show_tip_for_email
       user_input
     end
 
+    def show_message_for_email
+      puts colorize_option(localize('authentication.enter_email'))
+    end
+
+    def show_tip_for_email
+      puts colorize_result(localize('authentication.tip.tip_message'))
+      puts colorize_result(localize('authentication.tip.email.format'))
+      puts colorize_result(localize('authentication.tip.email.number_of_symbols_before_at'))
+      puts colorize_result(localize('authentication.tip.email.unique'))
+    end
+
     def ask_user_password
-      puts colorize_option(localize('authentication.enter_password'))
+      show_message_for_password
+      show_tips_for_password
       # AZ%?azassaddwfwvevs2
       user_input
     end
 
+    def show_message_for_password
+      puts colorize_option(localize('authentication.enter_password'))
+    end
+
+    def show_tips_for_password
+      puts colorize_result(localize('authentication.tip.tip_message'))
+      puts colorize_result(localize('authentication.tip.password.capital_letters'))
+      puts colorize_result(localize('authentication.tip.password.special_characters'))
+      puts colorize_result(localize('authentication.tip.password.number_of_symbols_min'))
+      puts colorize_result(localize('authentication.tip.password.number_of_symbols_max'))
+    end
+
     def validate_log_in_data
-      binding.pry
       if logins_and_passwords_db.any? { |car| car[:email] == email && car[:password] == password }
+        @auth_status = true
         hello_message
       else
         puts colorize_error(localize('authentication.email_not_exists'))
@@ -60,13 +90,6 @@ module Lib
     end
 
     def validate_email
-      # o Should have email-type format
-      # o Should have at least 5 symbols before @
-      # o Should be unique
-      # validate_email_type_format
-      # validate_email_length_before_at
-      # validate_email_unique
-
       return true if validate_email_type_format && validate_email_length_before_at && validate_email_unique
 
       puts colorize_error(localize('authentication.email_not_valid'))
@@ -85,19 +108,10 @@ module Lib
     end
 
     def validate_password
-      # Password
-      # o Should have at least 1 capital letter ^(.*?[A-Z]){1,}.*$ OR: (?=.*?[A-Z])
-      # o Should have at least 2 special characters ((?:[^`!@#$%^&*\-_=+'\/.,]*[`!@#$%^&*\-_=+'\/.,]){2})
-      # o Should be at least 8 symbols (.{8,20})
-      # o Should be no more than 20 symbols (.{8,20})
-
       valid_password_regexp = /^(?=.*[A-Z])(?=(.*[@$!%*#?&]){2}).{8,20}$/
-      binding.pry
       return true if password.match?(valid_password_regexp)
 
-      # puts "\nPassword is not valid"
       puts colorize_error(localize('authentication.password_not_valid'))
-      # Lib::WelcomeScreen.new.call
     end
 
     def compare_sign_in_and_db
@@ -108,7 +122,6 @@ module Lib
       return true if validate_email_unique
 
       puts "\n#{colorize_error(localize('authentication.already_exists'))}"
-      # Lib::WelcomeScreen.new.call
     end
 
     def add_user_to_dp(data)

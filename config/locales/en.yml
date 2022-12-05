@@ -41,7 +41,7 @@ en:
     data: 'data:'
     empty: There is no cars with this parameters
   errors:
-    wrong_field: 'You entered wrong field: year_from/price_from cant be bigger than year_to/price_to!'
+    wrong_field: "You entered wrong field: 'year_from/price_from' can't be bigger than 'year_to/price_to'!"
   table:
     id: 'id:'
     make: 'Make:'
@@ -59,3 +59,14 @@ en:
     email_already_exists: Email already exists!
     email_not_valid: 'Email is not valid!'
     password_not_valid: 'Password is not valid!'
+    tip:
+      tip_message: 'Tip:'
+      email:
+        format: '- should have email-type format'
+        number_of_symbols_before_at: '- should have at least 5 symbols before @'
+        unique: '- should be unique'
+      password:
+        capital_letters: '- should have at least 1 capital letter'
+        special_characters: '- should have at least 2 special characters (@$!%*#?&)'
+        number_of_symbols_min: '- should be at least 8 symbols'
+        number_of_symbols_max: '- should be no more than 20 symbols'
