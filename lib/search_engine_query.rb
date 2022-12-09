@@ -16,10 +16,18 @@ module Lib
     private
 
     def search
-      search_by(params[:make], 'make')
-      search_by(params[:model], 'model')
-      search_by_range(params[:price_from], params[:price_to], 'price')
-      search_by_range(params[:year_from], params[:year_to], 'year')
+      search_by_rule_options
+      search_by_range_options
+    end
+
+    def search_by_rule_options
+      search_by(params[:search_rules][:make], 'make')
+      search_by(params[:search_rules][:model], 'model')
+    end
+
+    def search_by_range_options
+      search_by_range(params[:search_rules][:price_from], params[:search_rules][:price_to], 'price')
+      search_by_range(params[:search_rules][:year_from], params[:search_rules][:year_to], 'year')
     end
 
     def search_by(rule, option)
@@ -37,9 +45,9 @@ module Lib
     end
 
     def sort_by_option(sort_option)
-      return data.sort_by { |car| car['price'] } if sort_option.casecmp('price').zero?
+      return data.sort_by! { |car| car['price'] } if sort_option.casecmp('price').zero?
 
-      data.sort_by { |car| Date.strptime(car['date_added'], DATE_FORMAT) }
+      data.sort_by! { |car| Date.strptime(car['date_added'], DATE_FORMAT) }
     end
 
     def sort_by_direction(sort_direction)
@@ -49,8 +57,8 @@ module Lib
     end
 
     def sort
-      sort_by_option(params[:sort_option])
-      sort_by_direction(params[:sort_direction])
+      sort_by_option(params[:sort_rules][:sort_option])
+      sort_by_direction(params[:sort_rules][:sort_direction])
     end
   end
 end
