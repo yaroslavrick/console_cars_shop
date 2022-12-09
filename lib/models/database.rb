@@ -6,6 +6,7 @@ module Lib
       CURRENT_PATH = File.dirname(__FILE__)
       DATABASE = 'db.yml'
       LOG_FILE = File.join(CURRENT_PATH, '../db/searches.yml').freeze
+      DB_FILE = File.read("#{CURRENT_PATH}/../db/db.yml").freeze
       WRITE = 'w'
       APPEND_PLUS = 'a+'
 
