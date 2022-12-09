@@ -19,3 +19,10 @@
     cost: 12
     salt: "$2a$12$/GHXBv7LX02z3N7p7vTzoe"
     checksum: mt66MKkfIPXLJtg2xXdYYz7sbvG2ZK6
+- :email: super@puper.com
+  :password: !ruby/string:BCrypt::Password
+    str: "$2a$12$qN1FPd4cSyszIWbfqeP1ru0V1EMb7mx8IoGHGj.Vk.9oXPkfgZMTi"
+    version: 2a
+    cost: 12
+    salt: "$2a$12$qN1FPd4cSyszIWbfqeP1ru"
+    checksum: 0V1EMb7mx8IoGHGj.Vk.9oXPkfgZMTi
