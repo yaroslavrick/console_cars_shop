@@ -6,19 +6,28 @@
     :price_from: ''
     :price_to: ''
   :stats:
-    :requests_quantity: 2
+    :requests_quantity: 3
 - :rules:
     :make: chevrolet
-    :model: volt
-    :year_from: '2011'
-    :year_to: '2018'
-    :price_from: '2300'
-    :price_to: '99000'
+    :model: ''
+    :year_from: ''
+    :year_to: ''
+    :price_from: ''
+    :price_to: ''
   :stats:
     :requests_quantity: 1
 - :rules:
-    :make: volkswagen
+    :make: ''
     :model: ''
+    :year_from: ''
+    :year_to: ''
+    :price_from: ''
+    :price_to: ''
+  :stats:
+    :requests_quantity: 1
+- :rules:
+    :make: ''
+    :model: volt
     :year_from: ''
     :year_to: ''
     :price_from: ''
