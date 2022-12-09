@@ -7,6 +7,7 @@ module Lib
       DATABASE = 'db.yml'
       LOG_FILE = File.join(CURRENT_PATH, '../db/searches.yml').freeze
       USERS_LOGINS_AND_PASSWORDS_FILE = File.join(CURRENT_PATH, '../db/users.yml').freeze
+      DB_FILE = File.read("#{CURRENT_PATH}/../db/db.yml").freeze
       WRITE = 'w'
       APPEND_PLUS = 'a+'
       APPEND = 'a'
