@@ -32,19 +32,26 @@ module Lib
 
     def update_statistics
       statistics_db.update(search_rules[:search_rules])
-      statistics_db.create
     end
 
     def ask_cars_fields
-      input_data = {}
-      input_data[:search_rules] = {}
+      input_data = initialize_search_rules
       input_data[:search_rules] = SEARCH_RULES_OPTIONS.each_with_object({}) do |item, hash|
         hash[item] = ask_field(item)
       end
-      input_data[:sort_rules] = {}
       input_data[:sort_rules][:sort_option] = ask_field('sort option (date_added|price)')
       input_data[:sort_rules][:sort_direction] = ask_field('sort direction (desc|asc)')
       input_data
+    end
+
+    def initialize_search_rules
+      {
+        search_rules: {},
+        sort_rules: {
+          sort_option: nil,
+          sort_direction: nil
+        }
+      }
     end
 
     def validate_user_input(params)
@@ -58,16 +65,13 @@ module Lib
     end
 
     def print_result
-      total_requests = statistics_db.total_requests_quantity
+      total_requests = statistics_db.find_total_requests(search_rules[:search_rules])
       show_result(result_data)
       show_statistic(result_data.count, total_requests)
     end
 
     def show_statistic(total_quantity, requested_quantity)
-      puts 'Statistic:'
-      puts "Total Quantity: #{total_quantity}"
-      puts "Requests quantity: #{requested_quantity}"
-      puts "#{'-' * 15}\n\n"
+      puts "Statistic:\nTotal Quantity: #{total_quantity}\nRequests quantity: #{requested_quantity}\n#{'-' * 15}\n\n"
     end
   end
 end

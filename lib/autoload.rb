@@ -1,6 +1,5 @@
 require 'yaml'
 require 'date'
-require 'pry'
 
 require_relative './models/database'
 require_relative './models/cars'
