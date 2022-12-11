@@ -59,10 +59,11 @@ module Lib
     end
 
     def run_logged_option(option)
+      # @user_searches = Lib::Models::UserSearches.new(user)
       case option
-      when 1 then my_searches
+      when 1 then @user_searches = Lib::Models::UserSearches.new(email: user.email).show_searches
       when 2 then log_out
-      when 3 then console.call
+      when 3 then console.call(user.auth_status, user.email)
       when 4 then console.show_prettified_result(all_cars.load)
       when 5 then show_help_menu
       when 6 then exit
@@ -71,11 +72,9 @@ module Lib
 
     def run_not_logged_option(option)
       case option
-      # when 1 then log_in
       when 1 then user.log_in
-      # when 2 then sign_up
       when 2 then user.sign_up
-      when 3 then console.call
+      when 3 then console.call(user.auth_status, user.email)
       when 4 then console.show_prettified_result(all_cars.load)
       when 5 then show_help_menu
       when 6 then exit
@@ -109,11 +108,6 @@ module Lib
         puts colorize_result(localize("main_menu.help_menu.#{option}"))
       end
     end
-
-    # def sign_up
-    #   user.sign_up
-    #   call
-    # end
 
     def log_out
       user.auth_status = false
