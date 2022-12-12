@@ -104,7 +104,6 @@ module Lib
     end
 
     def show_help_menu
-      puts
       if user.auth_status
         help_menu_printer(MENU_LOGGED)
       else
