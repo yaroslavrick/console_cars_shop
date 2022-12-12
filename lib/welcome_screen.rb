@@ -63,7 +63,7 @@ module Lib
       when 1 then show_user_searches
       when 2 then log_out
       when 3 then run_search_engine
-      when 4 then console.show_prettified_result(all_cars.load)
+      when 4 then show_result
       when 5 then show_help_menu
       when 6 then exit
       end
@@ -74,7 +74,7 @@ module Lib
       when 1 then user.log_in
       when 2 then user.sign_up
       when 3 then run_search_engine
-      when 4 then console.show_prettified_result(all_cars.load)
+      when 4 then show_result
       when 5 then show_help_menu
       when 6 then exit
       end
@@ -86,6 +86,10 @@ module Lib
 
     def run_search_engine
       console.call(status: user.auth_status, email: user.email)
+    end
+
+    def show_result
+      console.show_prettified_result(all_cars.load)
     end
 
     def validate_option(menu_option)
