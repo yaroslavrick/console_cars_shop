@@ -3,6 +3,7 @@
 module Lib
   module Models
     class DataBase
+      # include Lib::Misc::Constants::DataBaseFilenames
       CURRENT_PATH = File.dirname(__FILE__)
       DATABASE = 'db.yml'
       LOG_FILE = File.join(CURRENT_PATH, '../db/searches.yml').freeze
@@ -12,7 +13,6 @@ module Lib
       WRITE = 'w'
       APPEND_PLUS = 'a+'
       APPEND = 'a'
-
       attr_reader :db_name
 
       def initialize(db = DATABASE)

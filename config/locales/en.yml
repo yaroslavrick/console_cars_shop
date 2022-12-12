@@ -55,6 +55,10 @@ en:
     price: 'Price:'
     description: 'Description:'
     date_added: 'Date added:'
+    year_from: 'year_from:'
+    year_to: 'year_to:'
+    price_from: 'price_from:'
+    price_to: 'price_to:'
   authentication:
     enter_email: 'Enter email:'
     enter_password: 'Enter password:'
@@ -74,3 +78,5 @@ en:
         special_characters: '- should have at least 2 special characters (@$!%*#?&)'
         number_of_symbols_min: '- should be at least 8 symbols'
         number_of_symbols_max: '- should be no more than 20 symbols'
+  user_searches:
+    searches_do_not_exist: The searches do not exist

@@ -28,3 +28,13 @@
   :stats:
     :requests_quantity: 1
   :user: email@email.com
+- :rules:
+    :make: ford
+    :model: fusion
+    :year_from: ''
+    :year_to: ''
+    :price_from: ''
+    :price_to: ''
+  :stats:
+    :requests_quantity: 1
+  :user: email@email.com

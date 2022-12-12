@@ -59,11 +59,10 @@ module Lib
     end
 
     def run_logged_option(option)
-      # @user_searches = Lib::Models::UserSearches.new(user)
       case option
-      when 1 then @user_searches = Lib::Models::UserSearches.new(email: user.email).show_searches
+      when 1 then show_user_searches
       when 2 then log_out
-      when 3 then console.call(user.auth_status, user.email)
+      when 3 then run_search_engine
       when 4 then console.show_prettified_result(all_cars.load)
       when 5 then show_help_menu
       when 6 then exit
@@ -74,11 +73,19 @@ module Lib
       case option
       when 1 then user.log_in
       when 2 then user.sign_up
-      when 3 then console.call(user.auth_status, user.email)
+      when 3 then run_search_engine
       when 4 then console.show_prettified_result(all_cars.load)
       when 5 then show_help_menu
       when 6 then exit
       end
+    end
+
+    def show_user_searches
+      @user_searches = Lib::Models::UserSearches.new(email: user.email).show_searches
+    end
+
+    def run_search_engine
+      console.call(status: user.auth_status, email: user.email)
     end
 
     def validate_option(menu_option)

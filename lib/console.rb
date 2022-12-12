@@ -16,8 +16,8 @@ module Lib
       # @user_searches = Lib::Models::UserSearches.new
     end
 
-    def call(auth_status = false, email = nil)
-      @auth_status = auth_status
+    def call(status: false, email: nil)
+      @auth_status = status
       @user_email = email
       loop do
         search

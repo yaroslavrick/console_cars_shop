@@ -24,4 +24,3 @@ require_relative './search_engine_query'
 require_relative './console'
 require_relative './welcome_screen'
 require_relative './authentication'
-

@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 module Lib
   module Models
-      # “My Searches” option - he should see all the searches made by him
-      # before if such searches exists or some message when the searches do not exist.
-      # He should see the main menu right after that.
     class UserSearches < DataBase
+      include Lib::Modules::InputOutput
+      include Lib::Modules::Localization
+      include Lib::Modules::Colorize
       attr_reader :data, :search_rules, :email, :searches_history, :searches_data
 
       def initialize(email:)
@@ -22,7 +24,7 @@ module Lib
       end
 
       def find(search_rules)
-        searches_data.find { |car| car[:rules] == search_rules && car[:user] == email}
+        searches_data.find { |car| car[:rules] == search_rules && car[:user] == email }
       end
 
       def find_total_requests(search_rules)
@@ -34,7 +36,7 @@ module Lib
 
       def show_searches
         find_user_searches
-        print_message
+        print_searches
       end
 
       def find_user_searches
@@ -46,17 +48,33 @@ module Lib
         @searches_data.select { |search| search[:user] == email }
       end
 
-      def print_message
-        binding.pry
-        if searches_data
-          print_searches
-        else
-          puts "The searches do not exist"
+      def print_searches
+        return puts colorize_error(localize('user_searches.searches_do_not_exist')) if searches_data.empty?
+
+        searches_data.each do |car|
+          localize_rows(car[:rules])
+          rows = car[:rules].map do |key, value|
+            [colorize_main(key.to_s), colorize_result(value.to_s)]
+          end
+          create_table('results.title', 'results.params', 'results.data', rows)
         end
       end
 
-      def print_searches
-        p searches_data
+      def create_table(title_name, first_header, second_header, rows)
+        table = Terminal::Table.new(
+          title: colorize_title(localize(title_name)),
+          headings: [colorize_header(localize(first_header)),
+                     colorize_header(localize(second_header))],
+          rows: rows
+        )
+        table.style = TABLE_STYLE
+        puts table
+      end
+
+      def localize_rows(car)
+        car.transform_keys! do |key|
+          localize("table.#{key}")
+        end
       end
 
       private
@@ -79,34 +97,5 @@ module Lib
         searches_data.push({ rules: search_rules, stats: { requests_quantity: 1 }, user: email })
       end
     end
-
-
-
-
-      # # def save
-      # #   create_data
-      # #   find_user_searches
-
-      # #   if @result
-      # #     save_data
-      # #   else
-
-      # #   end
-      # # end
-
-      # def create_data
-      #   @data = { user: email, rules: search_rules }
-      # end
-
-      # def compare_data
-      #
-      # end
-
-      # def save_data
-      #   entry = [@data].to_yaml.gsub("---\n", '')
-      #   file = File.open(File.expand_path(USER_SEARCHES_FILE), WRITE)
-      #   file.puts(entry)
-      #   file.close
-      # end
   end
 end

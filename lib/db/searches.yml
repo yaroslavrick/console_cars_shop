@@ -34,3 +34,21 @@
     :price_to: ''
   :stats:
     :requests_quantity: 1
+- :rules:
+    :make: ford
+    :model: fusion
+    :year_from: ''
+    :year_to: ''
+    :price_from: ''
+    :price_to: ''
+  :stats:
+    :requests_quantity: 2
+- :rules:
+    :make: chevrolet
+    :model: volt
+    :year_from: '2015'
+    :year_to: ''
+    :price_from: ''
+    :price_to: ''
+  :stats:
+    :requests_quantity: 1
