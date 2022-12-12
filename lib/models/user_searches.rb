@@ -23,17 +23,6 @@ module Lib
         YAML.load_file(user_searches_db) || []
       end
 
-      def find(search_rules)
-        searches_data.find { |car| car[:rules] == search_rules && car[:user] == email }
-      end
-
-      def find_total_requests(search_rules)
-        match_requests = find(search_rules)
-        return match_requests[:stats][:requests_quantity] if match_requests
-
-        1
-      end
-
       def show_searches
         find_user_searches
         print_searches
@@ -84,13 +73,6 @@ module Lib
         file = File.open(File.expand_path(log), WRITE)
         file.puts(entry)
         file.close
-      end
-
-      def increase_quantity(search_rules)
-        searches_data.map! do |data|
-          data[:stats][:requests_quantity] += 1 if data[:rules] == search_rules
-          data
-        end
       end
 
       def initialize_search_data(search_rules)

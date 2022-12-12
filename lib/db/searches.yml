@@ -33,7 +33,7 @@
     :price_from: ''
     :price_to: ''
   :stats:
-    :requests_quantity: 1
+    :requests_quantity: 2
 - :rules:
     :make: ford
     :model: fusion
@@ -47,6 +47,24 @@
     :make: chevrolet
     :model: volt
     :year_from: '2015'
+    :year_to: ''
+    :price_from: ''
+    :price_to: ''
+  :stats:
+    :requests_quantity: 1
+- :rules:
+    :make: lexus
+    :model: ''
+    :year_from: '2011'
+    :year_to: ''
+    :price_from: ''
+    :price_to: ''
+  :stats:
+    :requests_quantity: 2
+- :rules:
+    :make: lexus
+    :model: ''
+    :year_from: '2008'
     :year_to: ''
     :price_from: ''
     :price_to: ''

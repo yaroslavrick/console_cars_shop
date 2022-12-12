@@ -38,3 +38,13 @@
   :stats:
     :requests_quantity: 1
   :user: email@email.com
+- :rules:
+    :make: lexus
+    :model: ''
+    :year_from: '2008'
+    :year_to: ''
+    :price_from: ''
+    :price_to: ''
+  :stats:
+    :requests_quantity: 1
+  :user: email@email.com
