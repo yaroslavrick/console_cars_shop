@@ -5,6 +5,7 @@ en:
       log_in: Log in
       sign_up: Sign up
       log_out: Log Out
+        good_bye: Good bye!
       my_searches: My searches
       search_car: Search a car
       show_all_cars: Show all cars
