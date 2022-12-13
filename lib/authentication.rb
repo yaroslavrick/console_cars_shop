@@ -6,13 +6,16 @@ module Lib
     include Lib::Modules::InputOutput
     include Lib::Modules::Localization
     include Lib::Modules::Colorize
+    include Lib::Modules::Constants::ReadWriteType
+    include Lib::Modules::Constants::FilePaths
 
-    attr_reader :email, :password, :logins_and_passwords_db, :user
+    attr_reader :email, :password, :logins_and_passwords_db, :user, :tips
     attr_accessor :auth_status
 
     def initialize
       @user = Lib::Models::UsersDb.new
       @logins_and_passwords_db = @user.load_logins_and_passwords
+      @tips = Lib::Tips.new
     end
 
     def log_in
@@ -21,7 +24,7 @@ module Lib
     end
 
     def sign_up
-      data = ask_user_sign_up_data
+      data = [ask_user_sign_up_data]
       return unless validate_sign_up_data
 
       @auth_status = true
@@ -37,9 +40,9 @@ module Lib
     end
 
     def ask_user_sign_up_data
-      show_tip_for_email
+      tips.show_tip_for_email
       @email = ask_user_email
-      show_tips_for_password
+      tips.show_tips_for_password
       @password = ask_user_password
       encrypted_password = BCrypt::Password.create(@password)
       { email: email, password: encrypted_password }
@@ -54,13 +57,6 @@ module Lib
       puts colorize_option(localize('authentication.enter_email'))
     end
 
-    def show_tip_for_email
-      puts colorize_result(localize('authentication.tip.tip_message'))
-      puts colorize_result(localize('authentication.tip.email.format'))
-      puts colorize_result(localize('authentication.tip.email.number_of_symbols_before_at'))
-      puts colorize_result(localize('authentication.tip.email.unique'))
-    end
-
     def ask_user_password
       show_message_for_password
       user_input
@@ -68,14 +64,6 @@ module Lib
 
     def show_message_for_password
       puts colorize_option(localize('authentication.enter_password'))
-    end
-
-    def show_tips_for_password
-      puts colorize_result(localize('authentication.tip.tip_message'))
-      puts colorize_result(localize('authentication.tip.password.capital_letters'))
-      puts colorize_result(localize('authentication.tip.password.special_characters'))
-      puts colorize_result(localize('authentication.tip.password.number_of_symbols_min'))
-      puts colorize_result(localize('authentication.tip.password.number_of_symbols_max'))
     end
 
     def validate_log_in_data
@@ -123,7 +111,8 @@ module Lib
     end
 
     def add_user_to_dp(data)
-      user.add_new_user(data)
+      # user.add_new_user(data)
+      user.save(data, APPEND, USERS_LOGINS_AND_PASSWORDS_FILE)
       hello_message
     end
 

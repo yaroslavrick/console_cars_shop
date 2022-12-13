@@ -3,7 +3,6 @@
 module Lib
   module Models
     class DataBase
-      # include Lib::Misc::Constants::DataBaseFilenames
       CURRENT_PATH = File.dirname(__FILE__)
       DATABASE = 'db.yml'
       LOG_FILE = File.join(CURRENT_PATH, '../db/searches.yml').freeze
@@ -39,13 +38,13 @@ module Lib
 
       def save(data, write_type, filepath)
         entry = data.to_yaml.gsub("---\n", '')
-        file = File.open(File.expand_path(filepath), write_type)
+        file = open_file(filepath, write_type)
         file.puts(entry)
         file.close
       end
 
       def load(filepath)
-        YAML.load_file(filepath)
+        YAML.load_file(filepath) || []
       end
 
       def create_car(write_type, filepath)
@@ -65,13 +64,6 @@ module Lib
           'date_added' => Date.today.strftime('%d/%m/%Y')
         }]
       end
-
-      # def save(log = LOG_FILE)
-      #   entry = searches_data.to_yaml.gsub("---\n", '')
-      #   file = File.open(File.expand_path(log), WRITE)
-      #   file.puts(entry)
-      #   file.close
-      # end
 
       private
 
