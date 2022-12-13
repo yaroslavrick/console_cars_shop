@@ -66,7 +66,7 @@ module Lib
         }]
       end
 
-      # def save(data = log = LOG_FILE)
+      # def save(log = LOG_FILE)
       #   entry = searches_data.to_yaml.gsub("---\n", '')
       #   file = File.open(File.expand_path(log), WRITE)
       #   file.puts(entry)

@@ -11,6 +11,7 @@ gem 'fasterer'
 gem 'ffaker'
 gem 'i18n'
 gem 'lefthook'
+gem 'rake'
 gem 'rubocop', require: false
 gem 'rubocop-md'
 gem 'rubocop-performance', require: false
