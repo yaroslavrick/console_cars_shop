@@ -13,13 +13,6 @@ module Lib
         file.close
         auth_arr
       end
-
-      def add_new_user(login_data, login_file = USERS_LOGINS_AND_PASSWORDS_FILE)
-        file = open_file(login_file, APPEND)
-        entry = [login_data].to_yaml.gsub("---\n", '')
-        file.puts(entry)
-        file.close
-      end
     end
   end
 end

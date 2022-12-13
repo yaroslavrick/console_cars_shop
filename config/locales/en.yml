@@ -20,7 +20,7 @@ en:
       help: "If you want help (you're, actually, here) - choose 'Help'"
       exit: To exit the app - choose 'Exit'
     log_out:
-      good_bye: See you later!
+      good_bye: 'See you later!'
   select_search_rules: Please select search rules.
   choose:
     please_choose: Please choose

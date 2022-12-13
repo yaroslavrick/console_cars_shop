@@ -14,13 +14,9 @@ module Lib
 
       def update(rules:)
         @search_rules = rules
-        @searches_data = load
+        @searches_data = load(USER_SEARCHES_FILE)
         find(search_rules) ? increase_quantity(search_rules) : initialize_search_data(search_rules)
-        save
-      end
-
-      def load(user_searches_db = USER_SEARCHES_FILE)
-        YAML.load_file(user_searches_db) || []
+        save(searches_data, WRITE, USER_SEARCHES_FILE)
       end
 
       def show_searches
@@ -29,7 +25,7 @@ module Lib
       end
 
       def find_user_searches
-        @searches_data = load
+        @searches_data = load(USER_SEARCHES_FILE)
         find_current_user_data
       end
 
@@ -67,13 +63,6 @@ module Lib
       end
 
       private
-
-      def save(log = USER_SEARCHES_FILE)
-        entry = searches_data.to_yaml.gsub("---\n", '')
-        file = File.open(File.expand_path(log), WRITE)
-        file.puts(entry)
-        file.close
-      end
 
       def initialize_search_data(search_rules)
         searches_data.push({ rules: search_rules, stats: { requests_quantity: 1 }, user: email })

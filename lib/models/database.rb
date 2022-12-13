@@ -3,7 +3,6 @@
 module Lib
   module Models
     class DataBase
-      # include Lib::Misc::Constants::DataBaseFilenames
       CURRENT_PATH = File.dirname(__FILE__)
       DATABASE = 'db.yml'
       LOG_FILE = File.join(CURRENT_PATH, '../db/searches.yml').freeze
@@ -35,6 +34,17 @@ module Lib
           data[:stats][:requests_quantity] += 1 if data[:rules] == search_rules
           data
         end
+      end
+
+      def save(data, write_type, filepath)
+        entry = data.to_yaml.gsub("---\n", '')
+        file = open_file(filepath, write_type)
+        file.puts(entry)
+        file.close
+      end
+
+      def load(filepath)
+        YAML.load_file(filepath) || []
       end
 
       private

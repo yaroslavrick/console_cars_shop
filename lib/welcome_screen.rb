@@ -121,7 +121,7 @@ module Lib
 
     def log_out
       user.auth_status = false
-      puts "\ncolorize_result(localize('main_menu.log_out.good_bye'))"
+      puts "\n#{colorize_result(localize('main_menu.log_out.good_bye'))}"
     end
   end
 end

@@ -16,7 +16,7 @@
     :price_from: ''
     :price_to: ''
   :stats:
-    :requests_quantity: 1
+    :requests_quantity: 2
   :user: email@email.com
 - :rules:
     :make: lexus
@@ -26,7 +26,7 @@
     :price_from: ''
     :price_to: ''
   :stats:
-    :requests_quantity: 1
+    :requests_quantity: 2
   :user: email@email.com
 - :rules:
     :make: ford
@@ -42,6 +42,16 @@
     :make: lexus
     :model: ''
     :year_from: '2008'
+    :year_to: ''
+    :price_from: ''
+    :price_to: ''
+  :stats:
+    :requests_quantity: 1
+  :user: email@email.com
+- :rules:
+    :make: lexus
+    :model: ''
+    :year_from: '2001'
     :year_to: ''
     :price_from: ''
     :price_to: ''
