@@ -2,3 +2,6 @@
 .vscode
 node_modules
 .bundle
+.user_searches
+.users
+
