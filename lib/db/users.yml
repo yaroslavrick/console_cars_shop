@@ -5,3 +5,10 @@
     cost: 12
     salt: '$2a$12$QseabkEdWJmo6myC/6uBeO'
     checksum: EH8V6JjIhn7Oyz7wNDrRmFJHH8IWarS
+- :email: testing@email.com
+  :password: !ruby/string:BCrypt::Password
+    str: "$2a$12$FV7D.yV2wetWDkgYh43ZEeOWEVJIOEW9z.QxPpx.EDZr/uV0keQpe"
+    version: 2a
+    cost: 12
+    salt: "$2a$12$FV7D.yV2wetWDkgYh43ZEe"
+    checksum: OWEVJIOEW9z.QxPpx.EDZr/uV0keQpe

@@ -8,6 +8,7 @@ module Lib
     include Lib::Modules::Colorize
     include Lib::Modules::Constants::ReadWriteType
     include Lib::Modules::Constants::FilePaths
+    VALID_PASSWORD_REGEXP = /^(?=.*[A-Z])(?=(.*[@$!%*#?&]){2}).{8,20}$/
 
     attr_reader :email, :password, :logins_and_passwords_db, :user, :tips
     attr_accessor :auth_status
@@ -98,8 +99,7 @@ module Lib
     end
 
     def validate_password
-      valid_password_regexp = /^(?=.*[A-Z])(?=(.*[@$!%*#?&]){2}).{8,20}$/
-      return true if password.match?(valid_password_regexp)
+      return true if password.match?(VALID_PASSWORD_REGEXP)
 
       puts colorize_error(localize('authentication.password_not_valid'))
     end
