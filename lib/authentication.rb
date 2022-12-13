@@ -95,7 +95,7 @@ module Lib
     end
 
     def validate_email_unique
-      @user.load_logins_and_passwords.none? { |car| car[:email] == email }
+      @user.load_logins_and_passwords.none? { |user| user[:email] == email }
     end
 
     def validate_password
