@@ -7,10 +7,8 @@ module Lib
     include Lib::Modules::InputOutput
 
     MENU_LOGGED = %w[my_searches log_out search_car show_all_cars help exit].freeze
-    MENU_OPTIONS_LOGGED = [1, 2, 3, 4, 5, 6].freeze
-
     MENU_NOT_LOGGED = %w[log_in sign_up search_car show_all_cars help exit].freeze
-    MENU_OPTIONS_NOT_LOGGED = [1, 2, 3, 4, 5, 6].freeze
+    MENU_OPTIONS = [1, 2, 3, 4, 5, 6].freeze
 
     attr_reader :all_cars, :console, :user, :logged
 
@@ -62,10 +60,7 @@ module Lib
       case option
       when 1 then show_user_searches
       when 2 then log_out
-      when 3 then run_search_engine
-      when 4 then show_result
-      when 5 then show_help_menu
-      when 6 then exit
+      when 3..6 then main_option(option)
       end
     end
 
@@ -73,6 +68,12 @@ module Lib
       case option
       when 1 then user.log_in
       when 2 then user.sign_up
+      when 3..6 then main_option(option)
+      end
+    end
+
+    def main_option(option)
+      case option
       when 3 then run_search_engine
       when 4 then show_result
       when 5 then show_help_menu
@@ -93,11 +94,7 @@ module Lib
     end
 
     def validate_option(menu_option)
-      if user.auth_status
-        return if MENU_OPTIONS_LOGGED.include?(menu_option)
-      elsif MENU_OPTIONS_NOT_LOGGED.include?(menu_option)
-        return
-      end
+      return if MENU_OPTIONS.include?(menu_option)
 
       puts colorize_error(localize('main_menu.wrong_input'))
       call

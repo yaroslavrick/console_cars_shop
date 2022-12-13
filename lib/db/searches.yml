@@ -79,3 +79,12 @@
     :price_to: ''
   :stats:
     :requests_quantity: 1
+- :rules:
+    :make: volkswagen
+    :model: ''
+    :year_from: ''
+    :year_to: ''
+    :price_from: ''
+    :price_to: ''
+  :stats:
+    :requests_quantity: 1
