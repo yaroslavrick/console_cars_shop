@@ -59,8 +59,7 @@ module Lib
     end
 
     def ask_user_password
-      show_message_for_password
-      user_input
+      user_input_with_asterisks
     end
 
     def show_message_for_password
