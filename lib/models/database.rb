@@ -37,6 +37,42 @@ module Lib
         end
       end
 
+      def save(data, write_type, filepath)
+        entry = data.to_yaml.gsub("---\n", '')
+        file = File.open(File.expand_path(filepath), write_type)
+        file.puts(entry)
+        file.close
+      end
+
+      def load(filepath)
+        YAML.load_file(filepath)
+      end
+
+      def create_car(write_type, filepath)
+        car = generate_car
+        save(car, write_type, filepath)
+      end
+
+      def generate_car
+        [{
+          'id' => Faker::Base.numerify('########-####-####-####-############'),
+          'make' => FFaker::Vehicle.make,
+          'model' => FFaker::Vehicle.model,
+          'year' => FFaker::Vehicle.year.to_i,
+          'odometer' => Faker::Vehicle.kilometrage,
+          'price' => Faker::Commerce.price(range: 1500..100_000, as_string: false).to_i,
+          'description' => Faker::Vehicle.standard_specs.join,
+          'date_added' => Date.today.strftime('%d/%m/%Y')
+        }]
+      end
+
+      # def save(data = log = LOG_FILE)
+      #   entry = searches_data.to_yaml.gsub("---\n", '')
+      #   file = File.open(File.expand_path(log), WRITE)
+      #   file.puts(entry)
+      #   file.close
+      # end
+
       private
 
       def open_file(file, flag)
