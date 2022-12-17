@@ -17,7 +17,6 @@ module Lib
     end
 
     def call
-      ask_locale
       loop do
         search
         update_statistics
@@ -63,17 +62,6 @@ module Lib
       printer.create_table('statistics.statistic', 'statistics.title', 'statistics.number', rows)
     end
 
-    # def create_table(title_name, first_header, second_header, rows)
-    #   table = Terminal::Table.new(
-    #     title: colorize_title(localize(title_name)),
-    #     headings: [colorize_header(localize(first_header)),
-    #                colorize_header(localize(second_header))],
-    #     rows:
-    #   )
-    #   table.style = TABLE_STYLE
-    #   puts table
-    # end
-
     def localize_rows(car)
       car.transform_keys! do |key|
         localize("table.#{key}")
@@ -82,15 +70,6 @@ module Lib
 
     def save_to_log
       database.save_log(search_rules, total_requests, result_data.count)
-    end
-
-    def ask_locale
-      row = [['en'.colorize(:blue), 'ua'.colorize(:blue)]]
-      table = Terminal::Table.new headings: %w[English Українська], rows: row
-      table.style = TABLE_STYLE
-      puts table
-      locale = gets.chomp.downcase.to_sym
-      I18n.locale = locale == :ua ? locale : :en
     end
 
     def ask_cars_fields
