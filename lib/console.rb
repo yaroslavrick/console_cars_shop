@@ -85,12 +85,12 @@ module Lib
 
     def ask_locale
       puts 'Choose language: EN/ua: '.colorize(:blue)
+      row = [['en'.colorize(:blue), 'ua'.colorize(:blue)]]
+      table = Terminal::Table.new headings: %w[English Українська], rows: row
+      table.style = TABLE_STYLE
+      puts table
       locale = gets.chomp.downcase.to_sym
-      I18n.locale = if locale == :ua
-                      locale
-                    else
-                      :en
-                    end
+      I18n.locale = locale == :ua ? locale : :en
     end
 
     def ask_cars_fields

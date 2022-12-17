@@ -6,7 +6,7 @@
     :price_from: ''
     :price_to: ''
   :stats:
-    :requests_quantity: 3
+    :requests_quantity: 4
 - :rules:
     :make: chevrolet
     :model: ''
@@ -18,6 +18,15 @@
     :requests_quantity: 1
 - :rules:
     :make: lexus
+    :model: ''
+    :year_from: ''
+    :year_to: ''
+    :price_from: ''
+    :price_to: ''
+  :stats:
+    :requests_quantity: 1
+- :rules:
+    :make: volkswagen
     :model: ''
     :year_from: ''
     :year_to: ''
