@@ -1,5 +1,6 @@
 module Lib
   class PrintData
+    TABLE_STYLE = { all_separators: true, padding_left: 2, padding_right: 2, border: :unicode_thick_edge }.freeze
     include Lib::Modules::Localization
     include Lib::Modules::Colorize
 
@@ -10,7 +11,7 @@ module Lib
                    colorize_header(localize(second_header))],
         rows:
       )
-      table.style = Lib::Modules::InputOutput::TABLE_STYLE
+      table.style = TABLE_STYLE
       puts table
     end
   end

@@ -3,8 +3,6 @@
 module Lib
   module Modules
     module InputOutput
-      TABLE_STYLE = { all_separators: true, padding_left: 2, padding_right: 2, border: :unicode_thick_edge }.freeze
-
       def user_input
         gets.chomp.strip
       end
