@@ -34,7 +34,7 @@ module Lib
     private
 
     def ask_user_log_in_data
-      @email = ask_user_email
+      @email = ask_user_email.downcase
       @password = ask_user_password
       { email: email, password: password }
     end
