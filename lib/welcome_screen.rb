@@ -26,7 +26,7 @@ module Lib
     private
 
     def greet
-      puts colorize_text('title', localize('main_menu.greet'))
+      puts colorize_text('title', localize('main_menu.greet')).underline
     end
 
     def show_options
