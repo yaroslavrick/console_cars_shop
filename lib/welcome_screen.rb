@@ -2,7 +2,6 @@
 
 module Lib
   class WelcomeScreen
-    include Lib::Modules::Localization
     include Lib::Modules::Colorize
     include Lib::Modules::InputOutput
 
@@ -12,13 +11,13 @@ module Lib
     MENU_NOT_LOGGED = %w[log_in sign_up search_car show_all_cars help exit].freeze
     MENU_OPTIONS_NOT_LOGGED = [1, 2, 3, 4, 5, 6].freeze
 
-    attr_reader :all_cars, :console, :user, :logged
+    attr_reader :all_cars, :console, :user, :logged, :printer
 
     def initialize
       @all_cars = Lib::Models::Cars.new
       @console = Lib::Console.new
       @user = Lib::Authentication.new
-      ask_locale
+      @printer = Lib::PrintData.new
     end
 
     def call
@@ -32,7 +31,7 @@ module Lib
     private
 
     def greet
-      puts colorize_title(localize('main_menu.greet'))
+      puts colorize_text('title', localize('main_menu.greet')).underline
     end
 
     def show_options
@@ -44,7 +43,7 @@ module Lib
     def transform_option(menu)
       number = 1
       menu.each do |option|
-        puts colorize_main("#{number}. #{localize("main_menu.options.#{option}")}")
+        puts colorize_text('main', "#{number}. #{localize("main_menu.options.#{option}")}")
         number += 1
       end
     end
@@ -86,7 +85,7 @@ module Lib
         return
       end
 
-      puts colorize_error(localize('main_menu.wrong_input'))
+      printer.show_error_wrong_input
       call
     end
 
@@ -103,7 +102,7 @@ module Lib
 
     def help_menu_printer(param)
       param.each do |option|
-        puts colorize_result(localize("main_menu.help_menu.#{option}"))
+        puts colorize_text('result', localize("main_menu.help_menu.#{option}"))
       end
     end
 
@@ -120,7 +119,7 @@ module Lib
     def log_out
       user.auth_status = false
       puts
-      puts colorize_result(localize('main_menu.log_out.good_bye'))
+      puts colorize_text('result', localize('main_menu.log_out.good_bye'))
     end
   end
 end
