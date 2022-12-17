@@ -3,7 +3,9 @@
 module Lib
   module Modules
     module InputOutput
-      TABLE_STYLE = { all_separators: true, padding_left: 2, padding_right: 2, border: :unicode_thick_edge }.freeze
+      def localize(key)
+        I18n.t(key)
+      end
 
       def user_input
         gets.chomp.strip
@@ -14,7 +16,8 @@ module Lib
       end
 
       def ask_field(rule)
-        puts "#{colorize_main(localize('choose.please_choose'))} #{colorize_option(localize("choose.#{rule}"))}:"
+        print colorize_text('main', localize('choose.please_choose')).to_s
+        puts " #{colorize_text('option', localize("choose.#{rule}"))}:"
         user_input.downcase
       end
 

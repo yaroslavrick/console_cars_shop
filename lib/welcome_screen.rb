@@ -2,7 +2,6 @@
 
 module Lib
   class WelcomeScreen
-    include Lib::Modules::Localization
     include Lib::Modules::Colorize
     include Lib::Modules::InputOutput
 
@@ -14,7 +13,6 @@ module Lib
     def initialize
       @all_cars = Lib::Models::Cars.new
       @console = Lib::Console.new
-      ask_locale
     end
 
     def call
@@ -28,12 +26,12 @@ module Lib
     private
 
     def greet
-      puts colorize_title(localize('main_menu.greet'))
+      puts colorize_text('title', localize('main_menu.greet'))
     end
 
     def show_options
       MENU.each do |option|
-        puts colorize_main(localize("main_menu.options.#{option}"))
+        puts colorize_text('main', localize("main_menu.options.#{option}"))
       end
     end
 
@@ -50,16 +48,16 @@ module Lib
     def validate_option(menu_option)
       return if MENU_OPTIONS.include?(menu_option)
 
-      puts colorize_error(localize('main_menu.wrong_input'))
+      puts colorize_text('error', localize('main_menu.wrong_input'))
       call
     end
 
     def show_help_menu
       puts
-      puts colorize_result(localize('main_menu.help_menu.search_car'))
-      puts colorize_result(localize('main_menu.help_menu.show_all_cars'))
-      puts colorize_result(localize('main_menu.help_menu.help'))
-      puts colorize_result(localize('main_menu.help_menu.exit'))
+      puts colorize_text('result', localize('main_menu.help_menu.search_car'))
+      puts colorize_text('result', localize('main_menu.help_menu.show_all_cars'))
+      puts colorize_text('result', localize('main_menu.help_menu.help'))
+      puts colorize_text('result', localize('main_menu.help_menu.exit'))
       puts
       call
     end
