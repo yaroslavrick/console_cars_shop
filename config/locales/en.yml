@@ -1,0 +1,35 @@
+en:
+  select_search_rules: 'Please select search rules.'
+  choose:
+    please_choose: 'Please choose '
+    make: 'make:'
+    model: 'model:'
+    year_from: 'year_from:'
+    year_to: 'year_to:'
+    price_from: 'price_from:'
+    price_to: 'price_to:'
+    sort option (date_added|price): 'sort option (date_added|price):'
+    sort direction (desc|asc): 'sort direction (desc|asc):'
+  exit: 'Exit? (N/y)'
+  statistics:
+    statistic: 'Statistic'
+    title: 'title'
+    number: 'number'
+    total_quantity: 'Total Quantity:'
+    requests_quantity: 'Requests quantity:'
+  results:
+    title: 'Results'
+    params: 'params:'
+    data: 'data:'
+    empty: 'There is no cars with this parameters'
+  errors:
+    wrong_field: "You entered wrong field: value 'from' can't be bigger than value 'to'!"
+  table:
+    id: 'id:'
+    make: 'Make:'
+    model: 'Model:'
+    year: 'Year:'
+    odometer: 'Odometer:'
+    price: 'Price:'
+    description: 'Description:'
+    date_added: 'Date added:'

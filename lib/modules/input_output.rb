@@ -1,36 +1,24 @@
+# frozen_string_literal: true
+
 module Lib
   module Modules
     module InputOutput
-      def print_message(message)
-        puts message
+      def localize(key)
+        I18n.t(key)
       end
 
       def user_input
         gets.chomp.strip
       end
 
-      def show_cars(database)
-        database.each do |car|
-          car.each do |key, value|
-            puts "#{key.capitalize}: #{value}"
-          end
-          puts
-        end
-      end
-
       def ask_field(rule)
-        puts "Please choose #{rule}:"
+        print colorize_text('main', localize('choose.please_choose')).to_s
+        puts "#{colorize_text('option', localize("choose.#{rule}"))}:"
         user_input.downcase
       end
 
-      def show_result(database)
-        puts "#{'-' * 15}\n\nResults:\n\n"
-        database.empty? ? puts('None') : show_cars(database)
-        puts '-' * 15
-      end
-
       def exit?
-        puts "\nExit? (N/y)"
+        puts "\n#{localize(:exit).cyan}"
         %w[y yes].include?(gets.chomp.downcase)
       end
     end

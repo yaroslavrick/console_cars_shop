@@ -1,0 +1,35 @@
+ua:
+  select_search_rules: 'Будь ласка, оберіть критерії пошуку.'
+  choose:
+    please_choose: 'Будь ласка, оберіть '
+    make: 'виробника'
+    model: 'модель'
+    year_from: 'з якого року виробництва'
+    year_to: 'по який рік виробництва'
+    price_from: 'ціну від'
+    price_to: 'ціну до'
+    sort option (date_added|price): 'опції сортування (date_added|price)'
+    sort direction (desc|asc): 'напрямок сортування (desc|asc)'
+  exit: 'Вийти? (N/y)'
+  statistics:
+    statistic: 'Статистика'
+    title: 'заголовок'
+    number: 'кількість'
+    total_quantity: 'Загальна кількість:'
+    requests_quantity: 'Кількість запитів:'
+  results:
+    title: 'Результати пошуку:'
+    params: 'параметри:'
+    data: 'дані:'
+    empty: 'Нажаль в базі даних немає авто з такими параметрами'
+  errors:
+    wrong_field: "Ви ввели неправильний параметр: 'рік від' та 'ціна від' не може бути більшою за рік до та ціну до!"
+  table:
+    id: 'id:'
+    make: 'Виробник:'
+    model: 'Модель:'
+    year: 'Рік випуску:'
+    odometer: 'Пробіг:'
+    price: 'Ціна:'
+    description: 'Опис:'
+    date_added: 'Дата додавання в базу:'
