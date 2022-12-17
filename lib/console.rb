@@ -1,24 +1,21 @@
 # frozen_string_literal: true
 
-I18n.load_path << Dir["#{File.expand_path('config/locales')}/*.yml"]
-I18n.default_locale = :en
 module Lib
   class Console
     include Lib::Modules::InputOutput
     include Lib::Modules::Validation
-    include Lib::Modules::Localization
     include Lib::Modules::Colorize
     SEARCH_RULES_OPTIONS = %i[make model year_from year_to price_from price_to].freeze
 
-    attr_reader :total_requests, :result_data, :search_rules, :statistics_db, :cars_db
+    attr_reader :total_requests, :result_data, :search_rules, :statistics_db, :cars_db, :printer
 
     def initialize
       @statistics_db = Lib::Models::Statistics.new
       @cars_db = Lib::Models::Cars.new
+      @printer = Lib::PrintData.new
     end
 
     def call
-      ask_locale
       loop do
         search
         update_statistics
@@ -47,32 +44,23 @@ module Lib
     end
 
     def show_prettified_result
-      return puts colorize_title(localize('results.empty')) if result_data.empty?
+      return puts colorize_text('title', localize('results.empty')).underline if result_data.empty?
 
       result_data.each do |car|
         localize_rows(car)
         rows = car.map do |key, value|
-          [colorize_main(key.to_s), colorize_result(value.to_s)]
+          [colorize_text('main', key.to_s), colorize_text('result', value.to_s)]
         end
-        create_table('results.title', 'results.params', 'results.data', rows)
+        printer.create_table('results.title', 'results.params', 'results.data', rows)
       end
     end
 
     def show_prettified_statistic(total_requests)
-      rows = [[colorize_main(localize('statistics.total_quantity')), colorize_result(result_data.count.to_s)],
-              [colorize_main(localize('statistics.requests_quantity')), colorize_result(total_requests.to_s)]]
-      create_table('statistics.statistic', 'statistics.title', 'statistics.number', rows)
-    end
-
-    def create_table(title_name, first_header, second_header, rows)
-      table = Terminal::Table.new(
-        title: colorize_title(localize(title_name)),
-        headings: [colorize_header(localize(first_header)),
-                   colorize_header(localize(second_header))],
-        rows: rows
-      )
-      table.style = TABLE_STYLE
-      puts table
+      rows = [
+        [colorize_text('main', localize('statistics.total_quantity')), colorize_text('result', result_data.count.to_s)],
+        [colorize_text('main', localize('statistics.requests_quantity')), colorize_text('result', total_requests.to_s)]
+      ]
+      printer.create_table('statistics.statistic', 'statistics.title', 'statistics.number', rows)
     end
 
     def localize_rows(car)
@@ -83,16 +71,6 @@ module Lib
 
     def save_to_log
       database.save_log(search_rules, total_requests, result_data.count)
-    end
-
-    def ask_locale
-      puts 'Choose language: EN/ua: '.colorize(:blue)
-      locale = gets.chomp.downcase.to_sym
-      I18n.locale = if locale == :ua
-                      locale
-                    else
-                      :en
-                    end
     end
 
     def ask_cars_fields

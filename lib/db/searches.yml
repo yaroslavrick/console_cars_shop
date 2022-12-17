@@ -6,28 +6,10 @@
     :price_from: ''
     :price_to: ''
   :stats:
-    :requests_quantity: 3
+    :requests_quantity: 2
 - :rules:
-    :make: chevrolet
+    :make: volkswagen
     :model: ''
-    :year_from: ''
-    :year_to: ''
-    :price_from: ''
-    :price_to: ''
-  :stats:
-    :requests_quantity: 1
-- :rules:
-    :make: ''
-    :model: ''
-    :year_from: ''
-    :year_to: ''
-    :price_from: ''
-    :price_to: ''
-  :stats:
-    :requests_quantity: 1
-- :rules:
-    :make: ''
-    :model: volt
     :year_from: ''
     :year_to: ''
     :price_from: ''
