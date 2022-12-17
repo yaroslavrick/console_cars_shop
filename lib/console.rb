@@ -8,12 +8,11 @@ module Lib
     include Lib::Modules::Colorize
     SEARCH_RULES_OPTIONS = %i[make model year_from year_to price_from price_to].freeze
 
-    attr_reader :total_requests, :result_data, :search_rules, :statistics_db, :cars_db, :user_searches, :user_email
+    attr_reader :total_requests, :result_data, :search_rules, :statistics_db, :cars_db, :user_searches, :user_email, :auth_status, :user_email
 
     def initialize
       @statistics_db = Lib::Models::Statistics.new
       @cars_db = Lib::Models::Cars.new
-      # @user_searches = Lib::Models::UserSearches.new
     end
 
     def call(status: false, email: nil)
@@ -43,9 +42,9 @@ module Lib
     private
 
     def add_user_searches
-      return unless @auth_status
-
-      @user_searches = Lib::Models::UserSearches.new(email: @user_email).update(rules: search_rules[:search_rules])
+      return unless auth_status
+      binding.pry
+      @user_searches = Lib::Models::UserSearches.new(email: user_email).update(rules: search_rules[:search_rules])
     end
 
     def search
@@ -88,9 +87,9 @@ module Lib
       end
     end
 
-    def save_to_log
-      database.save_log(search_rules, total_requests, result_data.count)
-    end
+    # def save_to_log
+    #   database.save_log(search_rules, total_requests, result_data.count)
+    # end
 
     def ask_cars_fields
       initialize_search_rules

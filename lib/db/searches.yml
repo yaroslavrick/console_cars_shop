@@ -15,7 +15,7 @@
     :price_from: ''
     :price_to: ''
   :stats:
-    :requests_quantity: 4
+    :requests_quantity: 9
 - :rules:
     :make: chevrolet
     :model: ''

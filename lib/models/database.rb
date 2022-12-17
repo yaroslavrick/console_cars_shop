@@ -18,7 +18,8 @@ module Lib
         @db_name = db
       end
 
-      def find(search_rules)
+      def find(search_rules, searches_data)
+        binding.pry
         searches_data.find { |car| car[:rules] == search_rules }
       end
 

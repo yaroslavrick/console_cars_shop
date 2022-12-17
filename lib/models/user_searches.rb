@@ -15,7 +15,8 @@ module Lib
       def update(rules:)
         @search_rules = rules
         @searches_data = load(USER_SEARCHES_FILE)
-        find(search_rules) ? increase_quantity(search_rules) : initialize_search_data(search_rules)
+        binding.pry
+        find_by_email(search_rules, searches_data) ? increase_quantity(search_rules) : initialize_search_data(search_rules)
         save(searches_data, WRITE, USER_SEARCHES_FILE)
       end
 
@@ -30,7 +31,7 @@ module Lib
       end
 
       def find_current_user_data
-        @searches_data.select { |search| search[:user] == email }
+        @searches_data.select! { |search| search[:user] == email }
       end
 
       def print_searches
@@ -64,7 +65,13 @@ module Lib
 
       private
 
+      def find_by_email(search_rules, searches_data)
+        binding.pry
+        searches_data.find { |request| request[:rules] == search_rules && request[:user] == email }
+      end
+
       def initialize_search_data(search_rules)
+        binding.pry
         searches_data.push({ rules: search_rules, stats: { requests_quantity: 1 }, user: email })
       end
     end

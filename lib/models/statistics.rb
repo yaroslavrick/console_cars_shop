@@ -7,7 +7,7 @@ module Lib
 
       def update(search_rules)
         @searches_data = load(LOG_FILE)
-        find(search_rules) ? increase_quantity(search_rules) : initialize_search_data(search_rules)
+        find(search_rules, searches_data) ? increase_quantity(search_rules) : initialize_search_data(search_rules)
         save(searches_data, WRITE, LOG_FILE)
       end
 

@@ -36,7 +36,7 @@ module Lib
     def ask_user_log_in_data
       @email = ask_user_email
       @password = ask_user_password
-      { email: email, password: @password }
+      { email: email, password: password }
     end
 
     def ask_user_sign_up_data
@@ -44,7 +44,7 @@ module Lib
       @email = ask_user_email
       tips.show_tips_for_password
       @password = ask_user_password
-      encrypted_password = BCrypt::Password.create(@password)
+      encrypted_password = BCrypt::Password.create(password)
       { email: email, password: encrypted_password }
     end
 

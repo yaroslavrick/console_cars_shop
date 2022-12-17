@@ -86,6 +86,7 @@ module Lib
     end
 
     def run_search_engine
+      binding.pry
       console.call(status: user.auth_status, email: user.email)
     end
 

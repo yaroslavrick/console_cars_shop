@@ -81,4 +81,4 @@ ua:
         number_of_symbols_min: '- має містити щонайменше 8 сиволів'
         number_of_symbols_max: '- має бути не довшим за 20 символів'
   user_searches:
-    searches_do_not_exist: Архів пошуку не існує
+    searches_do_not_exist: В базі даних пошуків цього користувача не знайдено.
