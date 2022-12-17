@@ -8,11 +8,12 @@ module Lib
     include Lib::Modules::Colorize
     SEARCH_RULES_OPTIONS = %i[make model year_from year_to price_from price_to].freeze
 
-    attr_reader :total_requests, :result_data, :search_rules, :statistics_db, :cars_db
+    attr_reader :total_requests, :result_data, :search_rules, :statistics_db, :cars_db, :printer
 
     def initialize
       @statistics_db = Lib::Models::Statistics.new
       @cars_db = Lib::Models::Cars.new
+      @printer = Lib::PrintData.new
     end
 
     def call
@@ -52,26 +53,26 @@ module Lib
         rows = car.map do |key, value|
           [colorize_main(key.to_s), colorize_result(value.to_s)]
         end
-        create_table('results.title', 'results.params', 'results.data', rows)
+        printer.create_table('results.title', 'results.params', 'results.data', rows)
       end
     end
 
     def show_prettified_statistic(total_requests)
       rows = [[colorize_main(localize('statistics.total_quantity')), colorize_result(result_data.count.to_s)],
               [colorize_main(localize('statistics.requests_quantity')), colorize_result(total_requests.to_s)]]
-      create_table('statistics.statistic', 'statistics.title', 'statistics.number', rows)
+      printer.create_table('statistics.statistic', 'statistics.title', 'statistics.number', rows)
     end
 
-    def create_table(title_name, first_header, second_header, rows)
-      table = Terminal::Table.new(
-        title: colorize_title(localize(title_name)),
-        headings: [colorize_header(localize(first_header)),
-                   colorize_header(localize(second_header))],
-        rows:
-      )
-      table.style = TABLE_STYLE
-      puts table
-    end
+    # def create_table(title_name, first_header, second_header, rows)
+    #   table = Terminal::Table.new(
+    #     title: colorize_title(localize(title_name)),
+    #     headings: [colorize_header(localize(first_header)),
+    #                colorize_header(localize(second_header))],
+    #     rows:
+    #   )
+    #   table.style = TABLE_STYLE
+    #   puts table
+    # end
 
     def localize_rows(car)
       car.transform_keys! do |key|
@@ -84,7 +85,6 @@ module Lib
     end
 
     def ask_locale
-      puts 'Choose language: EN/ua: '.colorize(:blue)
       row = [['en'.colorize(:blue), 'ua'.colorize(:blue)]]
       table = Terminal::Table.new headings: %w[English Українська], rows: row
       table.style = TABLE_STYLE
