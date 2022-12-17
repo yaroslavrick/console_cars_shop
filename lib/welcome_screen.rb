@@ -8,11 +8,12 @@ module Lib
     MENU = %w[search_car show_all_cars help exit].freeze
     MENU_OPTIONS = [1, 2, 3, 4].freeze
 
-    attr_reader :all_cars, :console
+    attr_reader :all_cars, :console, :printer
 
     def initialize
       @all_cars = Lib::Models::Cars.new
       @console = Lib::Console.new
+      @printer = Lib::PrintData.new
     end
 
     def call
@@ -48,17 +49,12 @@ module Lib
     def validate_option(menu_option)
       return if MENU_OPTIONS.include?(menu_option)
 
-      puts colorize_text('error', localize('main_menu.wrong_input'))
+      printer.show_error_wrong_input
       call
     end
 
     def show_help_menu
-      puts
-      puts colorize_text('result', localize('main_menu.help_menu.search_car'))
-      puts colorize_text('result', localize('main_menu.help_menu.show_all_cars'))
-      puts colorize_text('result', localize('main_menu.help_menu.help'))
-      puts colorize_text('result', localize('main_menu.help_menu.exit'))
-      puts
+      printer.print_help_menu
       call
     end
   end
