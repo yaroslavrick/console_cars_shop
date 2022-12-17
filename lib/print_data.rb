@@ -6,9 +6,9 @@ module Lib
 
     def create_table(title_name, first_header, second_header, rows)
       table = Terminal::Table.new(
-        title: colorize_title(localize(title_name)),
-        headings: [colorize_header(localize(first_header)),
-                   colorize_header(localize(second_header))],
+        title: colorize_text('title', localize(title_name)).underline,
+        headings: [colorize_text('header', localize(first_header)).underline,
+                   colorize_text('header', localize(second_header)).underline],
         rows:
       )
       table.style = TABLE_STYLE

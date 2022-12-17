@@ -12,7 +12,8 @@ module Lib
       end
 
       def ask_field(rule)
-        puts "#{colorize_main(localize('choose.please_choose'))} #{colorize_option(localize("choose.#{rule}"))}:"
+        print colorize_text('main', localize('choose.please_choose')).to_s
+        puts "#{colorize_text('option', localize("choose.#{rule}"))}:"
         user_input.downcase
       end
 
