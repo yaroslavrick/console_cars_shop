@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Lib
   class Console
     include Lib::Modules::InputOutput
@@ -65,7 +67,7 @@ module Lib
         title: colorize_title(localize(title_name)),
         headings: [colorize_header(localize(first_header)),
                    colorize_header(localize(second_header))],
-        rows: rows
+        rows:
       )
       table.style = TABLE_STYLE
       puts table

@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 module Lib
   class SearchEngineQuery
-    DATE_FORMAT = '%d/%m/%Y'.freeze
+    DATE_FORMAT = '%d/%m/%Y'
 
     attr_reader :data, :params
 
