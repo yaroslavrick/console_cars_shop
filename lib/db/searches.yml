@@ -1,32 +1,5 @@
 - :rules:
-    :make: ford
-    :model: focus
-    :year_from: ''
-    :year_to: ''
-    :price_from: ''
-    :price_to: ''
-  :stats:
-    :requests_quantity: 1
-- :rules:
-    :make: ford
-    :model: ''
-    :year_from: ''
-    :year_to: ''
-    :price_from: ''
-    :price_to: ''
-  :stats:
-    :requests_quantity: 9
-- :rules:
-    :make: chevrolet
-    :model: ''
-    :year_from: ''
-    :year_to: ''
-    :price_from: ''
-    :price_to: ''
-  :stats:
-    :requests_quantity: 3
-- :rules:
-    :make: lexus
+    :make: skoda
     :model: ''
     :year_from: ''
     :year_to: ''
@@ -36,52 +9,16 @@
     :requests_quantity: 3
 - :rules:
     :make: ford
-    :model: fusion
-    :year_from: ''
-    :year_to: ''
-    :price_from: ''
-    :price_to: ''
-  :stats:
-    :requests_quantity: 3
-- :rules:
-    :make: chevrolet
-    :model: volt
-    :year_from: '2015'
-    :year_to: ''
-    :price_from: ''
-    :price_to: ''
-  :stats:
-    :requests_quantity: 1
-- :rules:
-    :make: lexus
     :model: ''
-    :year_from: '2011'
+    :year_from: ''
     :year_to: ''
     :price_from: ''
     :price_to: ''
   :stats:
     :requests_quantity: 2
 - :rules:
-    :make: lexus
-    :model: ''
-    :year_from: '2008'
-    :year_to: ''
-    :price_from: ''
-    :price_to: ''
-  :stats:
-    :requests_quantity: 1
-- :rules:
-    :make: lexus
-    :model: ''
-    :year_from: '2001'
-    :year_to: ''
-    :price_from: ''
-    :price_to: ''
-  :stats:
-    :requests_quantity: 1
-- :rules:
-    :make: volkswagen
-    :model: ''
+    :make: ford
+    :model: fusion
     :year_from: ''
     :year_to: ''
     :price_from: ''

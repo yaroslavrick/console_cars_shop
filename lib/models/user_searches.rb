@@ -4,19 +4,23 @@ module Lib
   module Models
     class UserSearches < DataBase
       include Lib::Modules::InputOutput
-      include Lib::Modules::Localization
       include Lib::Modules::Colorize
-      attr_reader :data, :search_rules, :email, :searches_history, :searches_data
+      attr_reader :data, :search_rules, :email, :searches_history, :searches_data, :printer
 
       def initialize(email:)
         @email = email
+        @printer = Lib::PrintData.new
       end
 
       def update(rules:)
         @search_rules = rules
         @searches_data = load(USER_SEARCHES_FILE)
-        binding.pry
-        find_by_email(search_rules, searches_data) ? increase_quantity(search_rules) : initialize_search_data(search_rules)
+        if find_by_email(search_rules,
+                         searches_data)
+          increase_quantity(search_rules)
+        else
+          initialize_search_data(search_rules)
+        end
         save(searches_data, WRITE, USER_SEARCHES_FILE)
       end
 
@@ -35,26 +39,19 @@ module Lib
       end
 
       def print_searches
-        return puts colorize_error(localize('user_searches.searches_do_not_exist')) if searches_data.empty?
+        return puts colorize_text('error', localize('user_searches.searches_do_not_exist')) if searches_data.empty?
 
+        print_searches_result
+      end
+
+      def print_searches_result
         searches_data.each do |car|
           localize_rows(car[:rules])
           rows = car[:rules].map do |key, value|
-            [colorize_main(key.to_s), colorize_result(value.to_s)]
+            [colorize_text('main', key.to_s), colorize_text('result', value.to_s)]
           end
-          create_table('results.title', 'results.params', 'results.data', rows)
+          printer.create_table('results.title', 'results.params', 'results.data', rows)
         end
-      end
-
-      def create_table(title_name, first_header, second_header, rows)
-        table = Terminal::Table.new(
-          title: colorize_title(localize(title_name)),
-          headings: [colorize_header(localize(first_header)),
-                     colorize_header(localize(second_header))],
-          rows: rows
-        )
-        table.style = TABLE_STYLE
-        puts table
       end
 
       def localize_rows(car)
@@ -66,12 +63,10 @@ module Lib
       private
 
       def find_by_email(search_rules, searches_data)
-        binding.pry
         searches_data.find { |request| request[:rules] == search_rules && request[:user] == email }
       end
 
       def initialize_search_data(search_rules)
-        binding.pry
         searches_data.push({ rules: search_rules, stats: { requests_quantity: 1 }, user: email })
       end
     end

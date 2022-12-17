@@ -2,7 +2,6 @@
 
 module Lib
   class WelcomeScreen
-    include Lib::Modules::Localization
     include Lib::Modules::Colorize
     include Lib::Modules::InputOutput
 
@@ -10,13 +9,13 @@ module Lib
     MENU_NOT_LOGGED = %w[log_in sign_up search_car show_all_cars help exit].freeze
     MENU_OPTIONS = [1, 2, 3, 4, 5, 6].freeze
 
-    attr_reader :all_cars, :console, :user, :logged
+    attr_reader :all_cars, :console, :user, :logged, :printer
 
     def initialize
       @all_cars = Lib::Models::Cars.new
       @console = Lib::Console.new
       @user = Lib::Authentication.new
-      ask_locale
+      @printer = Lib::PrintData.new
     end
 
     def call
@@ -30,7 +29,7 @@ module Lib
     private
 
     def greet
-      puts colorize_title(localize('main_menu.greet'))
+      puts colorize_text('title', localize('main_menu.greet')).underline
     end
 
     def show_options
@@ -42,7 +41,7 @@ module Lib
     def transform_option(menu)
       number = 1
       menu.each do |option|
-        puts colorize_main("#{number}. #{localize("main_menu.options.#{option}")}")
+        puts colorize_text('main', "#{number}. #{localize("main_menu.options.#{option}")}")
         number += 1
       end
     end
@@ -86,7 +85,6 @@ module Lib
     end
 
     def run_search_engine
-      binding.pry
       console.call(status: user.auth_status, email: user.email)
     end
 
@@ -97,7 +95,7 @@ module Lib
     def validate_option(menu_option)
       return if MENU_OPTIONS.include?(menu_option)
 
-      puts colorize_error(localize('main_menu.wrong_input'))
+      printer.show_error_wrong_input
       call
     end
 
@@ -113,13 +111,13 @@ module Lib
 
     def help_menu_printer(param)
       param.each do |option|
-        puts colorize_result(localize("main_menu.help_menu.#{option}"))
+        puts colorize_text('result', localize("main_menu.help_menu.#{option}"))
       end
     end
 
     def log_out
       user.auth_status = false
-      puts "\n#{colorize_result(localize('main_menu.log_out.good_bye'))}"
+      puts "\n#{colorize_text('result', localize('main_menu.log_out.good_bye'))}"
     end
   end
 end

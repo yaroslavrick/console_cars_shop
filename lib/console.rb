@@ -4,15 +4,16 @@ module Lib
   class Console
     include Lib::Modules::InputOutput
     include Lib::Modules::Validation
-    include Lib::Modules::Localization
     include Lib::Modules::Colorize
     SEARCH_RULES_OPTIONS = %i[make model year_from year_to price_from price_to].freeze
 
-    attr_reader :total_requests, :result_data, :search_rules, :statistics_db, :cars_db, :user_searches, :user_email, :auth_status, :user_email
+    attr_reader :total_requests, :result_data, :search_rules, :statistics_db, :cars_db, :user_searches, :auth_status,
+                :user_email, :printer
 
     def initialize
       @statistics_db = Lib::Models::Statistics.new
       @cars_db = Lib::Models::Cars.new
+      @printer = Lib::PrintData.new
     end
 
     def call(status: false, email: nil)
@@ -33,9 +34,9 @@ module Lib
       result_data.each do |car|
         localize_rows(car)
         rows = car.map do |key, value|
-          [colorize_main(key.to_s), colorize_result(value.to_s)]
+          [colorize_text('main', key.to_s), colorize_text('result', value.to_s)]
         end
-        create_table('results.title', 'results.params', 'results.data', rows)
+        printer.create_table('results.title', 'results.params', 'results.data', rows)
       end
     end
 
@@ -43,7 +44,7 @@ module Lib
 
     def add_user_searches
       return unless auth_status
-      binding.pry
+
       @user_searches = Lib::Models::UserSearches.new(email: user_email).update(rules: search_rules[:search_rules])
     end
 
@@ -65,20 +66,11 @@ module Lib
     end
 
     def show_prettified_statistic
-      rows = [[colorize_main(localize('statistics.total_quantity')), colorize_result(result_data.count.to_s)],
-              [colorize_main(localize('statistics.requests_quantity')), colorize_result(total_requests.to_s)]]
-      create_table('statistics.statistic', 'statistics.title', 'statistics.number', rows)
-    end
-
-    def create_table(title_name, first_header, second_header, rows)
-      table = Terminal::Table.new(
-        title: colorize_title(localize(title_name)),
-        headings: [colorize_header(localize(first_header)),
-                   colorize_header(localize(second_header))],
-        rows: rows
-      )
-      table.style = TABLE_STYLE
-      puts table
+      rows = [
+        [colorize_text('main', localize('statistics.total_quantity')), colorize_text('result', result_data.count.to_s)],
+        [colorize_text('main', localize('statistics.requests_quantity')), colorize_text('result', total_requests.to_s)]
+      ]
+      printer.create_table('statistics.statistic', 'statistics.title', 'statistics.number', rows)
     end
 
     def localize_rows(car)
@@ -87,10 +79,6 @@ module Lib
       end
     end
 
-    # def save_to_log
-    #   database.save_log(search_rules, total_requests, result_data.count)
-    # end
-
     def ask_cars_fields
       initialize_search_rules
       search_rules[:search_rules] = SEARCH_RULES_OPTIONS.each_with_object({}) do |item, hash|
@@ -98,7 +86,6 @@ module Lib
       end
       search_rules[:sort_rules][:sort_option] = ask_field('sort option (date_added|price)')
       search_rules[:sort_rules][:sort_direction] = ask_field('sort direction (desc|asc)')
-      # search_rules[:user] = user_email
     end
 
     def initialize_search_rules

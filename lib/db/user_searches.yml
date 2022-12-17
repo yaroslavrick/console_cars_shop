@@ -16,7 +16,7 @@
     :price_from: ''
     :price_to: ''
   :stats:
-    :requests_quantity: 6
+    :requests_quantity: 8
   :user: email@email.com
 - :rules:
     :make: lexus
@@ -76,5 +76,25 @@
     :price_from: ''
     :price_to: ''
   :stats:
-    :requests_quantity: 1
+    :requests_quantity: 3
   :user: yarik@gmail.com
+- :rules:
+    :make: skoda
+    :model: ''
+    :year_from: ''
+    :year_to: ''
+    :price_from: ''
+    :price_to: ''
+  :stats:
+    :requests_quantity: 3
+  :user: email@email.com
+- :rules:
+    :make: ford
+    :model: fusion
+    :year_from: ''
+    :year_to: ''
+    :price_from: ''
+    :price_to: ''
+  :stats:
+    :requests_quantity: 1
+  :user: testing@email.com
