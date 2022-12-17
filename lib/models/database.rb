@@ -38,7 +38,7 @@ module Lib
         file.close
       end
 
-      def load(filepath)
+      def load(filepath = DATABASE)
         YAML.load_file(filepath) || []
       end
 
