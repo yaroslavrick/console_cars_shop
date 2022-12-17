@@ -2,7 +2,7 @@
 
 module Lib
   class SearchEngineQuery
-    DATE_FORMAT = '%d/%m/%Y'
+    include Lib::Modules::Constants::DateConst
 
     attr_reader :data, :params
 

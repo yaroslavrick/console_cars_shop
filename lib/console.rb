@@ -5,7 +5,7 @@ module Lib
     include Lib::Modules::InputOutput
     include Lib::Modules::Validation
     include Lib::Modules::Colorize
-    SEARCH_RULES_OPTIONS = %i[make model year_from year_to price_from price_to].freeze
+    include Lib::Modules::Constants::Options
 
     attr_reader :total_requests, :result_data, :search_rules, :statistics_db, :cars_db, :user_searches, :auth_status,
                 :user_email, :printer

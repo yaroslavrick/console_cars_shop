@@ -7,8 +7,7 @@ module Lib
     include Lib::Modules::Validation
     include Lib::Modules::Constants::ReadWriteType
     include Lib::Modules::Constants::FilePaths
-
-    VALID_PASSWORD_REGEXP = /^(?=.*[A-Z])(?=(.*[@$!%*#?&]){2}).{8,20}$/
+    include Lib::Modules::Constants::RegExps
 
     attr_reader :email, :password, :logins_and_passwords_db, :user, :tips
     attr_accessor :auth_status

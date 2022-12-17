@@ -3,7 +3,6 @@
 module Lib
   module Modules
     module Validation
-      VALID_PASSWORD_REGEXP = /^(?=.*[A-Z])(?=(.*[@$!%*#?&]){2}).{8,20}$/
       def field_less_then(from, to)
         return true if from.empty? || to.empty?
 

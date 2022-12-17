@@ -3,16 +3,9 @@
 module Lib
   module Models
     class DataBase
-      CURRENT_PATH = File.dirname(__FILE__)
-      DATABASE = 'db.yml'
-      LOG_FILE = File.join(CURRENT_PATH, '../db/searches.yml').freeze
-      USERS_LOGINS_AND_PASSWORDS_FILE = File.join(CURRENT_PATH, '../db/users.yml').freeze
-      USER_SEARCHES_FILE = File.join(CURRENT_PATH, '../db/user_searches.yml').freeze
-      ALL_USERS_SEARCHES_FILE = File.join(CURRENT_PATH, '../db/searches.yml').freeze
-      DB_FILE = File.read("#{CURRENT_PATH}/../db/db.yml").freeze
-      WRITE = 'w'
-      APPEND_PLUS = 'a+'
-      APPEND = 'a'
+      include Lib::Modules::Constants::ReadWriteType
+      include Lib::Modules::Constants::FilePaths
+
       attr_reader :db_name
 
       def initialize(db = DATABASE)
@@ -24,7 +17,7 @@ module Lib
       end
 
       def find_total_requests(search_rules)
-        all_users_searches_data = load(ALL_USERS_SEARCHES_FILE)
+        all_users_searches_data = load(LOG_FILE)
         match_requests = find(search_rules, all_users_searches_data)
         return match_requests[:stats][:requests_quantity] if match_requests
 

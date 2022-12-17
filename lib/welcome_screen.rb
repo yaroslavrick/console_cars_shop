@@ -4,10 +4,7 @@ module Lib
   class WelcomeScreen
     include Lib::Modules::Colorize
     include Lib::Modules::InputOutput
-
-    MENU_LOGGED = %w[my_searches log_out search_car show_all_cars help exit].freeze
-    MENU_NOT_LOGGED = %w[log_in sign_up search_car show_all_cars help exit].freeze
-    MENU_OPTIONS = [1, 2, 3, 4, 5, 6].freeze
+    include Lib::Modules::Constants::MenuConst
 
     attr_reader :all_cars, :console, :user, :logged, :printer
 
