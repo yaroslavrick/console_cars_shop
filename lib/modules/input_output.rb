@@ -3,6 +3,10 @@
 module Lib
   module Modules
     module InputOutput
+      def localize(key)
+        I18n.t(key)
+      end
+
       def user_input
         gets.chomp.strip
       end

@@ -3,7 +3,9 @@ module Config
     include Lib::Modules::Colorize
 
     def call
-      row = [['en'.colorize(:blue), 'ua'.colorize(:blue)]]
+      I18n.load_path << Dir["#{File.expand_path('config/locales')}/*.yml"]
+      I18n.default_locale = :en
+      row = [[colorize_main('en'), colorize_main('ua')]]
       table = Terminal::Table.new headings: %w[English Українська], rows: row
       table.style = Lib::PrintData::TABLE_STYLE
       puts table

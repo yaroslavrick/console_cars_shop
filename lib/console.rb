@@ -4,7 +4,6 @@ module Lib
   class Console
     include Lib::Modules::InputOutput
     include Lib::Modules::Validation
-    include Lib::Modules::Localization
     include Lib::Modules::Colorize
     SEARCH_RULES_OPTIONS = %i[make model year_from year_to price_from price_to].freeze
 

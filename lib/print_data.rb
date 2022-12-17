@@ -1,7 +1,7 @@
 module Lib
   class PrintData
     TABLE_STYLE = { all_separators: true, padding_left: 2, padding_right: 2, border: :unicode_thick_edge }.freeze
-    include Lib::Modules::Localization
+    include Lib::Modules::InputOutput
     include Lib::Modules::Colorize
 
     def create_table(title_name, first_header, second_header, rows)
