@@ -9,7 +9,7 @@ module Lib
     attr_reader :all_cars, :console, :user, :logged, :printer
 
     def initialize
-      @all_cars = Lib::Models::Cars.new
+      @all_cars = Lib::Models::DataBase.new
       @console = Lib::Console.new
       @user = Lib::Authentication.new
       @printer = Lib::PrintData.new
