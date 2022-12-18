@@ -12,7 +12,7 @@ gem 'fasterer', '~>0.10'
 gem 'ffaker', '~>2.21.0'
 gem 'i18n', '~>1.12'
 gem 'lefthook', '~>1.2.6'
-gem 'rake'
+gem 'rake', '~>13.0.6'
 gem 'rubocop', '~>1.40', require: false
 gem 'rubocop-md', '~>1.1'
 gem 'rubocop-performance', '~>1.15', require: false

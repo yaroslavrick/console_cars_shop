@@ -6,13 +6,14 @@ module Lib
     include Lib::Modules::Validation
     include Lib::Modules::Colorize
     include Lib::Modules::Constants::Options
+    include Lib::Modules::Constants::FilePaths
 
     attr_reader :total_requests, :result_data, :search_rules, :statistics_db, :cars_db, :user_searches, :auth_status,
                 :user_email, :printer
 
     def initialize
       @statistics_db = Lib::Models::Statistics.new
-      @cars_db = Lib::Models::Cars.new
+      @cars_db = Lib::Models::DataBase.new
       @printer = Lib::PrintData.new
     end
 
@@ -51,7 +52,7 @@ module Lib
     def search
       ask_cars_fields
       validate_user_input(search_rules[:search_rules])
-      @result_data = Lib::SearchEngineQuery.new(data: cars_db.load.clone,
+      @result_data = Lib::SearchEngineQuery.new(data: cars_db.load(DB_FILE).clone,
                                                 params: search_rules).call
     end
 

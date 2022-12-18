@@ -15,7 +15,7 @@ module Lib
         LOG_FILE = File.join(CURRENT_PATH, '../db/searches.yml').freeze
         USERS_LOGINS_AND_PASSWORDS_FILE = File.join(CURRENT_PATH, '../db/users.yml').freeze
         USER_SEARCHES_FILE = File.join(CURRENT_PATH, '../db/user_searches.yml').freeze
-        DB_FILE = File.read("#{CURRENT_PATH}/../db/db.yml").freeze
+        DB_FILE = File.join(CURRENT_PATH, '../db/db.yml').freeze
         PATH_TO_DB = File.join(CURRENT_PATH, '../db/db.yml').freeze
         PATH_TO_DB_BACKUP = File.join(CURRENT_PATH, '../db/db_backup.yml').freeze
       end

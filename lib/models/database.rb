@@ -6,12 +6,6 @@ module Lib
       include Lib::Modules::Constants::ReadWriteType
       include Lib::Modules::Constants::FilePaths
 
-      attr_reader :db_name
-
-      def initialize(db = DB_FILE)
-        @db_name = db
-      end
-
       def find(search_rules, searches_data)
         searches_data.find { |car| car[:rules] == search_rules }
       end
@@ -38,7 +32,7 @@ module Lib
         file.close
       end
 
-      def load(filepath)
+      def load(filepath = DB_FILE)
         create_file(filepath) unless File.exist?(filepath)
 
         YAML.load_file(filepath) || []
