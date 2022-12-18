@@ -46,9 +46,9 @@ module Lib
       def generate_car
         [{
           'id' => Faker::Base.numerify('########-####-####-####-############'),
-          'make' => FFaker::Vehicle.make,
-          'model' => FFaker::Vehicle.model,
-          'year' => FFaker::Vehicle.year.to_i,
+          'make' => Faker::Vehicle.make,
+          'model' => Faker::Vehicle.model,
+          'year' => Faker::Vehicle.year.to_i,
           'odometer' => Faker::Vehicle.kilometrage,
           'price' => Faker::Commerce.price(range: 1500..100_000, as_string: false).to_i,
           'description' => Faker::Vehicle.standard_specs.join,
