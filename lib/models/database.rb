@@ -38,11 +38,17 @@ module Lib
         file.close
       end
 
-      def load(filepath = DATABASE)
+      def load(filepath)
+        create_file(filepath) unless File.exist?(filepath)
+
         YAML.load_file(filepath) || []
       end
 
       private
+
+      def create_file(filepath)
+        File.new(filepath.to_s, WRITE_PLUS)
+      end
 
       def open_file(file, flag)
         File.open(File.expand_path(file), flag)

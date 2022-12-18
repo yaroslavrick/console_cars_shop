@@ -11,7 +11,6 @@ require 'bcrypt'
 require 'ffaker'
 require 'faker'
 require 'fancy_gets'
-require 'pry'
 
 require_relative '../config/localization/i18n'
 require_relative './modules/constants'
