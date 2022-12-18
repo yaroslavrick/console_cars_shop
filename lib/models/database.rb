@@ -8,7 +8,7 @@ module Lib
 
       attr_reader :db_name
 
-      def initialize(db = DATABASE)
+      def initialize(db = DB_FILE)
         @db_name = db
       end
 
@@ -42,6 +42,24 @@ module Lib
         create_file(filepath) unless File.exist?(filepath)
 
         YAML.load_file(filepath) || []
+      end
+
+      def create_car(write_type, filepath)
+        car = generate_car
+        save(car, write_type, filepath)
+      end
+
+      def generate_car
+        [{
+          'id' => Faker::Base.numerify('########-####-####-####-############'),
+          'make' => FFaker::Vehicle.make,
+          'model' => FFaker::Vehicle.model,
+          'year' => FFaker::Vehicle.year.to_i,
+          'odometer' => Faker::Vehicle.kilometrage,
+          'price' => Faker::Commerce.price(range: 1500..100_000, as_string: false).to_i,
+          'description' => Faker::Vehicle.standard_specs.join,
+          'date_added' => Date.today.strftime('%d/%m/%Y')
+        }]
       end
 
       private

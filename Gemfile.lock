@@ -41,6 +41,7 @@ GEM
       coolline (~> 0.5)
       pry (~> 0.13)
     rainbow (3.1.1)
+    rake (13.0.6)
     regexp_parser (2.6.1)
     rexml (3.2.5)
     rubocop (1.40.0)
@@ -90,6 +91,7 @@ DEPENDENCIES
   pry (~> 0.14)
   pry-byebug (~> 3.10)
   pry-coolline (~> 0.2.6)
+  rake
   rubocop (~> 1.40)
   rubocop-md (~> 1.1)
   rubocop-performance (~> 1.15)
