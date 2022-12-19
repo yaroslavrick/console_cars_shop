@@ -6,55 +6,10 @@
     :price_from: ''
     :price_to: ''
   :stats:
-    :requests_quantity: 12
-- :rules:
-    :make: chevrolet
-    :model: ''
-    :year_from: ''
-    :year_to: ''
-    :price_from: ''
-    :price_to: ''
-  :stats:
-    :requests_quantity: 1
-- :rules:
-    :make: lexus
-    :model: ''
-    :year_from: ''
-    :year_to: ''
-    :price_from: ''
-    :price_to: ''
-  :stats:
-    :requests_quantity: 1
+    :requests_quantity: 2
 - :rules:
     :make: volkswagen
     :model: ''
-    :year_from: ''
-    :year_to: ''
-    :price_from: ''
-    :price_to: ''
-  :stats:
-    :requests_quantity: 1
-- :rules:
-    :make: ''
-    :model: fusion
-    :year_from: ''
-    :year_to: ''
-    :price_from: ''
-    :price_to: ''
-  :stats:
-    :requests_quantity: 1
-- :rules:
-    :make: ford
-    :model: fusion
-    :year_from: ''
-    :year_to: ''
-    :price_from: ''
-    :price_to: ''
-  :stats:
-    :requests_quantity: 1
-- :rules:
-    :make: ford
-    :model: focus
     :year_from: ''
     :year_to: ''
     :price_from: ''

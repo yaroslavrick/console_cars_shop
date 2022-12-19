@@ -1,0 +1,19 @@
+name: Fasterer
+
+on: [push]
+
+permissions:
+  contents: read
+
+jobs:
+  lintering:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@0a29871fe2b0200a17a4497bae54fe5df0d973aa
+      - name: Bundle install
+        run: bundle install
+      - name: Run fasterer
+        run: bundle exec fasterer
