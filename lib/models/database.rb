@@ -44,16 +44,14 @@ module Lib
       end
 
       def generate_car
-        [{
-          'id' => Faker::Base.numerify('########-####-####-####-############'),
-          'make' => Faker::Vehicle.make,
-          'model' => Faker::Vehicle.model,
-          'year' => Faker::Vehicle.year.to_i,
-          'odometer' => Faker::Vehicle.kilometrage,
-          'price' => Faker::Commerce.price(range: 1500..100_000, as_string: false).to_i,
-          'description' => Faker::Vehicle.standard_specs.join,
-          'date_added' => Date.today.strftime('%d/%m/%Y')
-        }]
+        [{ 'id' => FFaker::Vehicle.vin,
+           'make' => FFaker::Vehicle.make,
+           'model' => FFaker::Vehicle.model,
+           'year' => FFaker::Vehicle.year.to_i,
+           'odometer' => FFaker::Random.rand(1..300_000),
+           'price' => FFaker::Random.rand(1000..500_00).to_i,
+           'description' => FFaker::Lorem.phrase,
+           'date_added' => FFaker::Time.date }]
       end
 
       private

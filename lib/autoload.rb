@@ -8,7 +8,7 @@ require 'colorize'
 require 'i18n'
 require 'uri'
 require 'bcrypt'
-require 'faker'
+require 'ffaker'
 require 'fancy_gets'
 
 require_relative '../config/localization/i18n'
