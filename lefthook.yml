@@ -1,17 +1,3 @@
-# EXAMPLE USAGE:
-#
-#   Refer for explanation to following link:
-#   https://github.com/evilmartians/lefthook/blob/master/docs/full_guide.md
-#
-pre-push:
-  commands:
-    gems-audit:
-      tags: backend security
-      run: bundle exec bundler-audit check --update
-    bundle-leaks:
-      tags: memory leak verification for Bundled apps
-      run: bundle exec bundler-leak
-
 pre-commit:
   parallel: true
   commands:
@@ -26,5 +12,14 @@ pre-commit:
       exclude: 'application.rb|routes.rb'
       run: bundle exec fasterer
     bundler-leak:
+      tags: memory leak verification for Bundled apps
+      run: bundle exec bundler-leak
+
+pre-push:
+  commands:
+    gems-audit:
+      tags: backend security
+      run: bundle exec bundler-audit check --update
+    bundle-leaks:
       tags: memory leak verification for Bundled apps
       run: bundle exec bundler-leak

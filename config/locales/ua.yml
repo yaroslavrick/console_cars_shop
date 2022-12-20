@@ -1,27 +1,40 @@
 ua:
-  select_search_rules: 'Будь ласка, оберіть критерії пошуку.'
+  main_menu:
+    greet: Вітаю у головному меню!
+    options:
+      search_car: 1. Шукати машину
+      show_all_cars: 2. Показати усі машини
+      help: 3. Допомога
+      exit: 4. Вийти
+    wrong_input: Невірний набір. Наберіть 1-4 для користування застосунком
+    help_menu:
+      search_car: Якщо Ви хочете знайти авто по опціям пошуку - натисніть 1
+      show_all_cars: Якщо Ви хочете to see all cars in database - натисніть 2
+      help: Якщо Ви потребуєте допомоги (Ви, власне, тут) - натисніть 3
+      exit: Для виходу з застосунку - натисніть 4
+  select_search_rules: Будь ласка, оберіть критерії пошуку.
   choose:
-    please_choose: 'Будь ласка, оберіть '
-    make: 'виробника'
-    model: 'модель'
-    year_from: 'з якого року виробництва'
-    year_to: 'по який рік виробництва'
-    price_from: 'ціну від'
-    price_to: 'ціну до'
-    sort option (date_added|price): 'опції сортування (date_added|price)'
-    sort direction (desc|asc): 'напрямок сортування (desc|asc)'
-  exit: 'Вийти? (N/y)'
+    please_choose: Будь ласка, оберіть
+    make: виробника
+    model: модель
+    year_from: з якого року виробництва
+    year_to: по який рік виробництва
+    price_from: ціну від
+    price_to: ціну до
+    sort option (date_added|price): опції сортування (date_added|price)
+    sort direction (desc|asc): напрямок сортування (desc|asc)
+  exit: Вийти до головного меню? (N/y)
   statistics:
-    statistic: 'Статистика'
-    title: 'заголовок'
-    number: 'кількість'
+    statistic: Статистика
+    title: заголовок
+    number: кількість
     total_quantity: 'Загальна кількість:'
     requests_quantity: 'Кількість запитів:'
   results:
     title: 'Результати пошуку:'
     params: 'параметри:'
     data: 'дані:'
-    empty: 'Нажаль в базі даних немає авто з такими параметрами'
+    empty: Нажаль в базі даних немає авто з такими параметрами
   errors:
     wrong_field: "Ви ввели неправильний параметр: 'рік від' та 'ціна від' не може бути більшою за рік до та ціну до!"
   table:

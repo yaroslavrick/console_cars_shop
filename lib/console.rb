@@ -24,6 +24,18 @@ module Lib
       end
     end
 
+    def show_prettified_result(result_data)
+      return puts colorize_title(localize('results.empty')) if result_data.empty?
+
+      result_data.each do |car|
+        localize_rows(car)
+        rows = car.map do |key, value|
+          [colorize_text('main', key.to_s), colorize_text('result', value.to_s)]
+        end
+        printer.create_table('results.title', 'results.params', 'results.data', rows)
+      end
+    end
+
     private
 
     def search
@@ -38,24 +50,12 @@ module Lib
     end
 
     def print_result
-      total_requests = statistics_db.find_total_requests(search_rules[:search_rules])
-      show_prettified_result
-      show_prettified_statistic(total_requests)
+      @total_requests = statistics_db.find_total_requests(search_rules[:search_rules])
+      show_prettified_result(result_data)
+      show_prettified_statistic
     end
 
-    def show_prettified_result
-      return puts colorize_text('title', localize('results.empty')).underline if result_data.empty?
-
-      result_data.each do |car|
-        localize_rows(car)
-        rows = car.map do |key, value|
-          [colorize_text('main', key.to_s), colorize_text('result', value.to_s)]
-        end
-        printer.create_table('results.title', 'results.params', 'results.data', rows)
-      end
-    end
-
-    def show_prettified_statistic(total_requests)
+    def show_prettified_statistic
       rows = [
         [colorize_text('main', localize('statistics.total_quantity')), colorize_text('result', result_data.count.to_s)],
         [colorize_text('main', localize('statistics.requests_quantity')), colorize_text('result', total_requests.to_s)]
