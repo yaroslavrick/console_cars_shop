@@ -5,13 +5,17 @@ module Lib
   class Authentication
     include Lib::Modules::InputOutput
     include Lib::Modules::Colorize
+    include Lib::Modules::Constants::ReadWriteType
+    include Lib::Modules::Constants::FilePaths
+    include Lib::Modules::Constants::RegExps
 
-    attr_reader :email, :password, :logins_and_passwords_db, :user
+    attr_reader :email, :password, :logins_and_passwords_db, :user, :tips
     attr_accessor :auth_status
 
     def initialize
       @user = Lib::Models::UsersDb.new
       @logins_and_passwords_db = @user.load_logins_and_passwords
+      @tips = Lib::Tips.new
     end
 
     def log_in
@@ -20,7 +24,7 @@ module Lib
     end
 
     def sign_up
-      data = ask_user_sign_up_data
+      data = [ask_user_sign_up_data]
       return unless validate_sign_up_data
 
       @auth_status = true
@@ -30,15 +34,15 @@ module Lib
     private
 
     def ask_user_log_in_data
-      @email = ask_user_email
+      @email = ask_user_email.downcase
       @password = ask_user_password
       { email: email, password: password }
     end
 
     def ask_user_sign_up_data
-      show_tip_for_email
+      tips.show_tips_for_email
       @email = ask_user_email
-      show_tips_for_password
+      tips.show_tips_for_password
       @password = ask_user_password
       encrypted_password = BCrypt::Password.create(password)
       { email: email, password: encrypted_password }
@@ -53,13 +57,6 @@ module Lib
       puts colorize_text('option', localize('authentication.enter_email'))
     end
 
-    def show_tip_for_email
-      puts colorize_text('result', localize('authentication.tip.tip_message'))
-      puts colorize_text('result', localize('authentication.tip.email.format'))
-      puts colorize_text('result', localize('authentication.tip.email.number_of_symbols_before_at'))
-      puts colorize_text('result', localize('authentication.tip.email.unique'))
-    end
-
     def ask_user_password
       show_message_for_password
       user_input_with_asterisks
@@ -67,14 +64,6 @@ module Lib
 
     def show_message_for_password
       puts colorize_text('option', localize('authentication.enter_password'))
-    end
-
-    def show_tips_for_password
-      puts colorize_text('result', localize('authentication.tip.tip_message'))
-      puts colorize_text('result', localize('authentication.tip.password.capital_letters'))
-      puts colorize_text('result', localize('authentication.tip.password.special_characters'))
-      puts colorize_text('result', localize('authentication.tip.password.number_of_symbols_min'))
-      puts colorize_text('result', localize('authentication.tip.password.number_of_symbols_max'))
     end
 
     def validate_log_in_data
@@ -109,8 +98,7 @@ module Lib
     end
 
     def validate_password
-      valid_password_regexp = /^(?=.*[A-Z])(?=(.*[@$!%*#?&]){2}).{8,20}$/
-      return true if password.match?(valid_password_regexp)
+      return true if password.match?(VALID_PASSWORD_REGEXP)
 
       puts colorize_text('error', localize('authentication.password_not_valid'))
     end
@@ -122,7 +110,7 @@ module Lib
     end
 
     def add_user_to_dp(data)
-      user.add_new_user(data)
+      user.save(data, APPEND, USERS_LOGINS_AND_PASSWORDS_FILE)
       hello_message
     end
 
