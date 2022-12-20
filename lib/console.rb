@@ -7,7 +7,6 @@ module Lib
     include Lib::Modules::Colorize
     include Lib::Modules::Constants::Options
     include Lib::Modules::Constants::FilePaths
-    # SEARCH_RULES_OPTIONS = %i[make model year_from year_to price_from price_to].freeze
 
     attr_reader :total_requests, :result_data, :search_rules, :statistics_db, :cars_db, :printer
 
