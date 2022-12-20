@@ -6,12 +6,6 @@ module Lib
     include Lib::Modules::InputOutput
     include Lib::Modules::Constants::MenuConst
 
-    # MENU_LOGGED = %w[log_out search_car show_all_cars help exit].freeze
-    # MENU_OPTIONS_LOGGED = [1, 2, 3, 4, 5].freeze
-
-    # MENU_NOT_LOGGED = %w[log_in sign_up search_car show_all_cars help exit].freeze
-    # MENU_OPTIONS_NOT_LOGGED = [1, 2, 3, 4, 5, 6].freeze
-
     attr_reader :all_cars, :console, :user, :logged, :printer
 
     def initialize
