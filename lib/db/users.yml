@@ -1,7 +1,0 @@
-- :email: email@email.com
-  :password: !ruby/string:BCrypt::Password
-    str: '$2a$12$QseabkEdWJmo6myC/6uBeOEH8V6JjIhn7Oyz7wNDrRmFJHH8IWarS'
-    version: 2a
-    cost: 12
-    salt: '$2a$12$QseabkEdWJmo6myC/6uBeO'
-    checksum: EH8V6JjIhn7Oyz7wNDrRmFJHH8IWarS
