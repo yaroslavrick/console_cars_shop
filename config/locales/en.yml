@@ -9,7 +9,7 @@ en:
       show_all_cars: Show all cars
       help: Help
       exit: Exit
-    wrong_input: Wrong input. Choose 1-4 option
+    wrong_input: Wrong input
     help_menu:
       log_out: To log out current user - choose 'Log out'
       log_in: To log in to the system - choose 'Log In'
