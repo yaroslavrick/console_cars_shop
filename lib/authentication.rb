@@ -16,10 +16,12 @@ module Lib
       @user = Lib::Models::UsersDb.new
       @logins_and_passwords_db = @user.load_logins_and_passwords
       @tips = Lib::Tips.new
+      @admin_status = SuperUser.new
     end
 
     def log_in
       ask_user_log_in_data
+      @superuser_status = @su.check_for_superuser(email: email, password: password)
       validate_log_in_data
     end
 
