@@ -2,9 +2,11 @@
 
 source 'https://rubygems.org'
 
+gem 'bcrypt', '~>3.1'
 gem 'bundler-audit', '~>0.9.1'
 gem 'bundler-leak', '~>0.3.0'
 gem 'colorize', '~>0.8.1'
+gem 'fancy_gets', '~>0.1.10'
 gem 'fasterer', '~>0.10'
 gem 'i18n', '~>1.12'
 gem 'lefthook', '~>1.2.6'

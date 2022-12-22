@@ -17,15 +17,6 @@ module Lib
       puts table
     end
 
-    def print_help_menu
-      puts
-      puts colorize_text('result', localize('main_menu.help_menu.search_car'))
-      puts colorize_text('result', localize('main_menu.help_menu.show_all_cars'))
-      puts colorize_text('result', localize('main_menu.help_menu.help'))
-      puts colorize_text('result', localize('main_menu.help_menu.exit'))
-      puts
-    end
-
     def show_error_wrong_input
       puts colorize_text('error', localize('main_menu.wrong_input'))
     end

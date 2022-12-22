@@ -3,6 +3,7 @@ GEM
   specs:
     ast (2.4.2)
     awesome_print (1.9.2)
+    bcrypt (3.1.18)
     bundler-audit (0.9.1)
       bundler (>= 1.2.0, < 3)
       thor (~> 1.0)
@@ -15,6 +16,7 @@ GEM
     concurrent-ruby (1.1.10)
     coolline (0.5.0)
       unicode_utils (~> 1.4)
+    fancy_gets (0.1.10)
     fasterer (0.10.0)
       colorize (~> 0.7)
       ruby_parser (>= 3.19.1)
@@ -72,9 +74,11 @@ PLATFORMS
 
 DEPENDENCIES
   awesome_print (~> 1.9.2)
+  bcrypt (~> 3.1)
   bundler-audit (~> 0.9.1)
   bundler-leak (~> 0.3.0)
   colorize (~> 0.8.1)
+  fancy_gets (~> 0.1.10)
   fasterer (~> 0.10)
   i18n (~> 1.12)
   lefthook (~> 1.2.6)

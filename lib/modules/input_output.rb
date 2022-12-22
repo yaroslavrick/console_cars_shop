@@ -3,12 +3,17 @@
 module Lib
   module Modules
     module InputOutput
+      include FancyGets
       def localize(key)
         I18n.t(key)
       end
 
       def user_input
         gets.chomp.strip
+      end
+
+      def user_input_with_asterisks
+        gets_password.chomp.strip
       end
 
       def ask_option
