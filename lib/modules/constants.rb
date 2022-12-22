@@ -35,10 +35,9 @@ module Lib
       end
 
       module MenuConst
-        MENU_LOGGED = %w[log_out search_car show_all_cars help exit].freeze
+        MENU_LOGGED = %w[my_searches log_out search_car show_all_cars help exit].freeze
         MENU_NOT_LOGGED = %w[log_in sign_up search_car show_all_cars help exit].freeze
-        MENU_OPTIONS_LOGGED = [1, 2, 3, 4, 5].freeze
-        MENU_OPTIONS_NOT_LOGGED = [1, 2, 3, 4, 5, 6].freeze
+        MENU_OPTIONS = [1, 2, 3, 4, 5, 6].freeze
       end
 
       module ColorizeConst

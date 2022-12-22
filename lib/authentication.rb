@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require 'bcrypt'
 module Lib
   class Authentication
     include Lib::Modules::InputOutput
     include Lib::Modules::Colorize
+    include Lib::Modules::Validation
     include Lib::Modules::Constants::ReadWriteType
     include Lib::Modules::Constants::FilePaths
     include Lib::Modules::Constants::RegExps
@@ -85,16 +85,8 @@ module Lib
       puts colorize_text('error', localize('authentication.email_not_valid'))
     end
 
-    def validate_email_type_format
-      email.match?(URI::MailTo::EMAIL_REGEXP)
-    end
-
-    def validate_email_length_before_at
-      email.split('@').first.length >= 5
-    end
-
     def validate_email_unique
-      @user.load_logins_and_passwords.none? { |car| car[:email] == email }
+      @user.load_logins_and_passwords.none? { |user| user[:email] == email }
     end
 
     def validate_password

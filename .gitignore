@@ -2,5 +2,6 @@
 .vscode
 node_modules
 .bundle
-searches.yml
+user_searches.yml
 users.yml
+searches.yml

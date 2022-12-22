@@ -5,6 +5,7 @@ en:
       log_in: Log in
       sign_up: Sign up
       log_out: Log Out
+      my_searches: My searches
       search_car: Search a car
       show_all_cars: Show all cars
       help: Help
@@ -17,9 +18,10 @@ en:
       search_car: If you want to find car by some options - choose 'Search Car'
       show_all_cars: If you want to see all cars in database - choose 'Show all cars'
       help: "If you want help (you're, actually, here) - choose 'Help'"
+      my_searches: "To look user's searches - choose 'My searches'"
       exit: To exit the app - choose 'Exit'
     log_out:
-      good_bye: See you later!
+      good_bye: 'See you later!'
   select_search_rules: Please select search rules.
   choose:
     please_choose: Please choose
@@ -54,6 +56,10 @@ en:
     price: 'Price:'
     description: 'Description:'
     date_added: 'Date added:'
+    year_from: 'year_from:'
+    year_to: 'year_to:'
+    price_from: 'price_from:'
+    price_to: 'price_to:'
   authentication:
     enter_email: 'Enter email:'
     enter_password: 'Enter password:'
@@ -73,3 +79,5 @@ en:
         special_characters: '- should have at least 2 special characters (@$!%*#?&)'
         number_of_symbols_min: '- should be at least 8 symbols'
         number_of_symbols_max: '- should be no more than 20 symbols'
+  user_searches:
+    searches_do_not_exist: The searches do not exist

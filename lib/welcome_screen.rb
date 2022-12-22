@@ -54,38 +54,49 @@ module Lib
 
     def run_logged_option(option)
       case option
-      when 1 then log_out
-      when 2 then console.call
-      when 3 then console.show_prettified_result(all_cars.load)
-      when 4 then show_help_menu
-      when 5 then exit
+      when 1 then show_user_searches
+      when 2 then log_out
+      when 3..6 then main_option(option)
       end
     end
 
     def run_not_logged_option(option)
       case option
-      when 1 then log_in
-      when 2 then sign_up
-      when 3 then console.call
-      when 4 then console.show_prettified_result(all_cars.load)
+      when 1 then user.log_in
+      when 2 then user.sign_up
+      when 3..6 then main_option(option)
+      end
+    end
+
+    def main_option(option)
+      case option
+      when 3 then run_search_engine
+      when 4 then show_result
       when 5 then show_help_menu
       when 6 then exit
       end
     end
 
+    def show_user_searches
+      @user_searches = Lib::Models::UserSearches.new(email: user.email).show_searches
+    end
+
+    def run_search_engine
+      console.call(status: user.auth_status, email: user.email)
+    end
+
+    def show_result
+      console.show_prettified_result(all_cars.load)
+    end
+
     def validate_option(menu_option)
-      if user.auth_status
-        return if MENU_OPTIONS_LOGGED.include?(menu_option)
-      elsif MENU_OPTIONS_NOT_LOGGED.include?(menu_option)
-        return
-      end
+      return if MENU_OPTIONS.include?(menu_option)
 
       printer.show_error_wrong_input
       call
     end
 
     def show_help_menu
-      puts
       if user.auth_status
         help_menu_printer(MENU_LOGGED)
       else
@@ -101,20 +112,9 @@ module Lib
       end
     end
 
-    def log_in
-      user.log_in
-      call
-    end
-
-    def sign_up
-      user.sign_up
-      call
-    end
-
     def log_out
       user.auth_status = false
-      puts
-      puts colorize_text('result', localize('main_menu.log_out.good_bye'))
+      puts "\n#{colorize_text('result', localize('main_menu.log_out.good_bye'))}"
     end
   end
 end

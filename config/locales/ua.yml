@@ -5,6 +5,7 @@ ua:
       log_in: Ввійти
       sign_up: Зареєструватись
       log_out: Вийти
+      my_searches: Мої пошуки
       search_car: Шукати машину
       show_all_cars: Показати усі машини
       help: Допомога
@@ -17,6 +18,7 @@ ua:
       search_car: Якщо Ви хочете знайти авто по опціям пошуку - виберіть "Шукати"
       show_all_cars: Якщо Ви хочете to see all cars in database - виберіть "Показати всі машини"
       help: Якщо Ви потребуєте допомоги (Ви, власне кажучи, тут) - виберіть "Допомога"
+      my_searches: "Для перегляду архіву пошуків - обери 'Мої пошуки'"
       exit: Для виходу з застосунку - виберіть "Вихід"
     log_out:
       good_bye: Побачимось незабаром!
@@ -54,6 +56,12 @@ ua:
     price: 'Ціна:'
     description: 'Опис:'
     date_added: 'Дата додавання в базу:'
+    year_from: з якого року виробництва
+    year_to: по який рік виробництва
+    price_from: ціна від
+    price_to: ціна до
+    sort option (date_added|price): опції сортування (date_added|price)
+    sort direction (desc|asc): напрямок сортування (desc|asc)
   authentication:
     enter_email: 'Введіть email:'
     enter_password: 'Введіть пароль:'
@@ -73,3 +81,5 @@ ua:
         special_characters: '- повинен мати щонайменше 2 спеціальні символи (@$!%*#?&)'
         number_of_symbols_min: '- має містити щонайменше 8 сиволів'
         number_of_symbols_max: '- має бути не довшим за 20 символів'
+  user_searches:
+    searches_do_not_exist: В базі даних пошуків цього користувача не знайдено.

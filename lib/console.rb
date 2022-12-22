@@ -8,7 +8,8 @@ module Lib
     include Lib::Modules::Constants::Options
     include Lib::Modules::Constants::FilePaths
 
-    attr_reader :total_requests, :result_data, :search_rules, :statistics_db, :cars_db, :printer
+    attr_reader :total_requests, :result_data, :search_rules, :statistics_db, :cars_db, :user_searches, :auth_status,
+                :user_email, :printer
 
     def initialize
       @statistics_db = Lib::Models::Statistics.new
@@ -16,10 +17,13 @@ module Lib
       @printer = Lib::PrintData.new
     end
 
-    def call
+    def call(status: false, email: nil)
+      @auth_status = status
+      @user_email = email
       loop do
         search
         update_statistics
+        add_user_searches
         print_result
         break if exit?
       end
@@ -38,6 +42,12 @@ module Lib
     end
 
     private
+
+    def add_user_searches
+      return unless auth_status
+
+      @user_searches = Lib::Models::UserSearches.new(email: user_email).update(rules: search_rules[:search_rules])
+    end
 
     def search
       ask_cars_fields
@@ -68,10 +78,6 @@ module Lib
       car.transform_keys! do |key|
         localize("table.#{key}")
       end
-    end
-
-    def save_to_log
-      database.save_log(search_rules, total_requests, result_data.count)
     end
 
     def ask_cars_fields
