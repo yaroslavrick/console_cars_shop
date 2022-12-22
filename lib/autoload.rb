@@ -9,7 +9,6 @@ require 'i18n'
 require 'uri'
 require 'bcrypt'
 require 'ffaker'
-require 'faker'
 require 'fancy_gets'
 
 require_relative '../config/localization/i18n'

@@ -38,6 +38,22 @@ module Lib
         YAML.load_file(filepath) || []
       end
 
+      def create_car(write_type, filepath)
+        car = generate_car
+        save(car, write_type, filepath)
+      end
+
+      def generate_car
+        [{ 'id' => FFaker::Vehicle.vin,
+           'make' => FFaker::Vehicle.make,
+           'model' => FFaker::Vehicle.model,
+           'year' => FFaker::Vehicle.year.to_i,
+           'odometer' => FFaker::Random.rand(1..300_000),
+           'price' => FFaker::Random.rand(1000..500_00).to_i,
+           'description' => FFaker::Lorem.phrase,
+           'date_added' => FFaker::Time.date }]
+      end
+
       private
 
       def create_file(filepath)
