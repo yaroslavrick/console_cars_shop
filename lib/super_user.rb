@@ -1,20 +1,24 @@
-require_relative './models/users_db.rb'
 module Lib
   class SuperUser
+    include Lib::Modules::InputOutput
+    include Lib::Modules::Colorize
     include Lib::Modules::Constants::ReadWriteType
     include Lib::Modules::Constants::FilePaths
     include Lib::Modules::Constants::RegExps
 
     CAR_PARAMS= %i[make model year odometer price description].freeze
 
+    attr_reader :car_params, :su_status, :admin_login_and_password, :params_validator
+
     def initialize
       @su_status = false
       @db = Lib::Models::DataBase.new
-      @admin_data = Lib::Models::UsersDb.new.load_logins_and_passwords(ADMIN_FILE)[0]
+      @admin_login_and_password = Lib::Models::UsersDb.new.load_logins_and_passwords(ADMIN_FILE)[0]
+      @params_validator = Lib::Models::ParamsValidator.new
     end
 
     def check_for_superuser(email:, password:)
-      @admin_data[:email] == email && @admin_data[:password] == password
+      @admin_login_and_password[:email] == email && @admin_login_and_password[:password] == password
     end
 
     def run_admin_option(option)
@@ -32,7 +36,7 @@ module Lib
 
     def create_advertisement
       ask_car_params
-
+      params_validator.validate_car_params(car_params) ? add_advertisement : show_invalid_value_error
     end
 
     def update_advertisement
@@ -52,21 +56,10 @@ module Lib
 
     def ask_car_params
       initialize_car_params
-      car_params = CAR_OPTIONS.each_with_object({}) do |item, hash|
+      @car_params = CAR_PARAMS.each_with_object({}) do |item, hash|
         hash[item] = ask_field(item)
       end
-
-
-      make = user_input
-      model = user_input
-      validate_make_and_model
-      year = user_input
-      validate_year
-      odometer = user_input.to_i
-      price = user_input.to_i
-      validate_odometer_and_price
-      description = user_input
-      validate_description
+      binding.pry
     end
 
     def initialize_car_params

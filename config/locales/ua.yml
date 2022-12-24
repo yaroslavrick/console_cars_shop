@@ -36,6 +36,10 @@ ua:
     price_to: ціну до
     sort option (date_added|price): опції сортування (date_added|price)
     sort direction (desc|asc): напрямок сортування (desc|asc)
+    year: рік випуску
+    odometer: пробіг в кілометрах
+    price: ціну
+    description: опис
   exit: Вийти до головного меню? (N/y)
   statistics:
     statistic: Статистика

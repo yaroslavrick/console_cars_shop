@@ -36,6 +36,10 @@ en:
     price_to: 'price_to:'
     sort option (date_added|price): 'sort option (date_added|price):'
     sort direction (desc|asc): 'sort direction (desc|asc):'
+    year: year of production
+    odometer: number of km on odometer
+    price: price
+    description: description
   exit: Exit to main menu? (N/y)
   statistics:
     statistic: Statistic
