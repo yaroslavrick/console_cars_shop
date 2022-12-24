@@ -6,13 +6,14 @@ module Lib
     include Lib::Modules::InputOutput
     include Lib::Modules::Constants::MenuConst
 
-    attr_reader :all_cars, :console, :user, :logged, :printer
+    attr_reader :all_cars, :console, :user, :logged, :printer, :options_count, :admin
 
     def initialize
       @all_cars = Lib::Models::DataBase.new
       @console = Lib::Console.new
       @user = Lib::Authentication.new
       @printer = Lib::PrintData.new
+      @admin = Lib::SuperUser.new
     end
 
     def call
@@ -30,6 +31,7 @@ module Lib
     end
 
     def show_options
+      return transform_option(MENU_SUPERUSER) if user.superuser_status
       return transform_option(MENU_LOGGED) if user.auth_status
 
       transform_option(MENU_NOT_LOGGED)
@@ -37,6 +39,7 @@ module Lib
 
     def transform_option(menu)
       number = 1
+      @options_count = [*1..menu.count]
       menu.each do |option|
         puts colorize_text('main', "#{number}. #{localize("main_menu.options.#{option}")}")
         number += 1
@@ -44,7 +47,9 @@ module Lib
     end
 
     def run_option(option)
-      if user.auth_status
+      if user.superuser_status
+        admin.run_admin_option(option)
+      elsif user.auth_status
         run_logged_option(option)
       else
         run_not_logged_option(option)
@@ -90,7 +95,7 @@ module Lib
     end
 
     def validate_option(menu_option)
-      return if MENU_OPTIONS.include?(menu_option)
+      return if options_count.include?(menu_option)
 
       printer.show_error_wrong_input
       call

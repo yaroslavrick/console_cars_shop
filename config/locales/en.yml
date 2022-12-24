@@ -10,6 +10,9 @@ en:
       show_all_cars: Show all cars
       help: Help
       exit: Exit
+      create_advertisement: Create an Advertisement
+      update_advertisement: Update an Advertisement
+      delete_advertisement: Delete an Advertisement
     wrong_input: Wrong input
     help_menu:
       log_out: To log out current user - choose 'Log out'

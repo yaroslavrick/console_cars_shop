@@ -10,6 +10,9 @@ ua:
       show_all_cars: Показати усі машини
       help: Допомога
       exit: Вийти з застосунку
+      create_advertisement: Створити рекламне оголошення
+      update_advertisement: Оновити рекламне оголошення
+      delete_advertisement: Видалити рекламне оголошення
     wrong_input: Невірний набір
     help_menu:
       log_out: Щоб вилогувати поточного користувача - виберіть "Вийти"

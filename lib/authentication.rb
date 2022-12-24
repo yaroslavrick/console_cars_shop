@@ -9,19 +9,19 @@ module Lib
     include Lib::Modules::Constants::FilePaths
     include Lib::Modules::Constants::RegExps
 
-    attr_reader :email, :password, :logins_and_passwords_db, :user, :tips
+    attr_reader :email, :password, :logins_and_passwords_db, :user, :tips, :superuser_status
     attr_accessor :auth_status
 
     def initialize
       @user = Lib::Models::UsersDb.new
       @logins_and_passwords_db = @user.load_logins_and_passwords
       @tips = Lib::Tips.new
-      @admin_status = SuperUser.new
+      @admin = Lib::SuperUser.new
     end
 
     def log_in
       ask_user_log_in_data
-      @superuser_status = @su.check_for_superuser(email: email, password: password)
+      admin?
       validate_log_in_data
     end
 
@@ -34,6 +34,11 @@ module Lib
     end
 
     private
+
+    def admin?
+      @superuser_status = @admin.check_for_superuser(email: email, password: password)
+      @superuser_status
+    end
 
     def ask_user_log_in_data
       @email = ask_user_email.downcase
