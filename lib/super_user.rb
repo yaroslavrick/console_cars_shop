@@ -6,9 +6,10 @@ module Lib
     include Lib::Modules::Constants::FilePaths
     include Lib::Modules::Constants::RegExps
 
-    CAR_PARAMS= %i[make model year odometer price description].freeze
+    CAR_PARAMS = %i[make model year odometer price description].freeze
 
     attr_reader :car_params, :su_status, :admin_login_and_password, :params_validator, :cars_db
+
     def initialize
       @su_status = false
       @cars_db = Lib::Models::DataBase.new
@@ -48,7 +49,7 @@ module Lib
 
     def log_out
       @welcome_screen = Lib::WelcomeScreen.new.log_out
-      @welcome_screen.call
+      Lib::WelcomeScreen.new.call
     end
 
     private

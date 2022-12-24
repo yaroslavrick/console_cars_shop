@@ -1,6 +1,11 @@
 module Lib
   module Models
     class ParamsValidator
+      include Lib::Modules::Constants::DateConst
+      include Lib::Modules::Constants::ReadWriteType
+      include Lib::Modules::Constants::FilePaths
+
+
       MODEL_AND_MAKE_REGEXP = /^[a-zA-Z0-9]{3,50}$/
       INTEGER_REGEXP = /^\d{0,}$/
       MIN_YEAR = 1900
@@ -46,7 +51,7 @@ module Lib
         # message
         return false if value.empty?
 
-        check_for_integers(value) && value <= Date.today.year && value >= MIN_YEAR
+        check_for_integers(value) && value.to_i <= Date.today.year && value.to_i >= MIN_YEAR
       end
 
       def validate_odometer(value)
@@ -80,7 +85,7 @@ module Lib
       end
 
       def greater_or_equal_to_zero(value)
-        value >= 0
+        value.to_i >= 0
       end
 
       def check_for_strings(value)

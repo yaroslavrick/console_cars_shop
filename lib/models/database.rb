@@ -5,6 +5,7 @@ module Lib
     class DataBase
       include Lib::Modules::Constants::ReadWriteType
       include Lib::Modules::Constants::FilePaths
+      include Lib::Modules::Constants::DateConst
 
       def find(search_rules, searches_data)
         searches_data.find { |car| car[:rules] == search_rules }
@@ -64,8 +65,8 @@ module Lib
       def generate_car(params)
         [{
           'id' => FFaker::Vehicle.vin,
-          'make' => params[:make],
-          'model' => params[:model],
+          'make' => params[:make].capitalize,
+          'model' => params[:model].capitalize,
           'year' => params[:year].to_i,
           'odometer' => params[:odometer],
           'price' => params[:price].to_i,

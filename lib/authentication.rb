@@ -77,6 +77,8 @@ module Lib
       if @user.load_logins_and_passwords.any? { |user| user[:email] == email && user[:password] == password }
         @auth_status = true
         hello_message
+      elsif superuser_status
+        hello_message
       else
         puts colorize_text('error', localize('authentication.email_not_exists'))
       end

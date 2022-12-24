@@ -24,6 +24,11 @@ module Lib
       run_option(option)
     end
 
+    def log_out
+      user.auth_status = false
+      puts "\n#{colorize_text('result', localize('main_menu.log_out.good_bye'))}"
+    end
+
     private
 
     def greet
@@ -115,11 +120,6 @@ module Lib
       param.each do |option|
         puts colorize_text('result', localize("main_menu.help_menu.#{option}"))
       end
-    end
-
-    def log_out
-      user.auth_status = false
-      puts "\n#{colorize_text('result', localize('main_menu.log_out.good_bye'))}"
     end
   end
 end
