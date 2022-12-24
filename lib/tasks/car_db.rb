@@ -14,7 +14,7 @@ namespace :database do
       cars = ENV.fetch('cars') { 1 }.to_i
       # rubocop:enable Style/RedundantFetchBlock
       db = Lib::Models::DataBase.new
-      cars.times { db.create_car(APPEND, PATH_TO_DB) }
+      cars.times { db.create_fake_car(APPEND, PATH_TO_DB) }
     end
 
     desc 'Clear whole database'

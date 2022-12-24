@@ -8,17 +8,21 @@ module Lib
 
       def validate_car_params(car_params)
         car_params.each do |key, value|
-          case key
-          when :make || :model then validate_make_and_model(value)
-          when :year then validate_year(value)
-          when :odometer then validate_odometer(value)
-          when :price then validate_price(value)
-          when :description then validate_description(value)
-          end
+          validate_param(key, value)
         end
       end
 
       private
+
+      def validate_param(key, value)
+        case key
+        when :make || :model then validate_make_and_model(value)
+        when :year then validate_year(value)
+        when :odometer then validate_odometer(value)
+        when :price then validate_price(value)
+        when :description then validate_description(value)
+        end
+      end
 
       def validate_make_and_model(value)
         # o Required

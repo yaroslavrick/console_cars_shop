@@ -38,12 +38,19 @@ module Lib
         YAML.load_file(filepath) || []
       end
 
-      def create_car(write_type, filepath)
-        car = generate_car
+      def create_fake_car(write_type, filepath)
+        car = generate_fake_car
         save(car, write_type, filepath)
       end
 
-      def generate_car
+      def create_car(write_type:, filepath:, params:)
+        car = generate_car(params)
+        save(car, write_type, filepath)
+      end
+
+      private
+
+      def generate_fake_car
         [{ 'id' => FFaker::Vehicle.vin,
            'make' => FFaker::Vehicle.make,
            'model' => FFaker::Vehicle.model,
@@ -54,7 +61,18 @@ module Lib
            'date_added' => FFaker::Time.date }]
       end
 
-      private
+      def generate_car(params)
+        [{
+          'id' => FFaker::Vehicle.vin,
+          'make' => params[:make],
+          'model' => params[:model],
+          'year' => params[:year].to_i,
+          'odometer' => params[:odometer],
+          'price' => params[:price].to_i,
+          'description' => params[:description],
+          'date_added' => Date.today.strftime(DATE_FORMAT)
+        }]
+      end
 
       def create_file(filepath)
         File.new(filepath.to_s, WRITE_PLUS)

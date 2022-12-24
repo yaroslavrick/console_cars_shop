@@ -8,11 +8,10 @@ module Lib
 
     CAR_PARAMS= %i[make model year odometer price description].freeze
 
-    attr_reader :car_params, :su_status, :admin_login_and_password, :params_validator
-
+    attr_reader :car_params, :su_status, :admin_login_and_password, :params_validator, :cars_db
     def initialize
       @su_status = false
-      @db = Lib::Models::DataBase.new
+      @cars_db = Lib::Models::DataBase.new
       @admin_login_and_password = Lib::Models::UsersDb.new.load_logins_and_passwords(ADMIN_FILE)[0]
       @params_validator = Lib::Models::ParamsValidator.new
     end
@@ -59,7 +58,6 @@ module Lib
       @car_params = CAR_PARAMS.each_with_object({}) do |item, hash|
         hash[item] = ask_field(item)
       end
-      binding.pry
     end
 
     def initialize_car_params
@@ -71,6 +69,10 @@ module Lib
         # price: {},
         # description: {}
       }
+    end
+
+    def add_advertisement
+      cars_db.create_car(write_type: APPEND, filepath: DB_FILE, params: car_params)
     end
   end
 end
