@@ -8,7 +8,7 @@ module Lib
 
     CAR_PARAMS = %i[make model year odometer price description].freeze
 
-    attr_reader :car_params, :su_status, :admin_login_and_password, :params_validator, :cars_db
+    attr_reader :car_params, :su_status, :admin_login_and_password, :params_validator, :cars_db, :cars_data
 
     def initialize
       @su_status = false
@@ -29,7 +29,6 @@ module Lib
       when 4 then log_out
       else
         puts colorize_text('error', localize('main_menu.wrong_input'))
-        puts 'Wrong input!'
         Lib::WelcomeScreen.new.call
       end
     end
@@ -40,7 +39,24 @@ module Lib
     end
 
     def update_advertisement
-      # todo
+      # • If admin user chooses “Updated an advertisement” he should be asked to enter
+      #   the id of the updatable advertisement and then should be asked to enter all the
+      #   values needed for advertisement updating
+      #   o If all the values are correct (see Validation section) - the advertisement
+      #   should be updated in the database and admin should see “You have
+      #   successfully updated the car with id ADVERTISEMENT_ID!” and see the
+      #   main Admin menu right after that.
+      #   o If some values are not correct (see Validation section) - the advertisement
+      #   should not be updated in the database and admin should see the
+      #   validation errors and see the main Admin menu right after that.
+
+      id = ask_id
+      ask_car_params
+      @cars_data = cars_db.load
+      if find_car_by_id(id: id, data: cars_data)
+        update_car(ask_car_params, cars_data)
+      end
+      cars_db.save(@cars_data, WRITE, DB_FILE)
     end
 
     def delete_advertisement
@@ -54,6 +70,19 @@ module Lib
 
     private
 
+    def update_car(ask_car_params, cars_data)
+      # todo
+    end
+
+    def find_car_by_id(id:, data:)
+      # todo
+    end
+
+    def ask_id
+      puts "Enter the id:"
+      user_input
+    end
+
     def ask_car_params
       initialize_car_params
       @car_params = CAR_PARAMS.each_with_object({}) do |item, hash|
@@ -62,14 +91,7 @@ module Lib
     end
 
     def initialize_car_params
-      @car_params = {
-        # make: {},
-        # model: {},
-        # year: {},
-        # odometer: {},
-        # price: {},
-        # description: {}
-      }
+      @car_params = {}
     end
 
     def add_advertisement
