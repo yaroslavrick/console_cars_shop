@@ -7,6 +7,8 @@ module Lib
       include Lib::Modules::Constants::FilePaths
       include Lib::Modules::Constants::DateConst
 
+      attr_reader :id
+
       def find(search_rules, searches_data)
         searches_data.find { |car| car[:rules] == search_rules }
       end
@@ -46,6 +48,7 @@ module Lib
 
       def create_car(write_type:, filepath:, params:)
         car = generate_car(params)
+        @id = car[0]['id']
         save(car, write_type, filepath)
       end
 
@@ -65,10 +68,10 @@ module Lib
       def generate_car(params)
         [{
           'id' => FFaker::Vehicle.vin,
-          'make' => params[:make].capitalize,
-          'model' => params[:model].capitalize,
+          'make' => params[:make],
+          'model' => params[:model],
           'year' => params[:year].to_i,
-          'odometer' => params[:odometer],
+          'odometer' => params[:odometer].to_i,
           'price' => params[:price].to_i,
           'description' => params[:description],
           'date_added' => Date.today.strftime(DATE_FORMAT)

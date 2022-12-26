@@ -54,6 +54,8 @@ ua:
     empty: Нажаль в базі даних немає авто з такими параметрами
   errors:
     wrong_field: "Ви ввели неправильний параметр: 'рік від' та 'ціна від' не може бути більшою за рік до та ціну до!"
+    invalid_value_error: 'Введені параметри авто не валідні!'
+    wrong_parameter: 'Хибний %{param} параметр'
   table:
     id: 'id:'
     make: 'Виробник:'
@@ -90,3 +92,8 @@ ua:
         number_of_symbols_max: '- має бути не довшим за 20 символів'
   user_searches:
     searches_do_not_exist: В базі даних пошуків цього користувача не знайдено.
+  admin_panel:
+    car_created: 'Ви успішно створили авто з id %{id}!'
+    id_not_exists: 'Оголошення з id %{id} не існує'
+    car_deleted: 'Ви успішно видалили авто з id %{id}!'
+    enter_id: 'Введіть id:'

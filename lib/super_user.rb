@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Lib
   class SuperUser
     include Lib::Modules::InputOutput
@@ -5,16 +7,15 @@ module Lib
     include Lib::Modules::Constants::ReadWriteType
     include Lib::Modules::Constants::FilePaths
     include Lib::Modules::Constants::RegExps
+    include Lib::Modules::Constants::ParamsConst
 
-    CAR_PARAMS = %i[make model year odometer price description].freeze
-
-    attr_reader :car_params, :su_status, :admin_login_and_password, :params_validator, :cars_db, :cars_data
+    attr_reader :car_params, :admin_login_and_password, :params_validator, :cars_db, :cars_data, :id, :printer
 
     def initialize
-      @su_status = false
       @cars_db = Lib::Models::DataBase.new
       @admin_login_and_password = Lib::Models::UsersDb.new.load_logins_and_passwords(ADMIN_FILE)[0]
       @params_validator = Lib::Models::ParamsValidator.new
+      @printer = Lib::PrintData.new
     end
 
     def check_for_superuser(email:, password:)
@@ -28,50 +29,35 @@ module Lib
       when 3 then delete_advertisement
       when 4 then log_out
       else
-        puts colorize_text('error', localize('main_menu.wrong_input'))
+        printer.show_error_wrong_input
         Lib::WelcomeScreen.new.call
       end
     end
 
     def create_advertisement
-      ask_car_params
-      params_validator.validate_car_params(car_params) ? add_advertisement : show_invalid_value_error
+      params = ask_car_params
+      params_validator.validate_car_params(params) ? add_advertisement : params_validator.print_errors
     end
 
     def update_advertisement
-      # • If admin user chooses “Updated an advertisement” he should be asked to enter
-      #   the id of the updatable advertisement and then should be asked to enter all the
-      #   values needed for advertisement updating
-      #   o If all the values are correct (see Validation section) - the advertisement
-      #   should be updated in the database and admin should see “You have
-      #   successfully updated the car with id ADVERTISEMENT_ID!” and see the
-      #   main Admin menu right after that.
-      #   o If some values are not correct (see Validation section) - the advertisement
-      #   should not be updated in the database and admin should see the
-      #   validation errors and see the main Admin menu right after that.
-
-      id = ask_id
+      @id = ask_id
       params = ask_car_params
       @cars_data = cars_db.load
-      update_car(params, id) if find_car_by_id(id)
-      cars_db.save(cars_data, WRITE, DB_FILE)
+      return printer.car_with_id_not_exists(id) unless find_car_by_id
+      return params_validator.print_errors unless params_validator.validate_car_params(params)
+
+      update_car(params)
+      save_car_to_db
     end
 
     def delete_advertisement
-      # o If advertisement with id exists, we should remove the advertisement from
-      # the database and admin should see “You have successfully deleted the car with id ADVERTISEMENT_ID!” message and see the main Admin
-      # menu right after that.
-      # o If advertisement with id not exists - the advertisement should not be
-      # deleted from the database and admin should see the validation error
-      # “Attachment with id YOUR_ID doesn’t exist” and see the main Admin
-      # menu right after that.
-      id = ask_id
+      @id = ask_id
       @cars_data = cars_db.load
-      return puts "Attachment with id #{id} doesn’t exist" unless find_car_by_id(id)
+      return printer.car_with_id_not_exists(id) unless find_car_by_id
 
-      delete_car_by_id(id)
-      puts "You have successfully deleted the car with id #{id}!"
-      cars_db.save(cars_data, WRITE, DB_FILE)
+      delete_car_by_id
+      save_car_to_db
+      printer.car_deleted(id)
     end
 
     def log_out
@@ -81,36 +67,38 @@ module Lib
 
     private
 
-    def delete_car_by_id(id)
+    def save_car_to_db
+      cars_db.save(cars_data, WRITE, DB_FILE)
+    end
+
+    def delete_car_by_id
       cars_data.delete_if do |car|
         car['id'] == id
       end
     end
 
-    def update_car(params, id)
+    def update_car(params)
       cars_data.map! do |car|
-        if (car['id'] == id)
-          car = replace_car_params(car, params)
-        end
+        car = replace_car_params(car, params) if car['id'] == id
         car
       end
     end
 
     def replace_car_params(car, params)
       CAR_PARAMS.each do |param|
-        car[param.to_s] = params[param].capitalize
+        car[param.to_s] = params[param]
       end
       car
     end
 
-    def find_car_by_id(id)
+    def find_car_by_id
       result = nil
       cars_data.each { |car| result = car if car['id'] == id }
       result
     end
 
     def ask_id
-      puts "Enter the id:"
+      printer.ask_id_message
       user_input
     end
 
@@ -127,6 +115,7 @@ module Lib
 
     def add_advertisement
       cars_db.create_car(write_type: APPEND, filepath: DB_FILE, params: car_params)
+      printer.show_car_created_message(cars_db.id)
     end
   end
 end

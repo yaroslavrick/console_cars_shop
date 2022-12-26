@@ -1,19 +1,35 @@
+# frozen_string_literal: true
+
 module Lib
   module Models
     class ParamsValidator
       include Lib::Modules::Constants::DateConst
       include Lib::Modules::Constants::ReadWriteType
       include Lib::Modules::Constants::FilePaths
+      include Lib::Modules::Constants::RegExps
+      include Lib::Modules::Constants::ParamsConst
 
+      attr_reader :printer, :validations_result
 
-      MODEL_AND_MAKE_REGEXP = /^[a-zA-Z0-9]{3,50}$/
-      INTEGER_REGEXP = /^\d{0,}$/
-      MIN_YEAR = 1900
-      MAX_DESCRIPTION_LENGTH = 5000
+      def initialize
+        @printer = Lib::PrintData.new
+      end
 
       def validate_car_params(car_params)
+        @validations_result = []
         car_params.each do |key, value|
-          validate_param(key, value)
+          validations_result.push(validate_param(key, value))
+        end
+        validations_result.all?(true)
+      end
+
+      def print_errors
+        validations_result.each_with_index do |value, index|
+          next if value
+
+          CAR_PARAMS.each_with_index do |param, idx|
+            printer.wrong_parameter(param) if idx == index
+          end
         end
       end
 
@@ -21,7 +37,7 @@ module Lib
 
       def validate_param(key, value)
         case key
-        when :make || :model then validate_make_and_model(value)
+        when :make, :model then validate_make_and_model(value)
         when :year then validate_year(value)
         when :odometer then validate_odometer(value)
         when :price then validate_price(value)
@@ -30,53 +46,30 @@ module Lib
       end
 
       def validate_make_and_model(value)
-        # o Required
-        # o Should have at least 3 symbols and have specified validation
-        # message
-        # o Should have at most 50 symbols and have specified validation
-        # message
-        # o Should consists only of English letters and have specified validation
-        # message
         return false if value.empty?
 
         value.match?(MODEL_AND_MAKE_REGEXP)
       end
 
       def validate_year(value)
-        # o Required
-        # o Should be an integer and have specified validation message
-        # o Should be not greater than current year and have specified
-        # validation message
-        # o Should be greater than 1900 year and have specified validation
-        # message
         return false if value.empty?
 
         check_for_integers(value) && value.to_i <= Date.today.year && value.to_i >= MIN_YEAR
       end
 
       def validate_odometer(value)
-        # o Required
-        # o Should be an integer and have specified validation message
-        # o Should be >= 0 and have specified validation message
         return false if value.empty?
 
         check_for_integers(value) && greater_or_equal_to_zero(value)
       end
 
       def validate_price(value)
-        # o Required
-        # o Should be an integer and have specified validation message
-        # o Should be >= 0 and have specified validation message
         return false if value.empty?
 
         check_for_integers(value) && greater_or_equal_to_zero(value)
       end
 
       def validate_description(value)
-        # o Optional
-        # o Should be a String and have specified validation message
-        # o Should have no more than 5000 symbols and have specified
-        # validation message
         check_for_strings(value) && check_for_max_length(value)
       end
 

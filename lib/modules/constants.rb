@@ -21,6 +21,8 @@ module Lib
 
       module RegExps
         VALID_PASSWORD_REGEXP = /^(?=.*[A-Z])(?=(.*[@$!%*#?&]){2}).{8,20}$/
+        MODEL_AND_MAKE_REGEXP = /^[a-zA-Z0-9\s]{3,50}$/
+        INTEGER_REGEXP = /^\d{0,}$/
       end
 
       module Options
@@ -38,7 +40,6 @@ module Lib
       module MenuConst
         MENU_LOGGED = %w[my_searches log_out search_car show_all_cars help exit].freeze
         MENU_NOT_LOGGED = %w[log_in sign_up search_car show_all_cars help exit].freeze
-        # MENU_OPTIONS = [1, 2, 3, 4, 5, 6].freeze
         MENU_SUPERUSER = %w[create_advertisement update_advertisement delete_advertisement log_out].freeze
       end
 
@@ -57,6 +58,12 @@ module Lib
           'result' => RESULT_COLOR,
           'error' => ERROR_COLOR
         }.freeze
+      end
+
+      module ParamsConst
+        MIN_YEAR = 1900
+        MAX_DESCRIPTION_LENGTH = 5000
+        CAR_PARAMS = %i[make model year odometer price description].freeze
       end
     end
   end

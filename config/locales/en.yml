@@ -54,6 +54,8 @@ en:
     empty: There is no cars with this parameters
   errors:
     wrong_field: "You entered wrong field: value 'from' can't be bigger than value 'to'!"
+    invalid_value_error: 'Car params is not valid!'
+    wrong_parameter: "Wrong %{param} parameter"
   table:
     id: 'id:'
     make: 'Make:'
@@ -88,3 +90,8 @@ en:
         number_of_symbols_max: '- should be no more than 20 symbols'
   user_searches:
     searches_do_not_exist: The searches do not exist
+  admin_panel:
+    car_created: 'You have successfully created the car with id %{id}!'
+    id_not_exists: 'Attachment with id %{id} doesn’t exist'
+    car_deleted: 'You have successfully deleted the car with id %{id}!'
+    enter_id: 'Enter the id:'
