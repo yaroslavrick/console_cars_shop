@@ -51,12 +51,10 @@ module Lib
       #   validation errors and see the main Admin menu right after that.
 
       id = ask_id
-      ask_car_params
+      params = ask_car_params
       @cars_data = cars_db.load
-      if find_car_by_id(id: id, data: cars_data)
-        update_car(ask_car_params, cars_data)
-      end
-      cars_db.save(@cars_data, WRITE, DB_FILE)
+      update_car(params, id) if find_car_by_id(id: id)
+      cars_db.save(cars_data, WRITE, DB_FILE)
     end
 
     def delete_advertisement
@@ -70,12 +68,30 @@ module Lib
 
     private
 
-    def update_car(ask_car_params, cars_data)
-      # todo
+    def update_car(params, id)
+      cars_data.map! do |car|
+        if (car['id'] == id)
+          car = replace_car_params(car, params)
+        end
+        car
+      end
     end
 
-    def find_car_by_id(id:, data:)
-      # todo
+    def replace_car_params(car, params)
+      CAR_PARAMS.each do |param|
+        car[param.to_s] = params[param].capitalize
+      end
+      car
+    end
+
+    def find_car_by_id(id:)
+      result = nil
+      cars_data.each do |car|
+        if (car['id'] == id)
+          result = car
+        end
+      end
+      result
     end
 
     def ask_id

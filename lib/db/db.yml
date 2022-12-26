@@ -113,8 +113,16 @@
 - id: 7TDE95TC85B515408
   make: zaz
   model: sens
-  year: 2013
+  year: '2013'
   odometer: '0'
-  price: 8970
-  description: ukr car
+  price: '8970'
+  description: ukrainian version of opel engine
   date_added: 24/12/2022
+- id: W8U1XESF182344480
+  make: Zaz
+  model: Lanos
+  year: 2014
+  odometer: '90000'
+  price: 4200
+  description: good condition
+  date_added: 26/12/2022
