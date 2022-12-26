@@ -37,7 +37,6 @@ module Lib
 
     def admin?
       @superuser_status = @admin.check_for_superuser(email: email, password: password)
-      @superuser_status
     end
 
     def ask_user_log_in_data
