@@ -10,4 +10,4 @@
 5. Run ruby application in the command line:
    `ruby index.rb`
 6. To enter as admin:
-   username: `admin`, password: `Password!!`
+   username: `admin@admin.com`, password: `Password!!`
