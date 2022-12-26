@@ -53,12 +53,25 @@ module Lib
       id = ask_id
       params = ask_car_params
       @cars_data = cars_db.load
-      update_car(params, id) if find_car_by_id(id: id)
+      update_car(params, id) if find_car_by_id(id)
       cars_db.save(cars_data, WRITE, DB_FILE)
     end
 
     def delete_advertisement
-      # todo
+      # o If advertisement with id exists, we should remove the advertisement from
+      # the database and admin should see “You have successfully deleted the car with id ADVERTISEMENT_ID!” message and see the main Admin
+      # menu right after that.
+      # o If advertisement with id not exists - the advertisement should not be
+      # deleted from the database and admin should see the validation error
+      # “Attachment with id YOUR_ID doesn’t exist” and see the main Admin
+      # menu right after that.
+      id = ask_id
+      @cars_data = cars_db.load
+      return puts "Attachment with id #{id} doesn’t exist" unless find_car_by_id(id)
+
+      delete_car_by_id(id)
+      puts "You have successfully deleted the car with id #{id}!"
+      cars_db.save(cars_data, WRITE, DB_FILE)
     end
 
     def log_out
@@ -67,6 +80,12 @@ module Lib
     end
 
     private
+
+    def delete_car_by_id(id)
+      cars_data.delete_if do |car|
+        car['id'] == id
+      end
+    end
 
     def update_car(params, id)
       cars_data.map! do |car|
@@ -84,13 +103,9 @@ module Lib
       car
     end
 
-    def find_car_by_id(id:)
+    def find_car_by_id(id)
       result = nil
-      cars_data.each do |car|
-        if (car['id'] == id)
-          result = car
-        end
-      end
+      cars_data.each { |car| result = car if car['id'] == id }
       result
     end
 
