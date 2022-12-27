@@ -25,6 +25,10 @@ module Lib
       puts colorize_text('result', I18n.t('admin_panel.car_deleted', id: id))
     end
 
+    def car_updated(id)
+      puts colorize_text('result', I18n.t('admin_panel.car_updated', id: id))
+    end
+
     def car_with_id_not_exists(id)
       puts colorize_text('error', I18n.t('admin_panel.id_not_exists', id: id))
     end
