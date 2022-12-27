@@ -95,9 +95,7 @@ module Lib
     end
 
     def find_car_by_id
-      result = nil
-      cars_data.each { |car| result = car if car['id'] == id }
-      result
+      cars_data.any? { |car| car['id'] == id }
     end
 
     def ask_id
