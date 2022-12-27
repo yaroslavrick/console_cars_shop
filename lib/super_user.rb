@@ -77,9 +77,7 @@ module Lib
     end
 
     def delete_car_by_id
-      cars_data.delete_if do |car|
-        car['id'] == id
-      end
+      cars_data.delete_if { |car| car['id'] == id }
     end
 
     def update_car(params)
