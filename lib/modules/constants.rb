@@ -64,6 +64,7 @@ module Lib
         MIN_YEAR = 1900
         MAX_DESCRIPTION_LENGTH = 5000
         CAR_PARAMS = %i[make model year odometer price description].freeze
+        INT_CAR_PARAMS = %i[year odometer price].freeze
       end
     end
   end

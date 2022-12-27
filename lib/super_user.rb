@@ -89,7 +89,7 @@ module Lib
 
     def replace_car_params(car, params)
       CAR_PARAMS.each do |param|
-        car[param.to_s] = params[param]
+        car[param.to_s] = INT_CAR_PARAMS.include?(param) ? params[param].to_i : params[param]
       end
       car
     end
