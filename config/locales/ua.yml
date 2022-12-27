@@ -10,6 +10,7 @@ ua:
       show_all_cars: Показати усі машини
       help: Допомога
       exit: Вийти з застосунку
+      fast_search: Швидкий пошук
       create_advertisement: Створити рекламне оголошення
       update_advertisement: Оновити рекламне оголошення
       delete_advertisement: Видалити рекламне оголошення
@@ -96,4 +97,5 @@ ua:
     car_created: 'Ви успішно створили авто з id %{id}!'
     id_not_exists: 'Оголошення з id %{id} не існує'
     car_deleted: 'Ви успішно видалили авто з id %{id}!'
+    car_updated: 'Ви успішно оновили дані про авто з id %{id}!'
     enter_id: 'Введіть id:'

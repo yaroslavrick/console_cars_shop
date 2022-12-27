@@ -84,6 +84,7 @@ module Lib
       when 4 then show_result
       when 5 then show_help_menu
       when 6 then exit
+      when 7 then fast_search
       end
     end
 
@@ -120,6 +121,11 @@ module Lib
       param.each do |option|
         puts colorize_text('result', localize("main_menu.help_menu.#{option}"))
       end
+    end
+
+    def fast_search
+      fast_search = FastSearch.new
+      fast_search.call
     end
   end
 end

@@ -38,8 +38,8 @@ module Lib
       end
 
       module MenuConst
-        MENU_LOGGED = %w[my_searches log_out search_car show_all_cars help exit].freeze
-        MENU_NOT_LOGGED = %w[log_in sign_up search_car show_all_cars help exit].freeze
+        MENU_LOGGED = %w[my_searches log_out search_car show_all_cars help exit fast_search].freeze
+        MENU_NOT_LOGGED = %w[log_in sign_up search_car show_all_cars help exit fast_search].freeze
         MENU_SUPERUSER = %w[create_advertisement update_advertisement delete_advertisement log_out].freeze
       end
 

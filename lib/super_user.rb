@@ -46,8 +46,7 @@ module Lib
       return printer.car_with_id_not_exists(id) unless find_car_by_id
       return params_validator.print_errors unless params_validator.validate_car_params(params)
 
-      update_car(params)
-      save_car_to_db
+      update_data(params)
     end
 
     def delete_advertisement
@@ -66,6 +65,12 @@ module Lib
     end
 
     private
+
+    def update_data(params)
+      update_car(params)
+      save_car_to_db
+      printer.car_updated(id)
+    end
 
     def save_car_to_db
       cars_db.save(cars_data, WRITE, DB_FILE)
