@@ -9,12 +9,13 @@ module Lib
     include Lib::Modules::Constants::RegExps
     include Lib::Modules::Constants::ParamsConst
 
-    attr_reader :car_params, :admin_login_and_password, :params_validator, :cars_db, :cars_data, :id, :printer
+    attr_reader :car_params, :admin_login_and_password, :params_validator, :cars_db, :cars_data, :id, :printer,
+                :valid_status
 
     def initialize
       @cars_db = Lib::Models::DataBase.new
       @admin_login_and_password = Lib::Models::UsersDb.new.load_logins_and_passwords(ADMIN_FILE)[0]
-      @params_validator = Lib::Models::ParamsValidator.new
+      @params_validator = Lib::Validations::ParamsValidator.new
       @printer = Lib::PrintData.new
     end
 
@@ -35,16 +36,20 @@ module Lib
     end
 
     def create_advertisement
-      params = ask_car_params
-      params_validator.validate_car_params(params) ? add_advertisement : params_validator.print_errors
+      ask_car_params
+
+      return unless valid_status
+
+      add_advertisement
     end
 
     def update_advertisement
       @id = ask_id
-      params = ask_car_params
       @cars_data = cars_db.load
       return printer.car_with_id_not_exists(id) unless find_car_by_id
-      return params_validator.print_errors unless params_validator.validate_car_params(params)
+
+      params = ask_car_params
+      return unless valid_status
 
       update_data(params)
     end
@@ -104,14 +109,16 @@ module Lib
     end
 
     def ask_car_params
-      initialize_car_params
       @car_params = CAR_PARAMS.each_with_object({}) do |item, hash|
-        hash[item] = ask_field(item)
+        if params_validator.validate_param(item, (field = ask_field(item)))
+          hash[item] = field
+        else
+          puts colorize_text('error', params_validator.error_message)
+          @valid_status = false
+          break
+        end
+        @valid_status = true
       end
-    end
-
-    def initialize_car_params
-      @car_params = {}
     end
 
     def add_advertisement

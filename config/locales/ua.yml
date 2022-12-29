@@ -98,3 +98,13 @@ ua:
     car_deleted: 'Ви успішно видалили авто з id %{id}!'
     car_updated: 'Ви успішно оновили дані про авто з id %{id}!'
     enter_id: 'Введіть id:'
+    validation:
+      min_length: 'Повинен мати принаймні 3 символи'
+      english_only: 'Має складатися лише з англійських літер'
+      required_param: "Параметр обов'язковий!"
+      integer_param: 'Має бути числом!'
+      greater_than_current_year: 'Має бути не більше поточного року!'
+      greater_than_min_year: "Має бути більше ніж %{min_year} рік!"
+      greater_or_equal_to_zero: 'Має бути >= 0'
+      description_string: 'Опис має бути рядком'
+      description_max_length: "Має містити не більше %{MAX_DESCRIPTION_LENGTH} символів"
