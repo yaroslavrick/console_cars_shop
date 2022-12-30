@@ -27,7 +27,7 @@ module Lib
     private
 
     def search
-      @search_rules = ask_cars_fields
+      ask_cars_fields
       validate_user_input(search_rules[:search_rules])
       @result_data = Lib::SearchEngineQuery.new(data: cars_db.load.clone,
                                                 params: search_rules).call
@@ -56,8 +56,10 @@ module Lib
     end
 
     def show_prettified_statistic(total_requests)
-      rows = [[colorize_text('main', localize('statistics.total_quantity')), colorize_text('result', result_data.count.to_s)],
-              [colorize_text('main', localize('statistics.requests_quantity')), colorize_text('result', total_requests.to_s)]]
+      rows = [
+        [colorize_text('main', localize('statistics.total_quantity')), colorize_text('result', result_data.count.to_s)],
+        [colorize_text('main', localize('statistics.requests_quantity')), colorize_text('result', total_requests.to_s)]
+      ]
       printer.create_table('statistics.statistic', 'statistics.title', 'statistics.number', rows)
     end
 
@@ -72,17 +74,16 @@ module Lib
     end
 
     def ask_cars_fields
-      input_data = initialize_search_rules
-      input_data[:search_rules] = SEARCH_RULES_OPTIONS.each_with_object({}) do |item, hash|
+      initialize_search_rules
+      search_rules[:search_rules] = SEARCH_RULES_OPTIONS.each_with_object({}) do |item, hash|
         hash[item] = ask_field(item)
       end
-      input_data[:sort_rules][:sort_option] = ask_field('sort option (date_added|price)')
-      input_data[:sort_rules][:sort_direction] = ask_field('sort direction (desc|asc)')
-      input_data
+      search_rules[:sort_rules][:sort_option] = ask_field('sort option (date_added|price)')
+      search_rules[:sort_rules][:sort_direction] = ask_field('sort direction (desc|asc)')
     end
 
     def initialize_search_rules
-      {
+      @search_rules = {
         search_rules: {},
         sort_rules: {
           sort_option: nil,
