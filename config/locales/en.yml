@@ -10,6 +10,9 @@ en:
       show_all_cars: Show all cars
       help: Help
       exit: Exit
+      create_advertisement: Create an Advertisement
+      update_advertisement: Update an Advertisement
+      delete_advertisement: Delete an Advertisement
     wrong_input: Wrong input
     help_menu:
       log_out: To log out current user - choose 'Log out'
@@ -33,6 +36,10 @@ en:
     price_to: 'price_to:'
     sort option (date_added|price): 'sort option (date_added|price):'
     sort direction (desc|asc): 'sort direction (desc|asc):'
+    year: year of production
+    odometer: number of km on odometer
+    price: price
+    description: description
   exit: Exit to main menu? (N/y)
   statistics:
     statistic: Statistic
@@ -47,6 +54,8 @@ en:
     empty: There is no cars with this parameters
   errors:
     wrong_field: "You entered wrong field: value 'from' can't be bigger than value 'to'!"
+    invalid_value_error: 'Car params is not valid!'
+    wrong_parameter: 'Wrong %{param} parameter'
   table:
     id: 'id:'
     make: 'Make:'
@@ -64,7 +73,7 @@ en:
     enter_email: 'Enter email:'
     enter_password: 'Enter password:'
     hello_message: 'Hello, '
-    email_not_exists: "Error! Email and password does't exists"
+    email_not_exists: "Error! Email and password doesn't exists"
     email_already_exists: Email already exists!
     email_not_valid: 'Email is not valid!'
     password_not_valid: 'Password is not valid!'
@@ -81,3 +90,19 @@ en:
         number_of_symbols_max: '- should be no more than 20 symbols'
   user_searches:
     searches_do_not_exist: The searches do not exist
+  admin_panel:
+    car_created: 'You have successfully created the car with id %{id}!'
+    id_not_exists: 'Attachment with id %{id} does not exists'
+    car_deleted: 'You have successfully deleted the car with id %{id}!'
+    car_updated: 'You have successfully updated the car with id %{id}!'
+    enter_id: 'Enter the id:'
+    validation:
+      min_length: 'Should have at least 3 symbols and consists only of English letters'
+      english_only: 'Should consists only of English letters'
+      required_param: 'Parameter is required!'
+      integer_param: 'Should be an integer!'
+      greater_than_current_year: 'Should be not greater than current year!'
+      greater_than_min_year: "Should be greater than %{min_year} year!"
+      greater_or_equal_to_zero: 'Should be >= 0'
+      description_string: 'Description should be string'
+      description_max_length: "Should have no more than %{MAX_DESCRIPTION_LENGTH} symbols"

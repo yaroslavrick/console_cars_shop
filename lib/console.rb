@@ -83,10 +83,14 @@ module Lib
     def ask_cars_fields
       initialize_search_rules
       search_rules[:search_rules] = SEARCH_RULES_OPTIONS.each_with_object({}) do |item, hash|
-        hash[item] = ask_field(item)
+        hash[item] = ask_field(item).downcase
       end
-      search_rules[:sort_rules][:sort_option] = ask_field('sort option (date_added|price)')
-      search_rules[:sort_rules][:sort_direction] = ask_field('sort direction (desc|asc)')
+      ask_sort_rules
+    end
+
+    def ask_sort_rules
+      search_rules[:sort_rules][:sort_option] = ask_field('sort option (date_added|price)').downcase
+      search_rules[:sort_rules][:sort_direction] = ask_field('sort direction (desc|asc)').downcase
     end
 
     def initialize_search_rules

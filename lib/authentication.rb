@@ -9,17 +9,19 @@ module Lib
     include Lib::Modules::Constants::FilePaths
     include Lib::Modules::Constants::RegExps
 
-    attr_reader :email, :password, :logins_and_passwords_db, :user, :tips
+    attr_reader :email, :password, :logins_and_passwords_db, :user, :tips, :superuser_status
     attr_accessor :auth_status
 
     def initialize
       @user = Lib::Models::UsersDb.new
       @logins_and_passwords_db = @user.load_logins_and_passwords
       @tips = Lib::Tips.new
+      @admin = Lib::SuperUser.new
     end
 
     def log_in
       ask_user_log_in_data
+      admin?
       validate_log_in_data
     end
 
@@ -32,6 +34,10 @@ module Lib
     end
 
     private
+
+    def admin?
+      @superuser_status = @admin.check_for_superuser(email: email, password: password)
+    end
 
     def ask_user_log_in_data
       @email = ask_user_email.downcase
@@ -69,6 +75,8 @@ module Lib
     def validate_log_in_data
       if @user.load_logins_and_passwords.any? { |user| user[:email] == email && user[:password] == password }
         @auth_status = true
+        hello_message
+      elsif superuser_status
         hello_message
       else
         puts colorize_text('error', localize('authentication.email_not_exists'))
